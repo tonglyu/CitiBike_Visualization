@@ -21,7 +21,7 @@
 
 ### Slide 2 - Why chose this project
 - Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last mile travel for people. It is also a healthy and eco-friendly means of transportation. 
-- Useful: company will know when and where to put more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
+- Useful: Company will know when and where to put more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
 - Important: It helps company/investors to make decision based on statistics data chart.
 
 ### Slide 3 - Characters of the subject
@@ -48,7 +48,8 @@
 - Other factors (weather condition, etc) which will affect the number of rentings.
 
 ### Slide 7 - Interactive visuals
-- people can pick any station point and bike point on the map and check it’s summary chart like time series chart and bar charts
+- People can pick any station point and bike point on the map and check it’s summary chart like time series chart and bar charts
+- See summary of regions
 - We will develop a bar chart indicating the numbers of renting on each day during one year，people can click on the bar chart to see detailed infomatoin (statistics) on the map.
 
 ### Slide 8 - Design considerations
