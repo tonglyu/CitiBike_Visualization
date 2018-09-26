@@ -22,6 +22,106 @@
      id="defs2">
     <inkscape:path-effect
        effect="bspline"
+       id="path-effect1443"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1415"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1407"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1400"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1360"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1346"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1342"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1331"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1327"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1323"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
        id="path-effect1471"
        is_visible="true"
        weight="33.333333"
@@ -404,16 +504,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.52144571"
-     inkscape:cx="1331.9909"
-     inkscape:cy="1659.6994"
+     inkscape:cx="965.5185"
+     inkscape:cy="2362.6885"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
      inkscape:window-width="1440"
      inkscape:window-height="799"
-     inkscape:window-x="251"
-     inkscape:window-y="21"
+     inkscape:window-x="46"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      showguides="false" />
   <metadata
@@ -424,7 +524,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1061,7 +1161,7 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        id="text1432"
-       transform="rotate(4.8435324,172.56768,-22.159194)"
+       transform="rotate(4.8435324,167.23995,-148.1313)"
        inkscape:transform-center-y="5.2494659"
        inkscape:transform-center-x="0.1963729"><textPath
          xlink:href="#path1465"
@@ -1084,33 +1184,29 @@
        inkscape:original-d="m 228.33154,-267.23261 c 18.09765,-2.87555 35.85678,-5.75083 53.78476,-8.62587 13.36167,2.87499 26.72352,5.75032 40.08487,8.62587 -0.50712,-2.7e-4 -1.01454,-2.7e-4 -1.52222,0" />
     <path
        style="fill:none;stroke:none;stroke-width:0.30071101px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 339.96706,-252.49966 c 14.09125,4.917 28.18235,9.83394 40.01874,15.83254 11.8364,5.99861 21.41847,13.07908 31.00038,20.15945"
+       d="m 174.55355,-374.78388 c 14.09125,4.917 28.18235,9.83394 40.01874,15.83254 11.8364,5.99861 21.41847,13.07908 31.00038,20.15945"
        id="path1469"
        inkscape:connector-curvature="0"
        inkscape:path-effect="#path-effect1471"
-       inkscape:original-d="m 339.96706,-252.49966 c 14.09138,4.91662 28.18247,9.83359 42.27329,14.75083 9.5821,7.07998 19.16417,14.16045 28.74583,21.24116" />
+       inkscape:original-d="m 174.55355,-374.78388 c 14.09138,4.91662 28.18247,9.83359 42.27329,14.75083 9.5821,7.07998 19.16417,14.16045 28.74583,21.24116" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58326149px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        id="text1483"
-       x="-19.28133"
-       y="3.5518239"
-       transform="matrix(0.92162212,0.09478039,-0.10230128,0.99475346,-3.691219,-22.493978)"><textPath
-         xlink:href="#path1461"
-         id="textPath1485"><tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58326149px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
-   id="tspan1481">Concise Content</tspan></textPath></text>
+       x="107.12479"
+       y="214.19034"
+       transform="matrix(0.92162212,0.09478039,-0.10230128,0.99475346,-41.239072,-89.471228)"><tspan
+   id="tspan1481"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58326149px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">Concise Content</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        id="text1490"
-       x="-7.6110511"
-       y="-8.1184549"
-       transform="translate(8.1184546,1.5222102)"><textPath
-         xlink:href="#path1469"
-         id="textPath1492"><tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
-   id="tspan1488">User Friendly</tspan></textPath></text>
+       x="251.53386"
+       y="211.47073"
+       transform="translate(-89.303001,-73.066092)"><tspan
+   id="tspan1488"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">User Friendly</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15.73895454px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.39347383"
@@ -2524,5 +2620,49 @@
            y="-131.30624"
            style="stroke-width:0.26468286">Company</tspan></text>
     </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1385"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion1387"><rect
+           id="rect1389"
+           width="471.76532"
+           height="360.5361"
+           x="1068.1841"
+           y="955.91602" /></flowRegion><flowPara
+         id="flowPara1391"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text1396"
+       transform="translate(-11.162876,4.0592273)"><textPath
+         xlink:href="#path1398"
+         id="textPath1402"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+   id="tspan1394">User Friendly</tspan></textPath></text>
+    <path
+       style="fill:none;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 162.8765,-226.64034 c 17.37875,-10.05241 34.50374,-19.95804 53.53117,-25.87764 19.02742,-5.91961 39.83134,-7.78013 60.6346,-9.64058"
+       id="path1398"
+       inkscape:connector-curvature="0"
+       inkscape:path-effect="#path-effect1400"
+       inkscape:original-d="m 162.8765,-226.64034 c 17.42111,-9.97918 34.50369,-19.95813 51.75514,-29.93678 20.80343,-1.86071 41.60735,-3.72123 62.41063,-5.58144" />
+    <path
+       style="fill:none;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 334.88624,-255.56231 c 19.9017,7.58962 39.91588,15.22214 54.79961,24.10163 14.88373,8.87949 24.6936,19.02764 34.50341,29.17571"
+       id="path1440"
+       inkscape:connector-curvature="0"
+       inkscape:path-effect="#path-effect1443"
+       inkscape:original-d="m 334.88624,-255.56231 c 19.95813,7.44164 39.916,15.22182 59.87362,22.83314 9.80999,10.14772 19.61986,20.29587 29.4294,30.4442" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text1447"
+       x="14.714699"
+       y="5.5814376"
+       transform="translate(11.162875,3.5518239)"><textPath
+         xlink:href="#path1440"
+         id="textPath1449"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+   id="tspan1445">Concise</tspan></textPath></text>
   </g>
 </svg>
