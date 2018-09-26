@@ -29,16 +29,16 @@
 - Life: Sharing bike is a healthy life style in New York to avoid traffic jam.
 - Business: There is a business potential to invest sharing bike company.
 
-### Slide 4 - Who is the audience
-- Investors: The frequency of the use of sharing bikes reveals if investors should invest it.
-- Sharing bike companys: Charts and data helps companys to improve the efficiency and convenience of bikes.
-- Bike users: The websites gives user a basic knowledge of distribution and use of sharing bikes.
-
-### Slide 5 - Data
+### Slide 4 - Data
 - We found a dataset for citibike shared bike in New York, which contains the trip data for each bike. 
 - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
 - The history data is from year 2013 to year 2018
 - Source: https://www.citibikenyc.com/system-data
+
+### Slide 5 - Who is the audience
+- Investors: The frequency of the use of sharing bikes reveals if investors should invest it.
+- Sharing bike companys: Charts and data helps companys to improve the efficiency and convenience of bikes.
+- Bike users: The websites gives user a basic knowledge of distribution and use of sharing bikes.
 
 ### Slide 6 - Story
 - Distribution of shared bikes’ stations in New York on the map
