@@ -20,13 +20,13 @@
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu
 
 ### Slide 2 - Why chose this project
-- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last mile travel for people. It is also a healthy and eco-friendly means of transportation. 
-- Useful: Company will know when and where to put more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
+- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation. 
+- Useful: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
 - Important: It helps company/investors to make decision based on statistics data chart.
 
 ### Slide 3 - Characters of the subject
 - Spatial: The data can be visualized on a map. Most similar websites offer map visualization and spatial analysis, so we will try to add this part. The distribution of bicycles affects the efficiency and convenience for people. The demand of shared bicycles varies among different regions in the city.
-- Life: Sharing bike is an important lifestylem in New York.
+- Life: Sharing bike is a healthy life style in New York to avoid traffic jam.
 - Business: There is a business potential to invest sharing bike company.
 
 ### Slide 4 - Who is the audience
