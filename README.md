@@ -25,7 +25,7 @@
 - Important: It helps company/investors to make decision based on statistics data chart.
 
 ### Slide 3 - Characters of the subject
-- Spatial: The data can be visualized on a map. The distribution of bicycles affects the efficiency and convenience for people. The demand of shared bicycles varies among different regions in the city.
+- Spatial: The data can be visualized on a map. Most similar websites offer map visualization and spatial analysis, so we will try to add this part. The distribution of bicycles affects the efficiency and convenience for people. The demand of shared bicycles varies among different regions in the city.
 - Life: Sharing bike is an important lifestylem in New York.
 - Business: There is a business potential to invest sharing bike company.
 
@@ -117,3 +117,4 @@
 ## Set-up
 - `proposal.svg`, `proposal.sozi.html`, `proposal.sozi.json` are used to generate sozi presentation
 - `proposal.pdf` is a pdf version manually exported from sozi presentation
+- Clone and multiple commit files on gitHub 
