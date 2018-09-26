@@ -70,8 +70,8 @@
 - Two user interface: bike users, company/investor
 - In bike users interface: interactive station map, bar charts (start/end destination)
 - Company interface: classify charts based on functions
--- Activity Analysis : By seasons/ months /week days/ hours
--- Station Analysis : Net activity by hours
+- -Activity Analysis : By seasons/ months /week days/ hours
+- -Station Analysis : Net activity by hours
 - Use bootstrap for interactive framework
 - Angular js and react: implement functions
 - Unit test and integration test
@@ -89,7 +89,7 @@
 
 ### Slide 15 - Timeline
 - Week -2: research and find data
--- We did a research on existing work (https://www.visualization.bike/citibike/system)
+- - We did a research on existing work (https://www.visualization.bike/citibike/system)
 - Week -1: proposal
 - Week 1: build framework and placeholders
 - Week 2: build framework, load data and test data
