@@ -89,7 +89,7 @@
 
 ### Slide 15 - Timeline
 - Week -2: research and find data
-- - We did a research on existing work (https://www.visualization.bike/citibike/system)
+  - We did a research on existing work (https://www.visualization.bike/citibike/system)
 - Week -1: proposal
 - Week 1: build framework and placeholders
 - Week 2: build framework, load data and test data
