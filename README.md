@@ -70,8 +70,8 @@
 - Two user interface: bike users, company/investor
 - In bike users interface: interactive station map, bar charts (start/end destination)
 - Company interface: classify charts based on functions
-- -Activity Analysis : By seasons/ months /week days/ hours
-- -Station Analysis : Net activity by hours
+  - Activity Analysis : By seasons/ months /week days/ hours
+  - Station Analysis : Net activity by hours
 - Use bootstrap for interactive framework
 - Angular js and react: implement functions
 - Unit test and integration test
