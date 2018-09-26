@@ -62,43 +62,47 @@
   - Users: where can I find a bike (distribution of bike-share station)? When I have a high propbablitiy to ride a bike?
 
 ### Slide 10 - Compare to what others have done
-- Concise Content
-- User Friendly
-- User Oriented
+- Concise Content: The websites only offers useful charts and information. The content is concise and less redundancy.
+- User Friendly: The websites offers guide and function list for users to explore what they want.
+- User Oriented: Functions and charts will be shown based on different users (two buttons).
 
 ### Slide 11 - Technologies
-- HTML5/CSS3/JavaScript
-- D3.js
-- Bootstrap
-- Angular (will explore)
-- React
-- MapBox/Google Maps
+- HTML5/CSS3/JavaScript: basic web application development technologies
+- D3.js: used to load data and visualize data
+- Bootstrap: front-end frame used to adjust lay out based on the window size
+- Angular (will explore): helps to develop functions and interactive components
+- React: helps to develop functions and interactive components
+- MapBox/Google Maps: We will pick one map API to show map visualization
 
 ### Slide 12 - How to design and build
 - Two user interface: bike users, company/investor
-- In bike users interface: interactive station map, bar charts (start/end destination)
-- Company interface: classify charts based on functions
+- In bike users interface: There is an interactive station map and bar charts (the percent of start/end destination numbers) for every station point and time series chart.
+- Company interface: will classify charts based on functions list
   - Activity Analysis : By seasons/ months /week days/ hours
   - Station Analysis : Net activity by hours
+  - Bike Analysis: The use of the bike in hours
 - Use bootstrap for interactive framework
 - Angular js and react: implement functions
-- Unit test and integration test
+- Unit test and integration test: we will do unit tests and integration test to examine the functions.
 
 ### Slide 13 - Deliverables
 - Demo video
 - Final report
 - Presentation 
 - Source code
+- All will be upload to gitHub
 
 ### Slide 14 - How to work
-- Github recording the version of the code.
-- Google docs recording history change
-- Weekly meeting
+- Github records the version of the code
+- Google docs is used to record the progress and problems of the project, plus the final report.
+- Weekly meeting: we will hold a weekly meeting to talk about the progress of the project.
 
 ### Slide 15 - Timeline
 - Week -2: research and find data
-  - We did a research on existing work (https://www.visualization.bike/citibike/system)
-- Week -1: proposal
+  - We did a research on existing work 
+  - There is a similar websites (https://www.visualization.bike/citibike/system)
+  - We will refers to similar websites
+- Week -1: make proposal and presentation
 - Week 1: build framework and placeholders
 - Week 2: build framework, load data and test data
 - Week 3: bike users interface: basic visualization charts
