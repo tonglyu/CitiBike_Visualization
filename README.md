@@ -102,4 +102,6 @@
 - Week 9: presentation and demo video
 
 
-## Run
+## Set-up
+- `proposal.svg`, `proposal.sozi.html`, `proposal.sozi.json` are used to generate sozi presentation
+- `proposal.pdf` is a pdf version manually exported from sozi presentation
