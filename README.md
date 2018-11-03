@@ -7,7 +7,7 @@
 - We will make a New York sharing bike Trip data visualization websites, which includes basic charts (time series, bar charts, etc.) and map visualization. The website is designed to sharing bike users, investors and sharing bike companys.
 
 ## Data
-- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike. 
+- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
 - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
 - The history data is from year 2013 to year 2018
 - Source: https://www.citibikenyc.com/system-data
@@ -20,7 +20,7 @@
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu
 
 ### Slide 2 - Why chose this project
-- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation. 
+- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.
 - Useful: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
 - Important: It helps company/investors to make decision based on statistics data chart.
 
@@ -30,7 +30,7 @@
 - Business: There is a business potential to invest sharing bike company.
 
 ### Slide 4 - Data
-- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike. 
+- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
 - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
 - The history data is from year 2013 to year 2018
 - Source: https://www.citibikenyc.com/system-data
@@ -58,9 +58,9 @@
 
 ### Slide 9 - Cool components
 - Secret: User Oriented Design
-  - Offers two buttons to different audience (company/investor and bike users), helps them find the data visualization they     want.
-  - Company/Investor: if I should invest, where to add more bikes, etc.
-  - Users: where can I find a bike (distribution of bike-share station)? When I have a high propbablitiy to ride a bike?
+- Offers two buttons to different audience (company/investor and bike users), helps them find the data visualization they     want.
+- Company/Investor: if I should invest, where to add more bikes, etc.
+- Users: where can I find a bike (distribution of bike-share station)? When I have a high propbablitiy to ride a bike?
 
 ### Slide 10 - Compare to what others have done
 - Concise Content: The websites only offers useful charts and information. The content is concise and less redundancy.
@@ -79,9 +79,9 @@
 - Two user interface: bike users, company/investor
 - In bike users interface: There is an interactive station map and bar charts (the percent of start/end destination numbers) for every station point and time series chart.
 - Company interface: will classify charts based on functions list
-  - Activity Analysis : By seasons/ months /week days/ hours
-  - Station Analysis : Net activity by hours
-  - Bike Analysis: The use of the bike in hours
+- Activity Analysis : By seasons/ months /week days/ hours
+- Station Analysis : Net activity by hours
+- Bike Analysis: The use of the bike in hours
 - Use bootstrap for interactive framework
 - Angular js and react: implement functions
 - Unit test and integration test: we will do unit tests and integration test to examine the functions.
@@ -89,7 +89,7 @@
 ### Slide 13 - Deliverables
 - Demo video
 - Final report
-- Presentation 
+- Presentation
 - Source code
 - All will be upload to gitHub
 
@@ -100,9 +100,9 @@
 
 ### Slide 15 - Timeline
 - Week -2: research and find data
-  - We did a research on existing work 
-  - There is a similar websites (https://www.visualization.bike/citibike/system)
-  - We will refers to similar websites
+- We did a research on existing work
+- There is a similar websites (https://www.visualization.bike/citibike/system)
+- We will refers to similar websites
 - Week -1: make proposal and presentation
 - Week 1: build framework and placeholders
 - Week 2: build framework, load data and test data
@@ -118,4 +118,5 @@
 ## Set-up
 - `proposal.svg`, `proposal.sozi.html`, `proposal.sozi.json` are used to generate sozi presentation
 - `proposal.pdf` is a pdf version manually exported from sozi presentation
-- Clone and multiple commit files on gitHub 
+- Clone and multiple commit files on gitHub
+

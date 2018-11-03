@@ -48,30 +48,27 @@ export class MapBoxComponent implements OnInit{
     this.map.addControl(new mapboxgl.NavigationControl());
 
 
-
-    /// Add realtime firebase data on map load
+    /// Add geojson data on map load
     this.map.on('load', (event) => {
-
-      /// register source
-      this.map.addSource('firebase', {
-         type: 'geojson',
-         data: {
-           type: 'FeatureCollection',
-           features: []
-         }
-      });
-
-
+        this.map.addSource('subway', { 
+            type: 'geojson',
+            data: 'src/assets/facilities_filtered_2018-11-01.geojson'
+        });
+        this.map.addLayer({
+            id: 'subway',
+            type: 'circle',
+            source: 'subway',
+            layout: {
+              visibility: 'visible'
+            },
+            paint: {
+                'circle-radius': 5,
+                'circle-color': 'yellow'
+            }
+        });
     })
 
   }
 
 
-  /// Helpers
-
-  flyTo(data: GeoJson) {
-    this.map.flyTo({
-      center: data.geometry.coordinates
-    })
-  }
 }
