@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
+import { MapService } from '../map.service';
 import { GeoJson, FeatureCollection } from '../map';
 
 
@@ -11,7 +12,7 @@ import { GeoJson, FeatureCollection } from '../map';
 })
 export class MapBoxComponent implements OnInit{
 
-  /// default settings
+  // default settings
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/outdoors-v9';
   lat = 40.7128;
@@ -21,11 +22,11 @@ export class MapBoxComponent implements OnInit{
   source: any;
   markers: any;
 
-  constructor() {
-    mapboxgl.accessToken = environment.mapbox.accessToken
+  constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
+    this.markers = this.mapService.getGeoJSON()
     this.initializeMap()
   }
 
@@ -52,8 +53,22 @@ export class MapBoxComponent implements OnInit{
     this.map.on('load', (event) => {
         this.map.addSource('subway', { 
             type: 'geojson',
-            data: 'src/assets/facilities_filtered_2018-11-01.geojson'
+            data: {
+               type: 'FeatureCollection',
+               features: []
+         }
         });
+        
+        // get source
+        this.source = this.map.getSource('subway');
+      
+        
+        // subscribe to realtime database and set data source
+        this.markers.subscribe(markers => {
+              this.source.setData(markers)
+        })
+
+        
         this.map.addLayer({
             id: 'subway',
             type: 'circle',
