@@ -15,8 +15,8 @@ export class MapBoxComponent implements OnInit{
   // default settings
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/outdoors-v9';
-  lat = 40.7128;
-  lng = -74.0060;
+  lat = 40.7300;
+  lng = -73.9800;
 
   // data
   source: any;
@@ -40,7 +40,7 @@ export class MapBoxComponent implements OnInit{
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 13,
+      zoom: 12,
       center: [this.lng, this.lat]
     });
 
@@ -82,7 +82,7 @@ export class MapBoxComponent implements OnInit{
             }
         });
     })
-
+    
   }
 
 

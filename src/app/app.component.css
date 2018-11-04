@@ -1,0 +1,18 @@
+header {
+    padding-left: 30px;
+    background-color: #563d7c;
+}
+
+.navbar-brand {
+    color: whitesmoke;
+}
+
+#side {
+    background-color: gainsboro;
+    height: 646px;
+    padding-top: 10px;
+}
+
+.container {
+    margin-left: 0;
+}
