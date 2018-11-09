@@ -1,7 +1,7 @@
 # INF 554 Assignment for 5
 
 ## Project - New York Sharing Bike Trip Data Visualization
-- Group Name: Y&L
+- Group Name: Journey to the West (Original Y&L)
 - Group Member: Ziwei Yuan, Tong Lyu
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu
 - We will make a New York sharing bike Trip data visualization websites, which includes basic charts (time series, bar charts, etc.) and map visualization. The website is designed to sharing bike users, investors and sharing bike companys.
