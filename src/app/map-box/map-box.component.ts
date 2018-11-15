@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
 import { MapService } from '../map.service';
-import { GeoJson, FeatureCollection } from '../map';
 
 
 @Component({
@@ -21,18 +20,20 @@ export class MapBoxComponent implements OnInit{
   // data
   source: any;
   markers: any;
+  
+    
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
-    this.markers = this.mapService.getGeoJSON()
-    this.initializeMap()
+    this.initializeMap();
+    this.stations2013 = this.mapService.getStations(2013);
+    this.stations2017 = this.mapService.getStations(2017);
   }
 
   private initializeMap() {
-
-    this.buildMap()
+    this.buildMap();
 
   }
 
@@ -45,13 +46,13 @@ export class MapBoxComponent implements OnInit{
     });
 
 
-    /// Add map controls
+    // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
 
 
-    /// Add geojson data on map load
+    // Add geojson data on map load
     this.map.on('load', (event) => {
-        this.map.addSource('subway', { 
+        this.map.addSource('stations2013', { 
             type: 'geojson',
             data: {
                type: 'FeatureCollection',
@@ -60,9 +61,9 @@ export class MapBoxComponent implements OnInit{
         });
         
         // get source
-        this.source = this.map.getSource('subway');
+        this.source = this.map.getSource('stations2013');
       
-        
+        this.markers = this.stations2013;
         // subscribe to realtime database and set data source
         this.markers.subscribe(markers => {
               this.source.setData(markers)
@@ -70,17 +71,18 @@ export class MapBoxComponent implements OnInit{
 
         
         this.map.addLayer({
-            id: 'subway',
+            id: 'stations2013',
             type: 'circle',
-            source: 'subway',
+            source: 'stations2013',
             layout: {
               visibility: 'visible'
             },
             paint: {
-                'circle-radius': 5,
+                'circle-radius': 3,
                 'circle-color': 'yellow'
             }
         });
+        
     })
     
   }
