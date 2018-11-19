@@ -9,11 +9,13 @@ import {YEARS} from '../constants';
 export class SelectAttrComponent implements OnInit {
 
   constructor() { }
+  //Radio value: 'variation' / 'statistics'
   radioValue = 'variation';
 
+  //Dropdown
   maxMultipleCount = '6';
   listOfOption = [];
-  listOfTagOptions = [];
+  listOfTagOptions = []; //selected tags
 
 
   ngOnInit(): void {
@@ -24,8 +26,7 @@ export class SelectAttrComponent implements OnInit {
     this.listOfOption = children;
   }
 
-  radioLog(value: string): void {
-    
+  radioLog(value: string): void {  
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
     } else {
@@ -34,8 +35,7 @@ export class SelectAttrComponent implements OnInit {
     console.log(this.maxMultipleCount);
   }
 
-  log(value: { label: string, value: string}): void {
+  selectLog(value: { label: string, value: string}): void {
     console.log(this.listOfTagOptions);
-    
   }
 }
