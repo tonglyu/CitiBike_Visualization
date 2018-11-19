@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http'; 
 import { MapService } from '../map.service';
+import {STATIONS_URL_PREFIX} from '../constants'
+
 
 
 @Component({
@@ -9,7 +12,7 @@ import { MapService } from '../map.service';
   templateUrl: './map-box.component.html',
   styleUrls: ['./map-box.component.css']
 })
-export class MapBoxComponent implements OnInit{
+export class MapBoxComponent implements OnInit {
 
   // default settings
   map: mapboxgl.Map;
@@ -20,21 +23,31 @@ export class MapBoxComponent implements OnInit{
   // data
   source: any;
   markers: any;
-  
-    
+
+  //read-in data
+  YEARS = ['2013','2014','2015','2016','2017','2018']
+  STATIONS = {};
 
   constructor(private mapService: MapService) {
   }
 
-  ngOnInit() {
+  ngOnInit() {   
     this.initializeMap();
-    this.stations2013 = this.mapService.getStations(2013);
-    this.stations2017 = this.mapService.getStations(2017);
+  }
+
+  private loadStationsData() {
+    // STATIONS = {'2013' : './src/assets/stations/2013.geojson', ...}
+    this.YEARS.forEach((year) => {
+      this.STATIONS[year] = "stations" + year
+      this.map.addSource(this.STATIONS[year], {
+        type: 'geojson',
+        data: STATIONS_URL_PREFIX + year + ".geojson"
+      });
+    })
   }
 
   private initializeMap() {
     this.buildMap();
-
   }
 
   buildMap() {
@@ -45,47 +58,50 @@ export class MapBoxComponent implements OnInit{
       center: [this.lng, this.lat]
     });
 
-
     // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
 
 
     // Add geojson data on map load
     this.map.on('load', (event) => {
-        this.map.addSource('stations2013', { 
-            type: 'geojson',
-            data: {
-               type: 'FeatureCollection',
-               features: []
-         }
-        });
-        
-        // get source
-        this.source = this.map.getSource('stations2013');
-      
-        this.markers = this.stations2013;
-        // subscribe to realtime database and set data source
-        this.markers.subscribe(markers => {
-              this.source.setData(markers)
-        })
+      this.loadStationsData();
 
-        
-        this.map.addLayer({
-            id: 'stations2013',
-            type: 'circle',
-            source: 'stations2013',
-            layout: {
-              visibility: 'visible'
-            },
-            paint: {
-                'circle-radius': 3,
-                'circle-color': 'yellow'
-            }
-        });
-        
+      // // get source
+      // this.source = this.map.getSource('stations2013');
+
+      // this.markers = this.stations2013;
+      // // subscribe to realtime database and set data source
+      // this.markers.subscribe(markers => {
+      //   this.source.setData(markers)
+      // })
+
+      this.map.addLayer({
+        id: 'stations2013',
+        type: 'circle',
+        source: 'stations2013',
+        layout: {
+          visibility: 'visible'
+        },
+        paint: {
+          'circle-radius': 3,
+          'circle-color': 'red'
+        }
+      });
+
+      this.map.addLayer({
+        id: 'stations2017',
+        type: 'circle',
+        source: 'stations2017',
+        layout: {
+          visibility: 'visible'
+        },
+        paint: {
+          'circle-radius': 3,
+          'circle-color': 'green'
+        }
+      });
+
     })
-    
+
   }
-
-
 }

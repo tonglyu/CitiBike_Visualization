@@ -1,0 +1,1 @@
+export const STATIONS_URL_PREFIX = './src/assets/stations/';
