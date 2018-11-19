@@ -22,9 +22,8 @@ header {
 #side {
     background-color: gainsboro;
     width: 25vw;
-    padding-top: 10px;
+    padding: 10px;
     font-size: 0.8em;
-    text-align: center;
 }
 
 
