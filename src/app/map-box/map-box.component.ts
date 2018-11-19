@@ -3,15 +3,14 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'; 
 import { MapService } from '../map.service';
-import {STATIONS_URL_PREFIX} from '../constants'
-
-
+import {STATIONS_URL_PREFIX, YEARS} from '../constants'
 
 @Component({
   selector: 'app-map-box',
   templateUrl: './map-box.component.html',
   styleUrls: ['./map-box.component.css']
 })
+
 export class MapBoxComponent implements OnInit {
 
   // default settings
@@ -25,7 +24,6 @@ export class MapBoxComponent implements OnInit {
   markers: any;
 
   //read-in data
-  YEARS = ['2013','2014','2015','2016','2017','2018']
   STATIONS = {};
 
   constructor(private mapService: MapService) {
@@ -37,7 +35,7 @@ export class MapBoxComponent implements OnInit {
 
   private loadStationsData() {
     // STATIONS = {'2013' : './src/assets/stations/2013.geojson', ...}
-    this.YEARS.forEach((year) => {
+    YEARS.forEach((year) => {
       this.STATIONS[year] = "stations" + year
       this.map.addSource(this.STATIONS[year], {
         type: 'geojson',

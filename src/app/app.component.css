@@ -1,18 +1,30 @@
+/* Top Navigation Bar */
 header {
     padding-left: 30px;
     background-color: #563d7c;
+    display: flex;
+    align-items: center;
+    box-shadow: -1px 0 5px 0 #1D428A;
+    height: 8vh;
 }
 
 .navbar-brand {
     color: whitesmoke;
 }
 
-#side {
-    background-color: gainsboro;
-    height: 646px;
-    padding-top: 10px;
+/* Main component */
+.main {
+    display: flex;
+    width: 100%;
+    height: 92vh;
 }
 
-.container {
-    margin-left: 0;
+#side {
+    background-color: gainsboro;
+    width: 25vw;
+    padding-top: 10px;
+    font-size: 0.8em;
+    text-align: center;
 }
+
+

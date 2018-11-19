@@ -1,7 +1,13 @@
 #map {
-    position:absolute;
-    top:8%;
+    position: absolute;
+    top: 0;
     bottom: 0;
-    width:76%;
-    right: 0;
+    width: 100%;
 }
+
+.map-wrapper {
+    position: relative;
+    width: 80vw;
+    height: 100%;
+}
+
