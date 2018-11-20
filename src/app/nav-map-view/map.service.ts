@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'; 
 import { Observable, of } from 'rxjs';
+import {ACCESS_TOKEN} from './constants';
 
 import * as mapboxgl from 'mapbox-gl';
 
@@ -12,7 +13,7 @@ import * as mapboxgl from 'mapbox-gl';
 export class MapService {
 
   constructor(private http: HttpClient) {
-    mapboxgl.accessToken = environment.mapbox.accessToken
+    mapboxgl.accessToken = ACCESS_TOKEN
   }
 
 

@@ -1,17 +1,10 @@
 <div class="app">
     <header class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Map</a>
-            <a class="navbar-brand" href="#">Other</a>
-        </div>
+        <nav class="navbar-header">
+            <a class="navbar-brand" routerLink="/map" routerLinkActive="active">Map</a>
+            <a class="navbar-brand" routerLink="/analysis" routerLinkActive="active">Other</a>
+        </nav>
     </header>
-
-    <nz-content class="main">
-        <div id="side">
-            <h5>Station Information</h5>
-            <app-select-attr></app-select-attr>
-        </div>
-        <app-map-box></app-map-box>
-    </nz-content>
+    <router-outlet></router-outlet>
     <nz-footer style="text-align: center;">©2018 Journey to the west</nz-footer>
 </div>

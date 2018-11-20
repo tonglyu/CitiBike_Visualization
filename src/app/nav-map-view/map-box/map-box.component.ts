@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'; 
 import { MapService } from '../map.service';
 import {STATIONS_URL_PREFIX, YEARS} from '../constants'
