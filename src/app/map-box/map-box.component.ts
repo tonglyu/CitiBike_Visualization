@@ -78,6 +78,16 @@ export class MapBoxComponent implements OnInit {
                   'circle-color': COLORS[year]
                 }
             });
+            var item = document.createElement('div');
+            var key = document.createElement('span');
+            key.className = 'legend-key';
+            key.style.backgroundColor = COLORS[year];
+
+            var value = document.createElement('span');
+            value.innerHTML = year;
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
         });
         
     this.mapService.yearsSource.subscribe((years) => {

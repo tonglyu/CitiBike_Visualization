@@ -4,8 +4,7 @@
       <label nz-radio nzValue="statistics">Statistics Analysis</label>
   </nz-radio-group>
   <span title>Year of stations</span>
-  <nz-select nzMode="tags" style="width: 80%;" nzPlaceHolder="Select the year of stations" [nzMaxMultipleCount] = 'maxMultipleCount'
-  [(ngModel)]="listOfTagOptions" (ngModelChange)="selectLog($event)">
+  <nz-select nzMode="tags" style="width: 80%;" nzPlaceHolder="Select the year of stations" [nzMaxMultipleCount]= 'maxMultipleCount' [(ngModel)]="listOfTagOptions" (ngModelChange)="selectLog($event)">
     <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
     </nz-option>
   </nz-select>

@@ -22,7 +22,7 @@ export class SelectAttrComponent implements OnInit {
   ngOnInit(): void {
     const children = [];
     YEARS.forEach(year => {
-      children.push({ label: year, value: year });
+      children.push({ label: year, value: year});
     })
     this.listOfOption = children;
   }
