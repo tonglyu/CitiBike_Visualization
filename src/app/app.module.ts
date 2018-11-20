@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { StationChartComponent } from './station-chart/station-chart.component';
 
 registerLocaleData(zh); 
 
@@ -17,7 +18,8 @@ registerLocaleData(zh);
   declarations: [
     AppComponent,
     MapBoxComponent,
-    SelectAttrComponent
+    SelectAttrComponent,
+    StationChartComponent
   ],
   imports: [
     BrowserModule,

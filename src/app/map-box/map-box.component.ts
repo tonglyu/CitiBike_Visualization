@@ -3,7 +3,8 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'; 
 import { MapService } from '../map.service';
-import {STATIONS_URL_PREFIX, YEARS} from '../constants'
+import {STATIONS_URL_PREFIX, YEARS, COLORS} from '../constants';
+
 
 @Component({
   selector: 'app-map-box',
@@ -21,10 +22,11 @@ export class MapBoxComponent implements OnInit {
 
   // data
   source: any;
-  markers: any;
+  year: string;
 
   //read-in data
   STATIONS = {};
+  selectedYears: [];
 
   constructor(private mapService: MapService) {
   }
@@ -34,7 +36,6 @@ export class MapBoxComponent implements OnInit {
   }
 
   private loadStationsData() {
-    // STATIONS = {'2013' : './src/assets/stations/2013.geojson', ...}
     YEARS.forEach((year) => {
       this.STATIONS[year] = "stations" + year
       this.map.addSource(this.STATIONS[year], {
@@ -58,48 +59,39 @@ export class MapBoxComponent implements OnInit {
 
     // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
-
-
+            
+    
     // Add geojson data on map load
     this.map.on('load', (event) => {
-      this.loadStationsData();
+        this.loadStationsData();
+        
+        YEARS.forEach((year) => {
+            this.map.addLayer({
+                id: 'stations' + year,
+                type: 'circle',
+                source: 'stations' + year,
+                layout: {
+                  visibility: 'none'
+                },
+                paint: {
+                  'circle-radius': 3,
+                  'circle-color': COLORS[year]
+                }
+            });
+        });
+        
+    this.mapService.yearsSource.subscribe((years) => {
+        YEARS.forEach((year) => {
+            if (years.includes(year)) {
+                this.map.setLayoutProperty('stations' + year, 'visibility', 'visible');
+            } else {
+                this.map.setLayoutProperty('stations' + year, 'visibility', 'none');
+            }
+        });
+    });
 
-      // // get source
-      // this.source = this.map.getSource('stations2013');
+    });
+    
 
-      // this.markers = this.stations2013;
-      // // subscribe to realtime database and set data source
-      // this.markers.subscribe(markers => {
-      //   this.source.setData(markers)
-      // })
-
-      this.map.addLayer({
-        id: 'stations2013',
-        type: 'circle',
-        source: 'stations2013',
-        layout: {
-          visibility: 'visible'
-        },
-        paint: {
-          'circle-radius': 3,
-          'circle-color': 'red'
-        }
-      });
-
-      this.map.addLayer({
-        id: 'stations2017',
-        type: 'circle',
-        source: 'stations2017',
-        layout: {
-          visibility: 'visible'
-        },
-        paint: {
-          'circle-radius': 3,
-          'circle-color': 'green'
-        }
-      });
-
-    })
-
-  }
+  } 
 }
