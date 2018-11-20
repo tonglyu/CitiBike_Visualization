@@ -26,7 +26,7 @@ export class MapBoxComponent implements OnInit {
 
   //read-in data
   STATIONS = {};
-  selectedYears: [];
+  selectedYears: string[];
 
   constructor(private mapService: MapService) {
   }
@@ -64,7 +64,7 @@ export class MapBoxComponent implements OnInit {
     // Add geojson data on map load
     this.map.on('load', (event) => {
         this.loadStationsData();
-        
+        var legend = document.getElementById("legend");
         YEARS.forEach((year) => {
             this.map.addLayer({
                 id: 'stations' + year,
