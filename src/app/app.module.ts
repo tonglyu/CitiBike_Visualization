@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavMapViewComponent } from './nav-map-view/nav-map-view.component';
 import { NavAnalysisViewComponent } from './nav-analysis-view/nav-analysis-view.component';
 
-registerLocaleData(zh); 
+registerLocaleData(zh);
 
 const appRoutes: Routes = [
   { path: 'map', component: NavMapViewComponent},

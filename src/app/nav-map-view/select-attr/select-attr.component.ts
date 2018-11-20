@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {YEARS} from '../constants';
+import { MapService } from "../map.service";
 
 @Component({
   selector: 'app-select-attr',
@@ -8,20 +9,20 @@ import {YEARS} from '../constants';
 })
 export class SelectAttrComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
   //Radio value: 'variation' / 'statistics'
   radioValue = 'variation';
 
   //Dropdown
   maxMultipleCount = '6';
   listOfOption = [];
-  listOfTagOptions = []; //selected tags
+  listOfTagOptions = []; // selected tags
 
 
   ngOnInit(): void {
     const children = [];
     YEARS.forEach(year => {
-      children.push({ label: year, value: year });
+      children.push({ label: year, value: year});
     })
     this.listOfOption = children;
   }
@@ -32,10 +33,10 @@ export class SelectAttrComponent implements OnInit {
     } else {
       this.maxMultipleCount = '6';
     }
-    console.log(this.maxMultipleCount);
   }
 
   selectLog(value: { label: string, value: string}): void {
-    console.log(this.listOfTagOptions);
+    this.mapService.changeYears(this.listOfTagOptions);
   }
+  
 }
