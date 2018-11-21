@@ -1,4 +1,4 @@
-<div style="height: 28px;">
+<div style="height: 100px;">
   <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
       <label nz-radio nzValue="variation">Distribution Variation</label>
       <label nz-radio nzValue="statistics">Statistics Analysis</label>
@@ -7,4 +7,10 @@
     <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
     </nz-option>
   </nz-select>
+</div>
+<div id="chartsArea">
+    <h6 id="barH6"></h6>
+    <div id="bar"></div>
+    <h6 id="lineH6"></h6>
+    <div id="line"></div>
 </div>
