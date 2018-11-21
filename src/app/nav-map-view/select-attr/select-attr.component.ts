@@ -35,10 +35,15 @@ export class SelectAttrComponent implements OnInit {
       children.push({ label: year, value: year});
     })
     this.listOfOption = children;
+    this.showStats();
   }
 
   drawBarChart(year: string): void {
-    var bar_container = d3.select("#bar").append("svg")
+    var bar_container = d3.select("#bar")
+        .selectAll("svg")
+        .data([0])
+        .enter()
+        .append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
 
@@ -146,10 +151,8 @@ export class SelectAttrComponent implements OnInit {
     barH6.innerHTML = "";
     // @ts-ignore
     lineH6.innerHTML = "";
-    // @ts-ignore
-    barChart.innerHTML = "";
-    // @ts-ignore
-    lineChart.innerHTML = "";
+    d3.select("#bar").selectAll("svg").remove();
+    d3.select("#line").selectAll("svg").remove();
   }
 
   radioLog(value: string): void {
