@@ -13,10 +13,10 @@ export class SelectAttrComponent implements OnInit {
 
   constructor(private mapService: MapService) { }
   //Radio value: 'variation' / 'statistics'
-  radioValue = 'variation';
+  radioValue = 'statistics';
 
   //Dropdown
-  maxMultipleCount = '6';
+  maxMultipleCount = '1';
   listOfOption = [];
   listOfTagOptions = []; // selected tags
   chartsArea: any;
@@ -36,7 +36,7 @@ export class SelectAttrComponent implements OnInit {
     })
     this.listOfOption = children;
   }
-  
+
   drawBarChart(year: string): void {
     var bar_container = d3.select("#bar").append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
@@ -44,15 +44,15 @@ export class SelectAttrComponent implements OnInit {
 
     var bar = bar_container.append("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
-        
+
     var width = this.width;
     var height = this.height;
     var margin = this.margin;
     d3.json('src/assets/statistics/bar.json').then(function (data: any) {
-        
+
         // set axis
         var countries = data.map(obj => obj['Country']);
-        
+
         var x = d3.scaleBand()
                 .domain(countries)
                 .range([0, width])
@@ -67,7 +67,7 @@ export class SelectAttrComponent implements OnInit {
         // @ts-ignore
         var yAxis = d3.axisLeft()
                 .scale(y);
-        
+
         // append rect
         bar.selectAll('rect')
             .data(data)
@@ -100,16 +100,16 @@ export class SelectAttrComponent implements OnInit {
             .attr("transform", "rotate(-90)")
             .attr("font-weight", "bold")
             .text("Arrivals of Vistors in 2014");
-            
+
         var resize = function() {
             width = parseInt(d3.select("#bar").style("width")) - margin.left - margin.right;
             if (width < 300) {
                 width = 300;
             }
-            bar_container.attr("width", width + margin.left + margin.right);           
+            bar_container.attr("width", width + margin.left + margin.right);
 
             x.range([0, width]);
-            xAxis.scale(x);      
+            xAxis.scale(x);
 
             bar.select("#x-label")
                 .attr("x", width/2.5)
@@ -122,12 +122,12 @@ export class SelectAttrComponent implements OnInit {
                 .attr('x', function(d) { return x(d['Country']); })
 
         };
-        
+
         window.addEventListener("resize", resize);
-        
+
     });
   }
-  
+
   showStats(): void {
     // @ts-ignore
     barH6.innerHTML = "Bar Chart";
@@ -139,8 +139,8 @@ export class SelectAttrComponent implements OnInit {
     }
     this.drawBarChart(this.listOfTagOptions[0]);
   }
-  
-  
+
+
   showVariation(): void {
     // @ts-ignore
     barH6.innerHTML = "";
@@ -151,13 +151,15 @@ export class SelectAttrComponent implements OnInit {
     // @ts-ignore
     lineChart.innerHTML = "";
   }
-  
-  radioLog(value: string): void {  
+
+  radioLog(value: string): void {
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
+      this.listOfTagOptions = [];
       this.showStats();
     } else {
       this.maxMultipleCount = '6';
+      this.listOfTagOptions = [];
       this.showVariation();
     }
   }
@@ -168,5 +170,5 @@ export class SelectAttrComponent implements OnInit {
       this.showStats();
     }
   }
-  
+
 }
