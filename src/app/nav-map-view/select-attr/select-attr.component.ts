@@ -11,10 +11,10 @@ export class SelectAttrComponent implements OnInit {
 
   constructor(private mapService: MapService) { }
   //Radio value: 'variation' / 'statistics'
-  radioValue = 'variation';
+  radioValue = 'statistics';
 
   //Dropdown
-  maxMultipleCount = '6';
+  maxMultipleCount = '1';
   listOfOption = [];
   listOfTagOptions = []; // selected tags
 
@@ -30,8 +30,10 @@ export class SelectAttrComponent implements OnInit {
   radioLog(value: string): void {  
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
+      this.listOfTagOptions = [];
     } else {
       this.maxMultipleCount = '6';
+      this.listOfTagOptions = [];
     }
   }
 

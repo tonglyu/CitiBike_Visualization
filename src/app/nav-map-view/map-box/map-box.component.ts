@@ -52,16 +52,13 @@ export class MapBoxComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 11,
+      zoom: 11.15,
       center: [this.lng, this.lat]
     });
 
     // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
-    var popup = new mapboxgl.Popup({ closeOnClick: false })
-      .setLngLat([-73.98758561, 40.73524276])
-      .setHTML('<h1>Hello World!</h1>')
-      .addTo(this.map);
+    this.mapService.changeYears([]);
 
     // Add geojson data on map load
     this.map.on('load', (event) => {
@@ -98,6 +95,7 @@ export class MapBoxComponent implements OnInit {
         closeButton: false,
         closeOnClick: false
       });
+
       this.mapService.yearsSource.subscribe((years) => {
         YEARS.forEach((year) => {
           if (years.includes(year)) {
