@@ -1,4 +1,4 @@
-# INF 554 Assignment for 5
+# INF 554 Project
 
 ## Project - New York Sharing Bike Trip Data Visualization
 - Group Name: Journey to the West (Original Y&L)
