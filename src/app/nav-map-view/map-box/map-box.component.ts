@@ -130,6 +130,11 @@ export class MapBoxComponent implements OnInit {
             this.map.setLayoutProperty('stations' + year, 'visibility', 'none');
           }
         });
+        
+        // change layers order
+        for(var i = 0; i < years.length; i++) {
+            this.map.moveLayer('stations' + years[i]); // move to the end of layers
+        }
       });
     });
   }

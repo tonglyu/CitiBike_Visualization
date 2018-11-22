@@ -7,7 +7,7 @@
 
 .map-wrapper {
     position: relative;
-    height: 100%;
+    height: 92vh;
 }
 
 .map-overlay {
@@ -15,7 +15,7 @@
   bottom: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.8);
-  margin-right: 20px;
+  margin-right: 10px;
   font-family: Arial, sans-serif;
   overflow: auto;
   border-radius: 3px;
@@ -25,7 +25,7 @@
   padding: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   line-height: 18px;
-  height: 130px;
+  height: 120px;
   margin-bottom: 40px;
   width: 100px;
 }
@@ -36,4 +36,11 @@
     width: 10px;
     height: 10px;
     margin-right: 5px;
+}
+
+@media only screen and (max-width: 575px) {
+    .map-overlay {
+      top: 0;
+      margin-top: 105px;
+    }
 }
