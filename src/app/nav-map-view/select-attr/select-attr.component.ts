@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import {YEARS} from '../constants';
 import { MapService } from "../map.service";
 import * as d3 from 'd3';
@@ -11,7 +11,7 @@ import * as d3 from 'd3';
 
 export class SelectAttrComponent implements OnInit {
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private renderer:Renderer2) { }
   //Radio value: 'variation' / 'statistics'
   radioValue = 'statistics';
 
@@ -27,6 +27,9 @@ export class SelectAttrComponent implements OnInit {
   margin = {top: 20, right: 0, bottom: 50, left: 70};
   height = 200 - this.margin.top - this.margin.bottom;
   width: any;
+  listOfStations = new Array();
+  select_container: any;
+  select_div: any;
 
 
   ngOnInit(): void {
@@ -36,6 +39,8 @@ export class SelectAttrComponent implements OnInit {
     })
     this.listOfOption = children;
     this.showStats();
+    this.select_container = document.getElementById("selectStations");
+    this.select_div = document.getElementById("select");
   }
 
   drawBarChart(year: string): void {
@@ -171,6 +176,20 @@ export class SelectAttrComponent implements OnInit {
     this.mapService.changeYears(this.listOfTagOptions);
     if (this.radioValue === 'statistics') {
       this.showStats();
+      const stations = [];
+      this.mapService.getStations(this.listOfTagOptions[0]).subscribe(data => {
+            data['features'].forEach((element) => {
+                stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
+            });
+            this.select_container.innerHTML = "";
+            stations.forEach((station) => {
+                      const option = document.createElement("option");
+          option.innerHTML = station.name;
+          this.select_container.appendChild(option);
+          this.renderer.appendChild(this.select_div, this.select_container);
+      });
+      });
+      console.log(this.select_container);
     }
   }
 
