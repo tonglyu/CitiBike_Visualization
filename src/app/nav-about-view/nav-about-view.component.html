@@ -1,0 +1,55 @@
+<div nz-content class="container">
+  <div class="title">
+    <h2>Meet our Team</h2>
+  </div>
+  <div nz-row [nzGutter]="8" nzType="flex" nzJustify="space-between">
+    <div nz-col [nzSpan]="6">
+      <nz-card nzHoverable [nzCover]="ziweiImage">
+        <nz-card-meta [nzTitle]="ziweiLink">
+          <ng-template #ziweiImage>
+            <img src="../assets/images/new.svg" alt="ziwei" />
+          </ng-template>
+          <ng-template #ziweiLink>
+            <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Ziwei Yuan</a>
+          </ng-template>
+        </nz-card-meta>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card nzHoverable [nzCover]="tongImage">
+        <nz-card-meta [nzTitle]="tongLink">
+          <ng-template #tongImage>
+            <img src="../assets/images/new.svg" alt="tong" />
+          </ng-template>
+          <ng-template #tongLink>
+            <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Tong Lyu</a>
+          </ng-template>
+        </nz-card-meta>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card nzHoverable [nzCover]="skyImage">
+        <nz-card-meta [nzTitle]="skyLink">
+          <ng-template #skyImage>
+            <img src="../assets/images/new.svg" alt="sky" />
+          </ng-template>
+          <ng-template #skyLink>
+            <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Tianyang Li</a>
+          </ng-template>
+        </nz-card-meta>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card nzHoverable [nzCover]="jingImage">
+        <nz-card-meta [nzTitle]="jingLink">
+          <ng-template #jingImage>
+            <img src="../assets/images/new.svg" alt="jing" />
+          </ng-template>
+          <ng-template #jingLink>
+            <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Jing Zhang</a>
+          </ng-template>
+        </nz-card-meta>
+      </nz-card>
+    </div>
+  </div>
+</div>

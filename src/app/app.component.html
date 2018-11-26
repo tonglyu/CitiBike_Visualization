@@ -3,15 +3,23 @@
         <img class="logo" src="../assets/images/new.svg" alt="logo" />
         <ul nz-menu [nzMode]="'horizontal'" nzTheme='dark' class="menu">
             <li nz-menu-item class="navbar-brand">
-                <span title>Home</span>
+                <span class="menu-title">Home</span>
             </li>
-            <li nz-menu-item class="navbar-brand">
+            <li nz-menu-item class="navbar-brand">            
+                <span class="menu-title">Stations Map</span>
                 <a routerLink="/map" routerLinkActive="active"></a>
-                <span title>Stations Map</span>
             </li>
             <li nz-menu-item class="navbar-brand">
                 <a routerLink="/analysis" routerLinkActive="active"></a>
-                <span title>Stations Analysis</span>
+                <span class="menu-title">Stations Analysis</span>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <a routerLink="/about" routerLinkActive="active"></a>
+                <span class="menu-title">About us</span>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <span class="menu-title">Github</span>
+                <a href="https://github.com/INF554Fall18/project-journey-to-the-west" target="_blank" rel="noopener noreferrer"></a>
             </li>
         </ul>
     </nz-header>
@@ -24,7 +32,7 @@
             <a class="navbar-brand" routerLink="/analysis" routerLinkActive="active">Other</a>
         </nav>
     </header> -->
-    <nz-content>
+    <nz-content class="main">
         <router-outlet></router-outlet>
     </nz-content>
     <nz-footer style="text-align: center;">©2018 Journey to the west</nz-footer>

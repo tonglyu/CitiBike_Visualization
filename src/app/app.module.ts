@@ -13,13 +13,17 @@ import zh from '@angular/common/locales/zh';
 import { RouterModule, Routes } from '@angular/router';
 import { NavMapViewComponent } from './nav-map-view/nav-map-view.component';
 import { NavAnalysisViewComponent } from './nav-analysis-view/nav-analysis-view.component';
+import { NavHomeViewComponent } from './nav-home-view/nav-home-view.component';
+import { NavAboutViewComponent } from './nav-about-view/nav-about-view.component';
 
 registerLocaleData(zh);
 
 const appRoutes: Routes = [
-  { path: 'map', component: NavMapViewComponent},
-  { path: 'analysis', component:  NavAnalysisViewComponent},
-  { path: '',   redirectTo: '/map', pathMatch: 'full' },
+  { path: 'home', component: NavHomeViewComponent },
+  { path: 'map', component: NavMapViewComponent },
+  { path: 'analysis', component: NavAnalysisViewComponent },
+  { path: 'about', component: NavAboutViewComponent },
+  { path: '', redirectTo: '/map', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -28,7 +32,9 @@ const appRoutes: Routes = [
     MapBoxComponent,
     SelectAttrComponent,
     NavMapViewComponent,
-    NavAnalysisViewComponent
+    NavAnalysisViewComponent,
+    NavHomeViewComponent,
+    NavAboutViewComponent
   ],
   imports: [
     BrowserModule,
