@@ -1,10 +1,40 @@
-<div class="app">
-    <header class="navbar navbar-default row" role="navigation">
+<nz-layout class="app">
+    <nz-header class="header" style="text-align: left;">
+        <img class="logo" src="../assets/images/new.svg" alt="logo" />
+        <ul nz-menu [nzMode]="'horizontal'" nzTheme='dark' class="menu">
+            <li nz-menu-item class="navbar-brand">
+                <span class="menu-title">Home</span>
+                <a routerLink="/home" routerLinkActive="active"></a>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <span class="menu-title">Stations Map</span>
+                <a routerLink="/map" routerLinkActive="active"></a>
+            </li>
+            <li nz-menu-item class="navbar-brand">       
+                <span class="menu-title">Stations Analysis</span>
+                <a routerLink="/analysis" routerLinkActive="active"></a>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <span class="menu-title">About us</span>
+                <a routerLink="/about" routerLinkActive="active"></a>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <span class="menu-title">Github</span>
+                <a href="https://github.com/INF554Fall18/project-journey-to-the-west" target="_blank" rel="noopener noreferrer"></a>
+            </li>
+        </ul>
+    </nz-header>
+
+    <!-- <header class="navbar navbar-default row" role="navigation">
         <nav class="navbar-header">
+            <img src="../assets/images/bike.svg" class="App-logo" alt="logo" />
+            <h1 class="App-title">New York Sharing Bike</h1>
             <a class="navbar-brand" routerLink="/map" routerLinkActive="active">Map</a>
             <a class="navbar-brand" routerLink="/analysis" routerLinkActive="active">Other</a>
         </nav>
-    </header>
-    <router-outlet></router-outlet>
-    <nz-footer class="row" style="text-align: center;">©2018 Journey to the west</nz-footer>
-</div>
+    </header> -->
+    <nz-content class="main">
+        <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer style="text-align: center;">©2018 Journey to the west</nz-footer>
+</nz-layout>
