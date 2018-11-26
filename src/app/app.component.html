@@ -1,10 +1,31 @@
-<div class="app">
-    <header class="navbar navbar-default row" role="navigation">
+<nz-layout class="app">
+    <nz-header class="header" style="text-align: left;">
+        <img class="logo" src="../assets/images/new.svg" alt="logo" />
+        <ul nz-menu [nzMode]="'horizontal'" nzTheme='dark' class="menu">
+            <li nz-menu-item class="navbar-brand">
+                <span title>Home</span>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <a routerLink="/map" routerLinkActive="active"></a>
+                <span title>Stations Map</span>
+            </li>
+            <li nz-menu-item class="navbar-brand">
+                <a routerLink="/analysis" routerLinkActive="active"></a>
+                <span title>Stations Analysis</span>
+            </li>
+        </ul>
+    </nz-header>
+
+    <!-- <header class="navbar navbar-default row" role="navigation">
         <nav class="navbar-header">
+            <img src="../assets/images/bike.svg" class="App-logo" alt="logo" />
+            <h1 class="App-title">New York Sharing Bike</h1>
             <a class="navbar-brand" routerLink="/map" routerLinkActive="active">Map</a>
             <a class="navbar-brand" routerLink="/analysis" routerLinkActive="active">Other</a>
         </nav>
-    </header>
-    <router-outlet></router-outlet>
-    <nz-footer class="row" style="text-align: center;">©2018 Journey to the west</nz-footer>
-</div>
+    </header> -->
+    <nz-content>
+        <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer style="text-align: center;">©2018 Journey to the west</nz-footer>
+</nz-layout>

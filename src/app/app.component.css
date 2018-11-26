@@ -1,15 +1,24 @@
 /* Top Navigation Bar */
-header {
-    padding-left: 50px;
-    background-color: #563d7c;
+.header {
     display: flex;
-    align-items: center;
-    box-shadow: -1px 0 5px 0 #1D428A;
-    height: 8vh;
+    align-items: flex-end;
+    margin-bottom: 2px;
+    background:#222;
+    box-shadow: -1px 0 5px 0 #222;
+}
+
+.logo {
+    height: 55px;
+    padding: 5px;
+    float: left;
+}
+
+.menu {
+    background: #222;
 }
 
 .navbar-brand {
-    color: whitesmoke;
+    height: 100%;
 }
 
 /* Main component */
@@ -25,5 +34,7 @@ header {
     padding: 10px;
     font-size: 0.8em;
 }
+
+
 
 
