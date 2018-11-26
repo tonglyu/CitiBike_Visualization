@@ -1,4 +1,4 @@
-<div style="height: 100px;">
+<div style="height: 80px;">
   <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
       <label nz-radio nzValue="statistics">Statistics Analysis</label>
       <label nz-radio nzValue="variation">Distribution Variation</label>
@@ -7,6 +7,11 @@
     <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
     </nz-option>
   </nz-select>
+</div>
+<div id="select">
+<select class="selectpicker" data-live-search="true" title="Choose the station" id="selectStations" data-size="5" [(ngModel)]="selectedStations" (ngModelChange)="showStats($event)">
+    <option *ngFor="let station of listOfStations" [value]="station.id">{{ station.name }}</option>
+</select>
 </div>
 <div id="chartsArea">
     <h6 id="barH6"></h6>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import {YEARS} from '../constants';
 import { MapService } from "../map.service";
 import * as d3 from 'd3';
@@ -11,7 +11,7 @@ import * as d3 from 'd3';
 
 export class SelectAttrComponent implements OnInit {
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private renderer:Renderer2) { }
   //Radio value: 'variation' / 'statistics'
   radioValue = 'statistics';
 
@@ -24,9 +24,14 @@ export class SelectAttrComponent implements OnInit {
   lineH6 = document.getElementById("lineH6");
   barChart = document.getElementById("bar");
   lineChart = document.getElementById("line");
-  margin = {top: 20, right: 0, bottom: 50, left: 70};
+  margin = {top: 20, right: 0, bottom: 50, left: 30};
   height = 200 - this.margin.top - this.margin.bottom;
   width: any;
+  listOfStations: any;
+  selectedStations = "";
+  select_container: any;
+  select_div: any;
+  clickedStation = {};
 
 
   ngOnInit(): void {
@@ -36,9 +41,32 @@ export class SelectAttrComponent implements OnInit {
     })
     this.listOfOption = children;
     this.showStats();
+    this.select_container = document.getElementById("selectStations");
+    this.select_div = document.getElementById("select");
+    
+    YEARS.forEach((year) => {
+        const stations = [];
+        const id = []
+      this.mapService.getStations(year).subscribe(data => {
+            data['features'].forEach((element) => {
+                if (!id.includes(element['properties']['id'])) {
+                    id.push(element['properties']['id']);
+                    stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
+                }
+            });
+      });
+      this.listOfStations = stations;
+    });
+    
+      
+      this.mapService.stationSource.subscribe((station) => {
+        this.clickedStation = station;
+        this.showStats(station);
+      });
   }
 
-  drawBarChart(year: string): void {
+  drawBarChart(year: string, id: string): void {
+    console.log(id);
     var bar_container = d3.select("#bar")
         .selectAll("svg")
         .data([0])
@@ -47,23 +75,44 @@ export class SelectAttrComponent implements OnInit {
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
 
-    var bar = bar_container.append("g")
+    var bar = bar_container
+        .selectAll("g")
+        .data([0])
+        .enter()
+        .append("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
     var width = this.width;
     var height = this.height;
     var margin = this.margin;
-    d3.json('src/assets/statistics/bar.json').then(function (data: any) {
+    d3.csv('src/assets/statistics/per hour/' + year + '(In).csv', function (d) {
+            if (d['Stationid'] == id) {
+                return {0: +d['0'], 1: +d['1'], 2: +d['2'], 3: +d['3'], 4: +d['4'], 5: +d['5'],
+                        6: +d['6'], 7: +d['7'], 8: +d['8'], 9: +d['9'], 10: +d['10'], 11: +d['11'],
+                        12: +d['12'], 13: +d['13'], 14: +d['14'], 15: +d['15'], 16: +d['16'], 17: +d['17'],
+                        18: +d['18'], 19: +d['19'], 20: +d['20'], 21: +d['21'], 22: +d['22'], 23: +d['23']
+                }
+            }
+    }).then(function (data: any) {
+        if (data.length == 0) {
+            return;
+        }
+        
+        data = data[0];
+        //data = [data[0]['0'], data[0]['1'], data[0]['2'], data[0]['3'], data[0]['4'], data[0]['5']]
+        var max = d3.max(Object.values(data));
 
         // set axis
-        var countries = data.map(obj => obj['Country']);
+        var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 
         var x = d3.scaleBand()
-                .domain(countries)
+                // @ts-ignore
+                .domain(hours)
                 .range([0, width])
                 .paddingInner(0.05);
         var y = d3.scaleLinear()
-                .domain([0, 85000])
+                // @ts-ignore
+                .domain([0, max])
                 .range([height, 0]);
 
         // @ts-ignore
@@ -72,16 +121,25 @@ export class SelectAttrComponent implements OnInit {
         // @ts-ignore
         var yAxis = d3.axisLeft()
                 .scale(y);
-
-        // append rect
-        bar.selectAll('rect')
-            .data(data)
-            .enter()
-            .append('rect')
-            .attr('x', function(d) { return x(d['Country']); })
-            .attr('y', function(d) { return height - y(d['Year(2014)']); })
+        
+        var rects = bar.selectAll('rect')
+                    .data(hours)
+                              
+        rects.transition()  //UPDATE
+            .duration(2000)
+            .attr('y', function(d, i) { return height - y(data[i]); })
             .attr('width', x.bandwidth)
-            .attr('height', function(d) { return y(d['Year(2014)']); })
+             // @ts-ignore
+            .attr('height', function(d, i) { return y(data[i]); });
+            
+        // append rect
+        rects.enter()
+            .append('rect')
+            .attr('x', function(d, i) { return x(i); })
+            .attr('y', function(d, i) { return height - y(data[i]); })
+            .attr('width', x.bandwidth)
+             // @ts-ignore
+            .attr('height', function(d, i) { return y(data[i]); })
             .attr('class', "rect")
             .attr('fill', "darkorange");
 
@@ -98,13 +156,12 @@ export class SelectAttrComponent implements OnInit {
             .attr("y", height + 35)
             .attr("font-weight", "bold")
             .attr("id", "x-label")
-            .text("Country");
+            .text("Hour");
         bar.append("text")
-            .attr("x", -150)
-            .attr("y", -50)
-            .attr("transform", "rotate(-90)")
+            .attr("x", -10)
+            .attr("y", -5)
             .attr("font-weight", "bold")
-            .text("Arrivals of Vistors in 2014");
+            .text("Return");
 
         var resize = function() {
             width = parseInt(d3.select("#bar").style("width")) - margin.left - margin.right;
@@ -124,7 +181,7 @@ export class SelectAttrComponent implements OnInit {
             // resize rect
 
             bar.selectAll(".rect")
-                .attr('x', function(d) { return x(d['Country']); })
+                .attr('x', function(d, i) { return x(hours[i]); })
 
         };
 
@@ -133,7 +190,17 @@ export class SelectAttrComponent implements OnInit {
     });
   }
 
-  showStats(): void {
+  showStats(station: object): void {
+      function isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+        }
+    if (this.listOfTagOptions.length == 0 || isEmpty(station)) {
+        return;
+    }
     // @ts-ignore
     barH6.innerHTML = "Bar Chart";
     // @ts-ignore
@@ -142,7 +209,8 @@ export class SelectAttrComponent implements OnInit {
     if (this.width < 300) {
         this.width = 300;
     }
-    this.drawBarChart(this.listOfTagOptions[0]);
+    console.log(station['Id']);
+    this.drawBarChart(this.listOfTagOptions[0], station['Id']);
   }
 
 
@@ -159,18 +227,35 @@ export class SelectAttrComponent implements OnInit {
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
       this.listOfTagOptions = [];
-      this.showStats();
+      this.showStats({});
     } else {
       this.maxMultipleCount = '6';
       this.listOfTagOptions = [];
       this.showVariation();
     }
+    this.mapService.changeAnalysis(this.radioValue);
+    this.mapService.changeYears(this.listOfTagOptions);
   }
 
   selectLog(value: { label: string, value: string}): void {
     this.mapService.changeYears(this.listOfTagOptions);
     if (this.radioValue === 'statistics') {
-      this.showStats();
+      this.showStats({});
+      const stations = [];
+/*
+      this.mapService.getStations(this.listOfTagOptions[0]).subscribe(data => {
+            data['features'].forEach((element) => {
+                stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
+            });
+            this.select_container.innerHTML = "";
+            stations.forEach((station) => {
+                      const option = document.createElement("option");
+          option.innerHTML = station.name;
+          this.select_container.appendChild(option);
+          this.renderer.appendChild(this.select_div, this.select_container);
+      });
+      });
+      */
     }
   }
 
