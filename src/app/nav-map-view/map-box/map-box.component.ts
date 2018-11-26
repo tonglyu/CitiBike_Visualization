@@ -39,7 +39,8 @@ export class MapBoxComponent implements OnInit {
       this.STATIONS[year] = "stations" + year
       this.map.addSource(this.STATIONS[year], {
         type: 'geojson',
-        data: STATIONS_URL_PREFIX + year + ".geojson"
+        data: STATIONS_URL_PREFIX + year + ".geojson",
+        generateId: true
       });
     })
   }
@@ -64,6 +65,11 @@ export class MapBoxComponent implements OnInit {
     this.map.on('load', (event) => {
       this.loadStationsData();
       var legend = document.getElementById("legend");
+      var hoveredId =  null;
+      var clickedId =  null;
+      var hoveredYear =  null;
+      var clickedYear =  null;
+      var isStats = true;
       YEARS.forEach((year) => {
         this.map.addLayer({
           id: 'stations' + year,
@@ -73,8 +79,19 @@ export class MapBoxComponent implements OnInit {
             visibility: 'none'
           },
           paint: {
-            'circle-radius': 3,
-            'circle-color': COLORS[year]
+            'circle-radius': 
+                ["case",
+                    ["boolean", ["feature-state", "click"], false], 4, 3
+                ]
+            'circle-color': 
+                ["case",
+                    ["boolean", ["feature-state", "click"], false], 'aqua', COLORS[year]
+                ]
+            'circle-stroke-width': 
+                ["case",
+                    ["boolean", ["feature-state", "hover"], false], 2, 0
+                ]
+            'circle-stroke-color': COLORS[year]
           }
         });
 
@@ -99,8 +116,30 @@ export class MapBoxComponent implements OnInit {
       this.mapService.yearsSource.subscribe((years) => {
         YEARS.forEach((year) => {
           if (years.includes(year)) {
-            this.map.setLayoutProperty('stations' + year, 'visibility', 'visible');
-            this.map.on('mouseenter', 'stations' + year, (e) => {
+            this.map.setLayoutProperty('stations' + year, 'visibility', 'visible');           
+          } else {
+            this.map.setLayoutProperty('stations' + year, 'visibility', 'none');
+          }
+            
+        });
+          
+        // change layers order
+        for(var i = 0; i < years.length; i++) {
+            this.map.moveLayer('stations' + years[i]); // move to the end of layers
+        }
+      });
+      
+      this.mapService.analysisSource.subscribe(name => {
+        if (name == "statistics") {
+            isStats = true;
+        } else {
+            isStats = false;
+        }
+      });
+      
+      
+      YEARS.forEach((year) => {
+        this.map.on('mouseenter', 'stations' + year, (e) => {
               // Change the cursor style as a UI indicator.
               this.map.getCanvas().style.cursor = 'pointer';
 
@@ -119,23 +158,50 @@ export class MapBoxComponent implements OnInit {
               popup.setLngLat(coordinates)
                 .setHTML(description)
                 .addTo(this.map);
-            });
+                
+            // highlight
+            if (e.features.length > 0) {
+                if (hoveredId) {
+                    this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+                }
+                hoveredId = e.features[0].id;
+                hoveredYear = year;
+                this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: true});
+            }
+        });
 
 
             this.map.on('mouseleave', 'stations' + year, () => {
+                //unhighlight
+                   if (hoveredId) {
+                        this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+                    }
+                    hoveredId = null;
+                    hoveredYear = null;
               this.map.getCanvas().style.cursor = '';
               popup.remove();
             });
-          } else {
-            this.map.setLayoutProperty('stations' + year, 'visibility', 'none');
-          }
+          
+          this.map.on('click', 'stations' + year, (e) => {
+                if (hoveredId) {
+                        this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+                 }
+                 if (clickedId) {
+                        this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: false});
+                 }
+                 hoveredId = null;
+                 hoveredYear = null;
+                // highlight
+                if (e.features.length > 0 && isStats) {
+                    clickedId = e.features[0].id;
+                    clickedYear = year;
+                    this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: true});
+                    this.mapService.changeStation({'Year': year, 'Id': e.features[0].properties.id, 'Name': e.features[0].properties.addr});
+                }
         });
-        
-        // change layers order
-        for(var i = 0; i < years.length; i++) {
-            this.map.moveLayer('stations' + years[i]); // move to the end of layers
-        }
+      
       });
+      
     });
   }
 }

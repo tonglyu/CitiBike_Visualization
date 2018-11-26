@@ -31,6 +31,7 @@ export class SelectAttrComponent implements OnInit {
   selectedStations = "";
   select_container: any;
   select_div: any;
+  clickedStation = {};
 
 
   ngOnInit(): void {
@@ -56,9 +57,16 @@ export class SelectAttrComponent implements OnInit {
       });
       this.listOfStations = stations;
     });
+    
+      
+      this.mapService.stationSource.subscribe((station) => {
+        this.clickedStation = station;
+        this.showStats(station);
+      });
   }
 
   drawBarChart(year: string, id: string): void {
+    console.log(id);
     var bar_container = d3.select("#bar")
         .selectAll("svg")
         .data([0])
@@ -182,8 +190,15 @@ export class SelectAttrComponent implements OnInit {
     });
   }
 
-  showStats(): void {
-    if (this.selectedStations == "" || this.listOfTagOptions.length == 0) {
+  showStats(station: object): void {
+      function isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+        }
+    if (this.listOfTagOptions.length == 0 || isEmpty(station)) {
         return;
     }
     // @ts-ignore
@@ -194,7 +209,8 @@ export class SelectAttrComponent implements OnInit {
     if (this.width < 300) {
         this.width = 300;
     }
-    this.drawBarChart(this.listOfTagOptions[0], this.selectedStations);
+    console.log(station['Id']);
+    this.drawBarChart(this.listOfTagOptions[0], station['Id']);
   }
 
 
@@ -211,18 +227,20 @@ export class SelectAttrComponent implements OnInit {
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
       this.listOfTagOptions = [];
-      this.showStats();
+      this.showStats({});
     } else {
       this.maxMultipleCount = '6';
       this.listOfTagOptions = [];
       this.showVariation();
     }
+    this.mapService.changeAnalysis(this.radioValue);
+    this.mapService.changeYears(this.listOfTagOptions);
   }
 
   selectLog(value: { label: string, value: string}): void {
     this.mapService.changeYears(this.listOfTagOptions);
     if (this.radioValue === 'statistics') {
-      this.showStats();
+      this.showStats({});
       const stations = [];
 /*
       this.mapService.getStations(this.listOfTagOptions[0]).subscribe(data => {
