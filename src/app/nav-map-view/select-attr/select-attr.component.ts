@@ -20,15 +20,15 @@ export class SelectAttrComponent implements OnInit {
   listOfOption = [];
   listOfTagOptions = []; // selected tags
   chartsArea: any;
-  barH6 = document.getElementById("barH6");
-  lineH6 = document.getElementById("lineH6");
-  barChart = document.getElementById("bar");
-  lineChart = document.getElementById("line");
+  borrowH6 = document.getElementById("borrowH6");
+  returnH6 = document.getElementById("returnH6");
+  borrowChart = document.getElementById("borrow");
+  returnChart = document.getElementById("return");
   margin = {top: 20, right: 0, bottom: 50, left: 30};
-  height = 200 - this.margin.top - this.margin.bottom;
+  height = 225 - this.margin.top - this.margin.bottom;
   width: any;
   listOfStations: any;
-  selectedStations = "";
+  //selectedStations = "";
   select_container: any;
   select_div: any;
   clickedStation = {};
@@ -43,7 +43,7 @@ export class SelectAttrComponent implements OnInit {
     this.showStats({});
     this.select_container = document.getElementById("selectStations");
     this.select_div = document.getElementById("select");
-    
+    /*
     YEARS.forEach((year) => {
         const stations = [];
         const id = []
@@ -57,6 +57,7 @@ export class SelectAttrComponent implements OnInit {
       });
       this.listOfStations = stations;
     });
+          */
     
       
       this.mapService.stationSource.subscribe((station) => {
@@ -65,9 +66,8 @@ export class SelectAttrComponent implements OnInit {
       });
   }
 
-  drawBarChart(year: string, id: string): void {
-    console.log(id);
-    var bar_container = d3.select("#bar")
+  drawBarChart(year: string, id: string, chart: string): void {
+    var bar_container = d3.select("#" + chart)
         .selectAll("svg")
         .data([0])
         .enter()
@@ -85,7 +85,7 @@ export class SelectAttrComponent implements OnInit {
     var width = this.width;
     var height = this.height;
     var margin = this.margin;
-    d3.csv('src/assets/statistics/per hour/' + year + '(In).csv', function (d) {
+    d3.csv('src/assets/statistics/per hour/' + year + '(' + chart + ').csv', function (d) {
             if (d['Stationid'] == id) {
                 return {0: +d['0'], 1: +d['1'], 2: +d['2'], 3: +d['3'], 4: +d['4'], 5: +d['5'],
                         6: +d['6'], 7: +d['7'], 8: +d['8'], 9: +d['9'], 10: +d['10'], 11: +d['11'],
@@ -97,7 +97,6 @@ export class SelectAttrComponent implements OnInit {
         if (data.length == 0) {
             return;
         }
-        
         data = data[0];
         //data = [data[0]['0'], data[0]['1'], data[0]['2'], data[0]['3'], data[0]['4'], data[0]['5']]
         var max = d3.max(Object.values(data));
@@ -160,13 +159,13 @@ export class SelectAttrComponent implements OnInit {
             .attr("id", "x-label")
             .text("Hour");
         bar.append("text")
-            .attr("x", -10)
-            .attr("y", -5)
+            .attr("x", -25)
+            .attr("y", -10)
             .attr("font-weight", "bold")
-            .text("Return");
+            .text("Bikes");
 
         var resize = function() {
-            width = parseInt(d3.select("#bar").style("width")) - margin.left - margin.right;
+            width = parseInt(d3.select("#borrow").style("width")) - margin.left - margin.right;
             if (width < 300) {
                 width = 300;
             }
@@ -204,25 +203,25 @@ export class SelectAttrComponent implements OnInit {
         return;
     }
     // @ts-ignore
-    barH6.innerHTML = "Bar Chart";
+    borrowH6.innerHTML = "Borrow from <b><i>" + station['Name'] + "</i></b> station";
     // @ts-ignore
-    lineH6.innerHTML = "Line Chart";
-    this.width = parseInt(d3.select("#bar").style("width")) - this.margin.left - this.margin.right;
+    returnH6.innerHTML = "Return to <b><i>" + station['Name'] + "</i></b> station";
+    this.width = parseInt(d3.select("#borrow").style("width")) - this.margin.left - this.margin.right;
     if (this.width < 300) {
-        this.width = 300;
+       this.width = 300;
     }
-    console.log(station['Id']);
-    this.drawBarChart(this.listOfTagOptions[0], station['Id']);
+    this.drawBarChart(this.listOfTagOptions[0], station['Id'], "borrow");
+    this.drawBarChart(this.listOfTagOptions[0], station['Id'], "return");
   }
 
 
   showVariation(): void {
     // @ts-ignore
-    barH6.innerHTML = "";
+    borrowH6.innerHTML = "";
     // @ts-ignore
-    lineH6.innerHTML = "";
-    d3.select("#bar").selectAll("svg").remove();
-    d3.select("#line").selectAll("svg").remove();
+    returnH6.innerHTML = "";
+    d3.select("#borrow").selectAll("svg").remove();
+    d3.select("#return").selectAll("svg").remove();
   }
 
   radioLog(value: string): void {
