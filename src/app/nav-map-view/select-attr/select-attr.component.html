@@ -8,15 +8,20 @@
     </nz-option>
   </nz-select>
 </div>
+<!--
 <div id="select">
 <select class="selectpicker" data-live-search="true" title="Choose the station" id="selectStations" data-size="5" [(ngModel)]="selectedStations" (ngModelChange)="showStats($event)">
     <option *ngFor="let station of listOfStations" [value]="station.id">{{ station.name }}</option>
 </select>
 </div>
+-->
 <div id="chartsArea">
-    <h6 id="barH6"></h6>
-    <div id="bar"></div>
-    <h6 id="lineH6"></h6>
-    <div id="line"></div>
-    <div id="bar"></div>
+    <h6 id="borrowH6"></h6>
+    <div id="borrow">
+        <svg><g></g></svg>
+    </div>
+    <h6 id="returnH6"></h6>
+    <div id="return">
+        <svg><g></g></svg>
+    </div>
 </div>

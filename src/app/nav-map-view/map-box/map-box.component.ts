@@ -183,16 +183,16 @@ export class MapBoxComponent implements OnInit {
             });
           
           this.map.on('click', 'stations' + year, (e) => {
-                if (hoveredId) {
-                        this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
-                 }
-                 if (clickedId) {
-                        this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: false});
-                 }
-                 hoveredId = null;
-                 hoveredYear = null;
                 // highlight
                 if (e.features.length > 0 && isStats) {
+                      if (hoveredId) {
+                            this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+                     }
+                     if (clickedId) {
+                            this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: false});
+                     }
+                     hoveredId = null;
+                     hoveredYear = null;
                     clickedId = e.features[0].id;
                     clickedYear = year;
                     this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: true});
