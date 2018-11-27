@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :host ::ng-deep
 path {
     
@@ -52,3 +53,10 @@ path {
       font: 10px sans-serif;
       text-anchor: middle;
     }
+=======
+.container {
+    min-width: 100vw;
+    min-height: 100%;
+    background: #ececec;
+}
+>>>>>>> 4085e18ddaab1c64e74990b9f36bd8e39d26315a
