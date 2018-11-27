@@ -1,0 +1,14 @@
+.container {
+    min-width: 100vw;
+    height: 100%;
+    background: #ececec;
+}
+
+.title-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.chart-container {
+    display: block;
+}
