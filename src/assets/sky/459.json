@@ -1,0 +1,5 @@
+{"type": "FeatureCollection","features": 
+[
+    {"type":"Feature","properties":{"type":"1","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97775299946429,40.751653000461964]}}
+]
+}

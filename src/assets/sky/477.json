@@ -1,0 +1,8 @@
+{"type": "FeatureCollection","features": 
+[
+    {"type":"Feature","properties":{"type":"6","name":"7th Ave & 40th St at SW corner","objectid":"1146","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.98806700011104,40.75469100126269]}},
+    {"type":"Feature","properties":{"type":"6","name":"7th Ave & 40th St at SE corner","objectid":"1147","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9878269994692,40.7545680013356]}},
+    {"type":"Feature","properties":{"type":"2","name":"8th Ave & 35th St at NW corner","objectid":"390","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9932559994322,40.75305300085618]}},
+    {"type":"Feature","properties":{"type":"2","name":"8th Ave & 35th St at NW corner","objectid":"391","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99318800005699,40.753032000666956]}}
+]
+}

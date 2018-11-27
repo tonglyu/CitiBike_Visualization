@@ -1,0 +1,10 @@
+{"type": "FeatureCollection","features": 
+[
+    {"type":"Feature","properties":{"type":"0","name":"Park Ave & 42nd St at SW corner","objectid":"1338","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9780479995566,40.75218400065143]}},
+    {"type":"Feature","properties":{"type":"0","name":"4th Ave & 15th St at SW corner","objectid":"1339","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99026500004705,40.735311000881744]}},
+    {"type":"Feature","properties":{"type":"1","name":"Lexington Ave & 42nd St at NW corner","objectid":"1429","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97608700001928,40.75170100129494]}},
+    {"type":"Feature","properties":{"type":"1","name":"Dyre Ave & Light St at NE corner","objectid":"1430","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.83119500057741,40.88798000090471]}},
+    {"type":"Feature","properties":{"type":"1","name":"Park Ave & 42nd St at SE corner","objectid":"1259","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97769099950989,40.75174100120391]}},
+    {"type":"Feature","properties":{"type":"1","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97775299946429,40.751653000461964]}}
+]
+}

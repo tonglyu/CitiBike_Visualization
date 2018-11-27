@@ -1,0 +1,40 @@
+body
+{
+    background-color:#f1fffb;
+}
+h2
+{
+    color:rgb(0, 0, 0);
+    text-align:center;
+    font-size:28px;
+}
+h3
+{
+    color:rgb(0, 0, 0);
+
+    font-size:25px;
+
+
+}
+h4
+{
+    color:rgb(0, 0, 0);
+
+    font-size:18px;
+
+
+}
+h5
+{
+    color:rgb(0, 0, 0);
+    text-align:center;
+    font-size:19px;
+
+
+
+}
+p
+{
+    font-family:Arial,"Times New Roman";
+    font-size:16px;
+}

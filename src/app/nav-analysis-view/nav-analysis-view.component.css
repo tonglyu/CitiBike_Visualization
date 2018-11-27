@@ -1,0 +1,54 @@
+:host ::ng-deep
+path {
+    
+    stroke: black;
+    stroke-width: .5;
+    stroke-dasharray: 1;
+    fill: #ffd460;
+    
+  }
+  
+  #neighborhoodPopover { 
+    position: absolute;     
+    text-align: center;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: rgb(253, 253, 253); 
+    border: 0px;    
+    border-radius: 20px;     
+    pointer-events: none;
+    opacity: 0;     
+  }
+    .land {
+      fill: white;
+    }
+    
+    .border {
+      fill: none;
+      stroke: #fff;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    
+    .bubble {
+      fill: brown;
+      fill-opacity: 0.8;
+      stroke: #fff;
+      stroke-width: 1px;
+    }
+    .bubble :hover {
+        stroke: #000;
+            }
+
+    
+    
+    .legend circle {
+      fill: none;
+      stroke: #ccc;
+    }
+    
+    .legend text {
+      fill: #777;
+      font: 10px sans-serif;
+      text-anchor: middle;
+    }

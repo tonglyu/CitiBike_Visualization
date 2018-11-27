@@ -1,0 +1,8 @@
+{"type": "FeatureCollection","features": 
+[
+    {"type":"Feature","properties":{"type":"4","name":"Grand Army Plaza & Central Park South at NE corner","objectid":"1842","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97399800052692,40.76485900130548]}},
+    {"type":"Feature","properties":{"type":"4","name":"7th Ave & 55th St at SW corner","objectid":"1843","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.98127799942094,40.76425800051672]}},
+    {"type":"Feature","properties":{"type":"2","name":"Grand Army Plaza & Central Park South at SW corner","objectid":"1840","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97422800020375,40.76459900091597]}},
+    {"type":"Feature","properties":{"type":"2","name":"Grand Army Plaza & Central Park South at NE corner","objectid":"1841","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9741909995507,40.764935001318285]}}
+]
+}

@@ -1,3 +1,69 @@
+
+<style>
+    path {
+    
+    stroke: black;
+    stroke-width: .5;
+    stroke-dasharray: 1;
+    fill: #ffd460;
+    
+  }
+  
+  #neighborhoodPopover { 
+    position: absolute;     
+    text-align: center;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: rgb(253, 253, 253); 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;
+    opacity: 0;     
+  }
+    .land {
+      fill: white;
+    }
+    
+    .border {
+      fill: none;
+      stroke: #fff;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    
+    .bubble {
+      fill: brown;
+      fill-opacity: 0.8;
+      stroke: #fff;
+      stroke-width: 1px;
+    }
+    .bubble :hover {
+stroke: #000;
+}
+
+    
+    
+    .legend circle {
+      fill: none;
+      stroke: #ccc;
+    }
+    
+    .legend text {
+      fill: #777;
+      font: 10px sans-serif;
+      text-anchor: middle;
+    }
+    
+    </style>
 <p>
   nav-analysis-view works!
+  
 </p>
+<div style = "text-align: center">
+<svg id = "chart3" width="1500" height="1500" viewBox="400,200,500,800" style="background-color: rgb(191, 253, 255)"></svg>
+</div>
+<div id='neighborhoodPopover'> </div>
+<div id='detail'> </div>
+<button id="zoom_in">+</button>
+<button id="zoom_out">-</button>
+<button id="zoom_init">init</button>
