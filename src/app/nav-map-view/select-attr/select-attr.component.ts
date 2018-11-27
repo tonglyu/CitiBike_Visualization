@@ -24,7 +24,7 @@ export class SelectAttrComponent implements OnInit {
   returnH6 = document.getElementById("returnH6");
   borrowChart = document.getElementById("borrow");
   returnChart = document.getElementById("return");
-  margin = {top: 20, right: 0, bottom: 50, left: 30};
+  margin = {top: 30, right: 0, bottom: 50, left: 30};
   height = 225 - this.margin.top - this.margin.bottom;
   width: any;
   listOfStations: any;
@@ -68,18 +68,12 @@ export class SelectAttrComponent implements OnInit {
 
   drawBarChart(year: string, id: string, chart: string): void {
     var bar_container = d3.select("#" + chart)
-        .selectAll("svg")
-        .data([0])
-        .enter()
-        .append("svg")
+        .select("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
 
     var bar = bar_container
-        .selectAll("g")
-        .data([0])
-        .enter()
-        .append("g")
+        .select("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
     var width = this.width;
@@ -111,7 +105,7 @@ export class SelectAttrComponent implements OnInit {
                 .paddingInner(0.05);
         var y = d3.scaleLinear()
                 // @ts-ignore
-                .domain([0, max])
+                .domain([0, 300])
                 .range([height, 0]);
 
         // @ts-ignore
@@ -126,30 +120,127 @@ export class SelectAttrComponent implements OnInit {
                               
         rects.transition()  //UPDATE
             .duration(2000)
-            .attr('y', function(d, i) { return height - y(data[i]); })
+            .attr('y', function(d, i) {
+                if (data[i] > 300) {
+                    return y(300);
+                } else {
+                    return y(data[i]);
+                }
+            })
             .attr('width', x.bandwidth)
              // @ts-ignore
-            .attr('height', function(d, i) { return y(data[i]); });
+            .attr('height', function(d, i) { 
+               if (data[i] > 300) {
+                    return height - y(300);
+                } else {
+                    return height - y(data[i]);
+                }
+            });
+            
+        bar.selectAll(".label")
+            .data(hours)
+            .attr('x', function(d, i) { return x(i) + x.bandwidth()/2; })
+            .attr('y', function(d, i) {
+                if (data[i] > 300) {
+                    return y(300) - 10;
+                } else {
+                    return y(data[i]) - 10;
+                }
+            })
+            .text(function(d, i) {
+                if (data[i] > 300) {
+                    return "> 300";
+                } else {
+                    return data[i];
+                }
+            });
             
         // append rect
         rects.enter()
             .append('rect')
             .attr('x', function(d, i) { return x(i); })
-            .attr('y', function(d, i) { return height - y(data[i]); })
+            .attr('y', function(d, i) {
+                if (data[i] > 300) {
+                    return y(300);
+                } else {
+                    return y(data[i]);
+                }
+            })
             .attr('width', x.bandwidth)
              // @ts-ignore
-            .attr('height', function(d, i) { return y(data[i]); })
-            .attr('class', "rect")
+            .attr('height', function(d, i) { 
+                if (data[i] > 300) {
+                    return height - y(300);
+                } else {
+                    return height - y(data[i]);
+                }
+            })
+            .attr('class', function(d, i) { return "rect" + i; })
             .attr('fill', "darkorange")
             .attr('stroke-width', 1)
-            .attr('stroke', "aliceblue");
+            .attr('stroke', "aliceblue")
+            .on("mouseover", function(d, i) {
+                d3.selectAll(".rect" + i)
+                    .transition()
+                    .duration(250)
+                    .style('fill', 'aqua');
+                
+                // show text
+                d3.selectAll(".label" + i)
+                    .transition()
+                    .duration(250)
+                    .style("font-size", 15);
+            })					
+            .on("mouseout", function(d, i) {		
+                d3.selectAll(".rect" + i)
+                    .transition()
+                    .duration(250)
+                    .style('fill', 'darkorange');
+                    
+                 // hide text
+                d3.selectAll(".label" + i)
+                    .transition()
+                    .duration(250)
+                    .style("font-size", 0);
+            });
+            
+        bar.selectAll("text")
+            .data(hours).enter()
+            .append("text")
+            .attr("class", function(d, i) { return "label label" + i; })
+            .attr('x', function(d, i) { return x(i) + x.bandwidth()/2; })
+            .attr('y', function(d, i) {
+                if (data[i] > 300) {
+                    return y(300) - 10;
+                } else {
+                    return y(data[i]) - 10;
+                }
+            })
+            .attr("font-size", 0)
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                if (data[i] > 300) {
+                    return "> 300";
+                } else {
+                    return data[i];
+                }
+            });
+        
 
         // append axis
-        bar.append("g")
+        bar.selectAll(".x-axis")
+            .data([0])
+            .enter()
+            .append("g")
             .attr("transform", "translate(0," + height + ")")
             .attr("class", "x-axis")
             .call(xAxis);
-        bar.append("g")
+        bar.selectAll(".y-axis")
+            .data([0])
+            .enter()
+            .append("g")
+            .attr("class", "y-axis")
             .call(yAxis);
 
         bar.append("text")
@@ -220,15 +311,15 @@ export class SelectAttrComponent implements OnInit {
     borrowH6.innerHTML = "";
     // @ts-ignore
     returnH6.innerHTML = "";
-    d3.select("#borrow").selectAll("svg").remove();
-    d3.select("#return").selectAll("svg").remove();
+    document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
+    document.getElementById("return").innerHTML = "<svg><g></g></svg>";
   }
 
   radioLog(value: string): void {
     if (this.radioValue === 'statistics') {
       this.maxMultipleCount = '1';
       this.listOfTagOptions = [];
-      this.showStats({});
+      //this.showStats({});
     } else {
       this.maxMultipleCount = '6';
       this.listOfTagOptions = [];
@@ -241,16 +332,16 @@ export class SelectAttrComponent implements OnInit {
   selectLog(value: { label: string, value: string}): void {
     this.mapService.changeYears(this.listOfTagOptions);
     if (this.radioValue === 'statistics') {
+/*
       this.showStats({});
       const stations = [];
-/*
       this.mapService.getStations(this.listOfTagOptions[0]).subscribe(data => {
             data['features'].forEach((element) => {
                 stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
             });
             this.select_container.innerHTML = "";
             stations.forEach((station) => {
-                      const option = document.createElement("option");
+           const option = document.createElement("option");
           option.innerHTML = station.name;
           this.select_container.appendChild(option);
           this.renderer.appendChild(this.select_div, this.select_container);
