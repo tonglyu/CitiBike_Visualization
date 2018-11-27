@@ -10,9 +10,24 @@
                 <span class="menu-title">Stations Map</span>
                 <a routerLink="/map" routerLinkActive="active"></a>
             </li>
-            <li nz-menu-item class="navbar-brand">       
-                <span class="menu-title">Stations Analysis</span>
+            <li nz-submenu class="navbar-brand">
+                <span title class="menu-title">Stations Analysis</span>
                 <a routerLink="/analysis" routerLinkActive="active"></a>
+                <ul>
+                    <li nz-menu-item>
+                        <span>Infrastructure Effect</span>
+                        <a routerLink="/analysis/infrastructure" routerLinkActive="active"></a>
+                    </li>
+                    <li nz-menu-item>
+                        <span>Age Effect</span>
+                        <a routerLink="/analysis/age" routerLinkActive="active"></a>
+                    </li>
+                    <li nz-menu-item>
+                        <span>Weather Effect</span>
+                        <a routerLink="/analysis/weather" routerLinkActive="active"></a>
+                    </li>
+                </ul>
+
             </li>
             <li nz-menu-item class="navbar-brand">
                 <span class="menu-title">About us</span>

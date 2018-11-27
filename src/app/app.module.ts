@@ -15,6 +15,9 @@ import { NavMapViewComponent } from './nav-map-view/nav-map-view.component';
 import { NavAnalysisViewComponent } from './nav-analysis-view/nav-analysis-view.component';
 import { NavHomeViewComponent } from './nav-home-view/nav-home-view.component';
 import { NavAboutViewComponent } from './nav-about-view/nav-about-view.component';
+import { AnalysisInfrasViewComponent } from './nav-analysis-view/analysis-infras-view/analysis-infras-view.component';
+import { AnalysisAgeViewComponent } from './nav-analysis-view/analysis-age-view/analysis-age-view.component';
+import { AnalysisWeatherViewComponent } from './nav-analysis-view/analysis-weather-view/analysis-weather-view.component';
 
 registerLocaleData(zh);
 
@@ -22,8 +25,11 @@ const appRoutes: Routes = [
   { path: 'home', component: NavHomeViewComponent },
   { path: 'map', component: NavMapViewComponent },
   { path: 'analysis', component: NavAnalysisViewComponent },
+  { path: 'analysis/infrastructure', component: AnalysisInfrasViewComponent },
+  { path: 'analysis/age', component: AnalysisAgeViewComponent },
+  { path: 'analysis/weather', component: AnalysisWeatherViewComponent },
   { path: 'about', component: NavAboutViewComponent },
-  { path: '', redirectTo: '/map', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -34,7 +40,10 @@ const appRoutes: Routes = [
     NavMapViewComponent,
     NavAnalysisViewComponent,
     NavHomeViewComponent,
-    NavAboutViewComponent
+    NavAboutViewComponent,
+    AnalysisInfrasViewComponent,
+    AnalysisAgeViewComponent,
+    AnalysisWeatherViewComponent
   ],
   imports: [
     BrowserModule,
