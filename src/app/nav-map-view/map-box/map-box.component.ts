@@ -82,15 +82,15 @@ export class MapBoxComponent implements OnInit {
             'circle-radius': 
                 ["case",
                     ["boolean", ["feature-state", "click"], false], 4, 3
-                ]
+                ],
             'circle-color': 
                 ["case",
                     ["boolean", ["feature-state", "click"], false], 'aqua', COLORS[year]
-                ]
+                ],
             'circle-stroke-width': 
                 ["case",
                     ["boolean", ["feature-state", "hover"], false], 2, 0
-                ]
+                ],
             'circle-stroke-color': COLORS[year]
           }
         });

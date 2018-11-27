@@ -40,7 +40,7 @@ export class SelectAttrComponent implements OnInit {
       children.push({ label: year, value: year});
     })
     this.listOfOption = children;
-    this.showStats();
+    this.showStats({});
     this.select_container = document.getElementById("selectStations");
     this.select_div = document.getElementById("select");
     
@@ -141,7 +141,9 @@ export class SelectAttrComponent implements OnInit {
              // @ts-ignore
             .attr('height', function(d, i) { return y(data[i]); })
             .attr('class', "rect")
-            .attr('fill', "darkorange");
+            .attr('fill', "darkorange")
+            .attr('stroke-width', 1)
+            .attr('stroke', "aliceblue");
 
         // append axis
         bar.append("g")
