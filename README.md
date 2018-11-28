@@ -43,8 +43,9 @@
 ### Slide 4 - Motivation and Goal
 
 - Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived in big cities make their trip easy and convenient. All of group members like to use sharing-bike.
+- I have been to nyc for vacation trip. And I found there lots of bike-sharing station around my hotel. But stations have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio. 
 - There are lots of factors may influence the site of stations, number of orders and other data. We would like to analyze different data to find potential factors. And help bike-sharing company make decisions.
-- There are lots of problems for bike-sharing. For example, some stations have lots of bikes for whole day, but some stations always lack of bikes. We hope to find borrow and return laws to help users get their bikes anytime they need.
+
 
 
 ### Slide 5 - What others have done in this topic and what we do differently
@@ -111,8 +112,7 @@
 
 - Based on our experiences, weather is a important factor that may influence orders. Because, we all don't want to ride a  bike at rainy data or snow day. So we got some data from new york open data site. Weather data includes maximum and minimum temperatures, perciption and other relevant data. Apart from weather, seasons is also a key factor that may influence orders.
 - According to our chart, we found there more orders at spring, summer and autumn. And there are less orders on rainy day.
-- In future, we will use more weather to find more laws between weather and users.
-
+ 
 ### Slide 14 - Station user analysis
 
 - We think different staions have different festures. For example, staions near school and universities have more young users and staions near park have more old users. We try to find some user portraits base on their age data. Thus we got top 10 stations age data in 6 years.
