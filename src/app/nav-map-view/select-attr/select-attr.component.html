@@ -1,4 +1,5 @@
-<div style="height: 80px;">
+<div class="container">
+<div style="height: 10%;" >
     <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
         <label nz-radio nzValue="statistics">Statistics Analysis</label>
         <label nz-radio nzValue="variation">Distribution Variation</label>
@@ -9,15 +10,11 @@
         </nz-option>
     </nz-select>
 </div>
-<!--
-<div id="select">
-<select class="selectpicker" data-live-search="true" title="Choose the station" id="selectStations" data-size="5" [(ngModel)]="selectedStations" (ngModelChange)="showStats($event)">
-    <option *ngFor="let station of listOfStations" [value]="station.id">{{ station.name }}</option>
-</select>
-</div>
--->
 <div id="chartsArea">
-    <h6 id="borrowH6"></h6>
+    <h6 id="borrowH6">
+        <p>Statistics Analysis: select a <b>year</b> and a <b>station</b> on the map</p>
+        <p>Distribution Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>
+    </h6>
     <div id="borrow">
         <svg>
             <g></g>
@@ -26,10 +23,13 @@
     <h6 id="returnH6"></h6>
     <div id="var-text">
         <p id="description"></p>
+        <p id="table-des"></p>
+        <table id="table"></table>
     </div>
     <div id="return">
         <svg>
             <g></g>
         </svg>
     </div>
+</div>
 </div>
