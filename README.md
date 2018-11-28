@@ -7,19 +7,12 @@
 - We will make a New York sharing bike Trip data visualization websites, which includes basic charts (time series, bar charts, etc.) and map visualization. The website is designed to sharing bike users, investors and sharing bike companys.
 
 ## Data
-- Citi Bike Trip Histories
-  - The dataset is about trip information for each bike from 2013 to 2018
-  - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
-  - Source: https://www.citibikenyc.com/system-data
-- NYC Facilities
-  - GeoJson datasets of New York facilities
-  - Includes historical sites, education, infrastructure, etc
-  - Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
-- Weather dataset
-  - New York precipitation data of 2016
-  - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
+- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
+- The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
+- The history data is from year 2013 to year 2018
+- Source: https://www.citibikenyc.com/system-data
 
-## Presentation
+## Content
 
 ### Slide 1
 - Group Name: Journey to the West (Original Y&L)
@@ -37,8 +30,8 @@
 -  3. Competitor of citi bike-sharing. From our website, they can get some useful information and laws to help them make busniess decisions.
 
 ### Slide 4 - Interesting
-- Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived in big cities make their trip easy and convenient. All of group members like to use sharing-bike.
-- There are lots of factors may influence the site of stations, number of orders and other data. We would like to analyze different data to find potiential factors. And help bike-sharing company make decisions.
+- Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived at big cities make their trip easy and convenient. All of group members like to use sharing-bike.
+- There are lots of factors may influce the site of station, number of orders and other data. We would like to analyze different data to find potiential factors. And help bike-sharing company make decisions.
 - There are lots of problems for bike-sharing. For example, some stations have lots of bikes for whole day, but some stations always lack of bikes. We hope to find borrow and return laws to help usr get their bikes anytime they need.
 
 
@@ -49,28 +42,21 @@
 
 
 ### Slide 6 - Data
-- Citi Bike Trip Histories
-  - The dataset is about trip information for each bike from 2013 to 2018
-  - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
-  - Source: https://www.citibikenyc.com/system-data
-- NYC Facilities
-  - GeoJson datasets of New York facilities
-  - Includes historical sites, education, infrastructure, etc
-  - Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
-- Weather dataset
-  - New York precipitation data of 2016
-  - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
+- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
+- The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
+- The history data is from year 2013 to year 2018
+- Source: https://www.citibikenyc.com/system-data
 
-### Slide 7 - Station Map (Statistics Analysis)
+### Slide 7 - Main chart story
 
 
-### Slide 8 - Main chart 2
+### Slide 8 - Main chart design/layout
 
 
-### Slide 9 - Main chart 3
+### Slide 9 - Main chart 2
 
 
-### Slide 10 - Main chart design/layout
+### Slide 10 - Main chart 3
 
 
 ### Slide 11 - Station infras analysis
@@ -79,10 +65,12 @@
 
 
 ### Slide 13 - Station weather analysis
+- Based on our experiences, weather is a important factor that may influence orders. Because, we all don't want to ride a  bike at rainy data or snow day. So we got some data from new york open data site. Weather data includes maximum and minimum temperatures, perciption and other relevant data. Apart from weather, seasons is also a key factor that may influence orders. 
+- According to our chart, we found there more orders at spring, summer and autumn. And there are less orders on rainy day. 
+- In future, we will use more weather to find more laws between weather and users.
 
 ### Slide 14 - Station user analysis
-
-
+- Zoom and burshes can help user read long period data more easily.
 
 ### Slide 15 - Who did what
 
