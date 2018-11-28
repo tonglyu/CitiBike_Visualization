@@ -371,8 +371,8 @@
         "layer1": {
           "cx": 845.9503704651605,
           "cy": 185.66313984602635,
-          "width": 247.91754359110357,
-          "height": 185.57257042504958,
+          "width": 247.9175435911036,
+          "height": 185.57257042504963,
           "opacity": 1,
           "angle": 0.0000030249576639107545,
           "clipped": false,
@@ -399,8 +399,8 @@
         "layer1": {
           "deltaX": -8.157478655933232,
           "deltaY": -19.022147629559583,
-          "widthFactor": 1.649450000116614,
-          "heightFactor": 1.9615488111816686,
+          "widthFactor": 1.6494500001166141,
+          "heightFactor": 1.9615488111816692,
           "deltaAngle": 16.853671580304535
         }
       }
@@ -474,7 +474,7 @@
     {
       "frameId": "frame7350",
       "title": "main chart 2",
-      "timeoutMs": 20000,
+      "timeoutMs": 25000,
       "timeoutEnable": true,
       "transitionDurationMs": 1000,
       "showInFrameList": true,
@@ -738,7 +738,7 @@
     {
       "frameId": "frame4011",
       "title": "station infras2",
-      "timeoutMs": 20000,
+      "timeoutMs": 25000,
       "timeoutEnable": true,
       "transitionDurationMs": 1000,
       "showInFrameList": true,
@@ -1032,7 +1032,7 @@
           "cx": 572.2064517147021,
           "cy": 653.9616637613282,
           "width": 84.91525661571332,
-          "height": 63.553414427356664,
+          "height": 63.55341442735668,
           "opacity": 1,
           "angle": -0.0000025119578026533418,
           "clipped": true,
@@ -1060,7 +1060,7 @@
           "deltaX": -15.316924750141652,
           "deltaY": 3.152398624609418,
           "widthFactor": 1.0614410932572982,
-          "heightFactor": 1.060020154712108,
+          "heightFactor": 1.0600201547121082,
           "deltaAngle": 178.71895070087413
         }
       }
@@ -1134,7 +1134,7 @@
   ],
   "elementsToHide": [],
   "selectedFrames": [
-    "frame8365"
+    "frame9471"
   ],
   "selectedLayers": [
     "layer1",
