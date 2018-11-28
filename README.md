@@ -19,7 +19,7 @@
     - New York precipitation data of 2016
     - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
 
-## Content
+## Presentation
 
 ### Slide 1
 - Group Name: Journey to the West (Original Y&L)
@@ -55,12 +55,20 @@
 
 
 ### Slide 6 - Data
-- We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
-- The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc.
-- The history data is from year 2013 to year 2018
-- Source: https://www.citibikenyc.com/system-data
 
-### Slide 7 - Main chart story
+- Citi Bike Trip Histories
+- The dataset is about trip information for each bike from 2013 to 2018
+- The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
+- Source: https://www.citibikenyc.com/system-data
+- NYC Facilities
+- GeoJson datasets of New York facilities
+- Includes historical sites, education, infrastructure, etc
+- Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
+- Weather dataset
+- New York precipitation data of 2016
+- Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
+
+### Slide 7 - Station Map (Statistics Analysis)
 
 - Two statistocs bar charts
     - Number of borrowing bikes per hour
