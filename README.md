@@ -48,7 +48,6 @@
 
 
 ### Slide 5 - What others have done in this topic and what we do differently
-
 - Relevant website
     - Other websites with the same topics offers a lot of statistics charts and spatial analysis. We refered to some of charts such as returning bikes and borrowing bikes (per hour) statistics bar chart.
     - They focuses on statistics and analysis. Their target users are tend to data analysts.
@@ -58,7 +57,6 @@
     - Our charts are responsive and interactive. We optimized the visual queries and user interaction by multiple methos such as pop out effect, coupling effects and apporiate color scheme.
 
 ### Slide 6 - Data
-
 - Citi Bike Trip Histories
     - The dataset is about trip information for each bike from 2013 to 2018
     - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
@@ -85,15 +83,19 @@
 - Coupling effect
     - Two bar charts shows pop out effect together when a user hover a bar
 
-
 ### Slide 8 - Main chart design/layout
+- Mapbox, ant-design library
+- Bar chart / Multi-line chart
 
+### Slide 9 - Stations Map (Distribution Variation) 
+- One statistocs line chart
+    - Average acticities of total stations per hour
+- Table of top 5 neighborhoods with most new setted stations
 
-### Slide 9 - Main chart 2
-
-
-### Slide 10 - Main chart 3
-
+### Slide 10 - Stations Map (Distribution trend)
+- From 2013 to 2018, there are 439 new setted stations
+- Most of them are distributed in north and east, which are in the neighborhoods like upper town and Brooklyn.
+- However, we found some of these new setted stations are inactive in our statistics. ANd we would like to explore why popular stations are popular and to see if these new setted stations are necessary.
 
 ### Slide 11 - Station infras analysis
 

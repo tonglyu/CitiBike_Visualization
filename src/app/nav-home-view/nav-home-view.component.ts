@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { resolveDirective } from '../../../node_modules/@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-nav-home-view',
@@ -10,6 +11,11 @@ export class NavHomeViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
+  }
+
+  redirect(): void {
+    
   }
 
 }
