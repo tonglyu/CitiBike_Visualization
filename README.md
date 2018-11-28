@@ -25,7 +25,10 @@
 - Important: It helps company/investors to make decision based on statistics data chart.
 
 ### Slide 3 - Target Users
--  1。
+-  1. Citi bike-sharing company. If they want to expand their business in other cities or want to set more new stations, our website can help them to know more factors.
+-  2. People who want to know information of bike-sharing. User can get some inforamtion from our website that help them use bike.
+-  3. Competitor of citi bike-sharing. From our website, they can get some useful information and laws to help them make busniess decisions.
+
 ### Slide 4 - Interesting
 
 ### Slide 5 - What others have done in this topic
