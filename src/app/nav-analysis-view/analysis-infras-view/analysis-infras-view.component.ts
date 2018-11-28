@@ -19,7 +19,7 @@ interface SVGDatum {
      // viewbox:320,380,600,900;
       filterBrushEvent: boolean;
   }
-  
+  d3.select("body").attr("background","#00CCCC")
   var svg = d3.select<SVGSVGElement, undefined>('#chart3')
       .datum<SVGDatum>({ width: 1000, height: 750, filterBrushEvent: true })
       .attr('width', d => d.width)
@@ -63,14 +63,17 @@ d3.json("src/assets/sky/nyc.json").then(function (nyc:any) {
       .enter().append("path")
       .attr("d", path)
       .attr("stroke-width",0.5)
+      .attr("stroke-opacity",0.5)
       .attr("stroke","black")
       .attr("fill","#ffd460")
       .attr("stroke-dasharray",1)
-      .on("mouseover", function(d:any) {
+    .on("mouseover", function(d:any) {
         console.log(d);
       d3.select(this)
-      .style("stroke-width", 1.5)
+      .style("stroke-width", 1.2)
       .style("stroke-dasharray", 0)
+      .attr("stroke-opacity",1)
+      .attr("stroke","white")
       
       d3.select("#neighborhoodPopover")
       .transition()
@@ -87,7 +90,8 @@ d3.json("src/assets/sky/nyc.json").then(function (nyc:any) {
     })
     .on("mouseout", function(d) { 
       d3.select(this)
-      .style("stroke-width", .25)
+      .attr("stroke","black")
+      .style("stroke-width", 0.5)
       .style("stroke-dasharray", 1)
 
       d3.select("#cneighborhoodPopoverountyText")
