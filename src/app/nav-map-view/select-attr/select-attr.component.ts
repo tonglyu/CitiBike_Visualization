@@ -318,38 +318,39 @@ export class SelectAttrComponent implements OnInit {
     }
 
     drawTimeChart(year: any): void {
+        var width = this.width;
+        var height = 425 - this.margin.top - this.margin.bottom;;
+        var margin = this.margin;
+
         var svg_container = d3.select("#borrow").select("svg")
             .attr("width", this.width + this.margin.left + this.margin.right)
-            .attr("height", this.height + this.margin.top + this.margin.bottom);
+            .attr("height", height + this.margin.top + this.margin.bottom);
 
         var svg = svg_container.select("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
         var lineOpacity = "1";
         var lineOpacityHover = "0.85";
         var otherLinesOpacityHover = "0.1";
-        var lineStroke = "2";
+        var lineStroke = 1.5;
         var lineStrokeHover = "3";
         var duration = 250;
 
-        var circleOpacityOnLineHover = "0.25"
-        var circleRadius = 0;
+        var circleOpacity = "0.5"
+        var circleRadius = 4;
+        var circleStroke = 1;
         var circleRadiusHover = 6;
-
-        var width = this.width;
-        var height = this.height;
-        var margin = this.margin;
 
         svg.append("text")
             .attr("x", width / 2)
-            .attr("y", 530)
+            .attr("y", height + 35)
             .attr("font-weight", "bold")
             .attr("id", "x-label")
-            .text("Time Line");
+            .text("Hour");
 
         svg.append("text")
-            .attr("x", -300)
-            .attr("y", -55)
-            .attr("transform", "rotate(-90)")
+            .attr("x", -20)
+            .attr("y", -10)
+            //.attr("transform", "rotate(-90)")
             .attr("font-weight", "bold")
             .text("Number of Use (in thousands)");
 
@@ -372,12 +373,12 @@ export class SelectAttrComponent implements OnInit {
             });
 
 
-            var ymax = d3.max(line, function (d: any) {
+            var ymax = d3.max(line_points, function (d: any) {
                 return d3.max(d.Values, function (v: any) {
                     return v.Use;
                 })
             })
-            
+
             // @ts-ignore
             ymax = (parseInt(ymax / 100) + 1) * 100
             console.log(ymax)
@@ -418,7 +419,7 @@ export class SelectAttrComponent implements OnInit {
                 .y(function (d) { return y(d['Use']); });
 
             var lines = svg.selectAll(".lines")
-                .data(line)
+                .data(line_points)
                 .enter()
                 .append("g")
                 .attr("class", "lines");
@@ -446,21 +447,35 @@ export class SelectAttrComponent implements OnInit {
                         .style('opacity', lineOpacityHover)
                         .style("stroke-width", lineStrokeHover)
                         .style("cursor", "pointer");
-
-                    // show circles
-                    d3.select("#g" + i)
-                        .selectAll("circle")
-                        .transition()
-                        .duration(duration)
-                        .style("r", circleRadiusHover);
-
-                    // show text
-                    d3.select("#g" + i)
-                        .selectAll("text")
-                        .transition()
-                        .duration(duration)
-                        .style("font-size", 12);
                 })
+                .on("mousemove", function (d, i: any) {
+                    d3.selectAll(".line")
+                        .transition()
+                        .duration(duration)
+                        .style('opacity', otherLinesOpacityHover);
+
+                    d3.select(this)
+                        .transition()
+                        .duration(duration)
+                        .style('opacity', lineOpacityHover)
+                        .style("stroke-width", lineStrokeHover)
+                        .style("cursor", "pointer");
+                })
+
+                //     // show circles
+                //     d3.select("#g" + i)
+                //         .selectAll("circle")
+                //         .transition()
+                //         .duration(duration)
+                //         .style("r", circleRadiusHover);
+
+                //     // show text
+                //     d3.select("#g" + i)
+                //         .selectAll("text")
+                //         .transition()
+                //         .duration(duration)
+                //         .style("font-size", 12);
+                // })
                 .on("mouseout", function (d, i: any) {
                     d3.selectAll(".line")
                         .transition()
@@ -472,66 +487,127 @@ export class SelectAttrComponent implements OnInit {
                         .duration(duration)
                         .style("stroke-width", lineStroke)
                         .style("cursor", "none");
-
-                    // hide circles
-                    d3.select("#g" + i)
-                        .selectAll("circle")
-                        .transition()
-                        .duration(duration)
-                        .style("r", circleRadius);
-
-                    // hide text
-                    d3.select("#g" + i)
-                        .selectAll("text")
-                        .transition()
-                        .duration(duration)
-                        .style("font-size", 0);
-                });
-
-            var groups = lines.selectAll("circle-group")
-                .data(line).enter()
-                .append("g")
-                .attr("id", function (d, i: any) {
-                    return "g" + i;
-                })
-                .attr("fill", function (d, i: any) {
-                    return COLORS[d["Year"]];
                 })
 
-            // add circles        
-            groups.selectAll("circle")
-                .data(function (d) {
-                    return d['Values'];
-                }).enter()
+            //     // hide circles
+            //     d3.select("#g" + i)
+            //         .selectAll("circle")
+            //         .transition()
+            //         .duration(duration)
+            //         .style("r", circleRadius);
+
+            //     // hide text
+            //     d3.select("#g" + i)
+            //         .selectAll("text")
+            //         .transition()
+            //         .duration(duration)
+            //         .style("font-size", 0);
+            // });
+            // Draw the empty value for every point
+            var points = svg.selectAll('.points')
+                .data(line_points)
+                .enter()
+                .append('g')
+                .attr('class', 'points')
+                .append('text');
+
+            // Draw the circle
+            lines.style("fill", function (d) { return COLORS[d["Year"]] })
+                .selectAll("circle.line")
+                .data(function (d: any) { return d.Values })
+                .enter()
                 .append("circle")
-                .attr("class", "circle")
-                .attr("cx", function (d) {
-                    return x(d['Time']);
-                })
-                .attr("cy", function (d) {
-                    return y(d['Use']);
-                })
-                .attr("r", circleRadius);
+                .attr("r", circleRadius)
+                .style("opacity", circleOpacity)
+                .attr("cx", (d: any) => { return x(d.Time); })
+                .attr("cy", (d: any) => { return y(d.Use); });
 
-            // add data value label
-            groups.selectAll("text")
-                .data(function (d) {
-                    return d['Values'];
-                }).enter()
-                .append("text")
-                .attr("class", "label")
-                .attr("x", function (d) {
-                    return x(d['Time']);
-                })
-                .attr("y", function (d) {
-                    return y(d['Use']) - 10;
-                })
-                .attr("font-size", 0)
-                .attr("text-anchor", "middle")
-                .attr("fill", "black")
-                .text(function (d) {
-                    return d['Use'];
-                });
+            var focus = svg.append('g')
+                .attr('class', 'focus')
+                .style('display', 'none');
+
+            focus.append('line')
+                .attr('class', 'x-hover-line hover-line')
+                .attr('y1', 0)
+                .attr('y2', height);
+
+            svg.append('rect')
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .attr("class", "overlay")
+                .attr("width", width)
+                .attr("height", height)
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout)
+                .on("mousemove", mousemove);
+
+            var timeScales = data.map(function (d) { return x(d.Time); });
+
+            function mouseover() {
+                focus.style("display", null);
+                d3.selectAll('.points text')
+                    .style("display", null);
+            }
+            function mouseout() {
+                focus.style("display", "none");
+                d3.selectAll('.points text')
+                    .style("display", "none");
+            }
+
+            function mousemove() {
+                var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+                var di = data[i + 1];
+                focus.attr("transform", "translate(" + x(di.Time) + ",0)");
+                d3.selectAll('.points text')
+                    .attr('x', function (d) { return x(di.Time) + 5; })
+                    .attr('y', function (d: any) { return y(d.Values[i + 1].Use); })
+                    .text(function (d: any) { return Math.round(d.Values[i + 1].Use); })
+                    .style('fill', function (d: any) { return "black"; });
+            }
+
+            // var groups = lines.selectAll("circle-group")
+            //     .data(line).enter()
+            //     .append("g")
+            //     .attr("id", function (d, i: any) {
+            //         return "g" + i;
+            //     })
+            //     .attr("fill", function (d, i: any) {
+            //         return COLORS[d["Year"]];
+            //     })
+
+            // // add circles        
+            // groups.selectAll("circle")
+            //     .data(function (d) {
+            //         return d['Values'];
+            //     }).enter()
+            //     .append("circle")
+            //     .attr("class", "circle")
+            //     .attr("cx", function (d) {
+            //         return x(d['Time']);
+            //     })
+            //     .attr("cy", function (d) {
+            //         return y(d['Use']);
+            //     })
+            //     .attr("r", circleRadius);
+
+            // // add data value label
+            // groups.selectAll("text")
+            //     .data(function (d) {
+            //         return d['Values'];
+            //     }).enter()
+            //     .append("text")
+            //     .attr("class", "label")
+            //     .attr("x", function (d) {
+            //         return x(d['Time']);
+            //     })
+            //     .attr("y", function (d) {
+            //         return y(d['Use']) - 10;
+            //     })
+            //     .attr("font-size", 0)
+            //     .attr("text-anchor", "middle")
+            //     .attr("fill", "black")
+            //     .text(function (d) {
+            //         return d['Use'];
+            //     });
 
         })
     }
