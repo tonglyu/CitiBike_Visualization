@@ -76,7 +76,7 @@
 - coupling
 
 ### Slide 8 - Main chart design/layout
-- Mapbox
+- Mapbox, ant-design library
 - Bar chart / Multi-line chart
 
 ### Slide 9 - Stations Map (Distribution Variation) 
