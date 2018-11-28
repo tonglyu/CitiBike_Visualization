@@ -74,6 +74,8 @@
     - Number of borrowing bikes per hour in a station
     - Number of retruning bikes per hour in a station
 - Select any station of 6 years on map to see the statistics
+  - Which station is popluar and which is not
+  - When a user might get a bike, while when might not
 - Repsonsive
     - The chart will adjust based on the size of the window
 - Interactive
