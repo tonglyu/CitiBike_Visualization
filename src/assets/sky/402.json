@@ -1,6 +1,9 @@
 {"type": "FeatureCollection","features": 
 [
-    {"type":"Feature","properties":{"type":"4","name":"Broadway & 23rd St at NE corner","objectid":"1561","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.98898899946323,40.74153900079397]}},
-    {"type":"Feature","properties":{"type":"4","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99105799990218,40.73527800124147]}}
+    {"type":"Feature","properties":{"type":"4","name":"Broadway & 23rd St at NE corner","objectid":"1561","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9903101,40.741302]}},
+    {"type":"Feature","properties":{"type":"0","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.991234,40.740692]}},
+    {"type":"Feature","properties":{"type":"0","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9887849,40.7396597]}},
+    {"type":"Feature","properties":{"type":"2","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9931911,40.7380669]}},
+    {"type":"Feature","properties":{"type":"6","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9943762,40.7376768]}}
 ]
 }

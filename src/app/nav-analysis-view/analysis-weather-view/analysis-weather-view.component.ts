@@ -20,11 +20,48 @@ export class AnalysisWeatherViewComponent implements OnInit {
     var parseDate = d3.timeParse("%m/%d/%y");
 
 
-//var legend_svg = d3.select("#div")
-                //.append("svg")
-                //.attr("width", 20)
-                //.attr("height", 20);
-            //color
+var legend_svg = d3.select("#legend")
+             //   .append("svg")
+             //   .attr("width", 100)
+             //   .attr("height", 100)
+                .append("circle")
+                .attr("r",10)
+                //.attr("width",17)
+                .attr("cx",430)
+                .attr("cy",50)
+                .attr("fill","lightskyblue");
+
+              d3.select("#legend")
+                .append("circle")
+                
+                .attr("r",10)
+            
+                .attr("cx",430)
+                .attr("cy",80)
+                .attr("fill","orchid");
+
+              d3.select("#legend")
+                .append("text")
+                
+                .attr("font-size",13)
+            
+                .attr("x",450)
+                .attr("y",54)
+                .attr("font-color","black")
+                .text("Number of orders");
+
+                d3.select("#legend")
+                .append("text")
+                
+                .attr("font-size",13)
+            
+                .attr("x",450)
+                .attr("y",84)
+                .attr("font-color","black")
+                .text("Precipitation");
+
+            
+            
 
 
            
@@ -190,7 +227,8 @@ export class AnalysisWeatherViewComponent implements OnInit {
                 .datum(data)
                 .attr("class", "line")
                 //@ts-ignore
-                .attr("d", line2);
+                .attr("d", line2)
+                .style("stroke", "orchid");
 
 
             context.append("g")

@@ -124,7 +124,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
           .rotate([96, -39])
           .fitSize([width, height], nyc);
 
-
+        
 
         //var location = 
         //console.log(light.features)
@@ -209,7 +209,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 "Park:" + a4 + "," +
                 "Sports Center:" + a5 + "," +
                 "Sightseeing:" + a6 + "," +
-                "Gov Service:" + a7;
+                "School:" + a7;
 
               svg.select("g")
                 .append("g")
@@ -240,9 +240,9 @@ export class AnalysisInfrasViewComponent implements OnInit {
                   else if (d.properties.type == "7") {
                     return "src/assets/sky/gov.svg";
                   }
-                  else {
-                    return "src/assets/sky/hotel.svg";
-                  }
+                //  else {
+                //    return "src/assets/sky/hotel.svg";
+                //  }
 
                 })
                 .attr("x", function (d: any) {
@@ -251,8 +251,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 .attr("y", function (d: any) {
                   return projection2(d.geometry.coordinates)[1];
                 })
-                .attr("width", "3")
-                .attr("height", "3");
+                .attr("width", "2")
+                .attr("height", "2");
 
 
               svg
@@ -301,16 +301,184 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 .attr('dy', "2em")
                 .attr('dx', "2em")
                 .text(function (d) { return d })
+//!!!!!!!!!!!!!
+              svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/park.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "100")
+                .attr("width", "20")
+                .attr("height", "20");
 
-              /*  var texts = wenzi.selectAll("tspan")
-              //          .data(strlist)
-                        .enter()
-                        .append("tspan")
-                        .attr("x",wenzi.attr("x"))
-                        .attr('y',function(d,i){return i*5+wenzi.attr("y")})
-                        .attr("dy","1em")
-                        .text(function(d){return d})
-              */
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/subway.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "130")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/mall.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "160")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/camera.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "190")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/gov.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "220")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/hotel.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "250")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "740")
+                .attr("y", "280")
+                .attr("width", "20")
+                .attr("height", "20");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "116")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Park");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "145")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Subway");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "175")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Mall");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "205")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Sightseeing");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "235")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("School");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "265")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Hotel");
+
+                svg
+                .select("#info")
+                .append("text")
+              //  .attr("xlink:href","src/assets/sky/sports.svg")
+              //  .attr("fill-opacity", 0.6)
+                // .style("x", (X-420)+"px")
+                // .style("y", (Y+50)+"px")
+                .attr("x", "770")
+                .attr("y", "294")
+                .attr("font-size", "10")
+                .attr("font-color", "black")
+                .text("Sports Center");
+
+
+//!!!!!!!!!!!!!
             });
 
           })

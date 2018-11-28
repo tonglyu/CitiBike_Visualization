@@ -1,5 +1,9 @@
 {"type": "FeatureCollection","features": 
 [
-    {"type":"Feature","properties":{"type":"3","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.00120899966048,40.73108600048379]}},{"type":"Feature","properties":{"line":"A-B-C-D-E-F-M","name":"6th Ave & West 3rd St at NW corner","objectid":"766","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.00153399972325,40.731133001348276]}}
+    {"type":"Feature","properties":{"type":"6","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0028222,40.7305399]}},
+    {"type":"Feature","properties":{"type":"0","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0022868,40.7302466]}},
+    {"type":"Feature","properties":{"type":"2","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0017482,40.7296136]}},
+    {"type":"Feature","properties":{"type":"7","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9952995,40.7294411]}},
+    {"type":"Feature","properties":{"type":"4","name":null,"objectid":"765","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9990551,40.730255]}}
 ]
 }
