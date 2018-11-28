@@ -129,9 +129,10 @@
     - Collected the statistics of count of stations in neighborhoods per year and create a table.
     - Participated in integrating mapbox to display stations and listen to mouse hover events.
 - Tianyang Li
-    - Gor raw data and format these data into csv, json and relevant useful files.
-    - Created d3.map with top20 popular/not popular stations data to analyze infrastructure factors.
-    - Merged pie charts, line chart and map chart into same page.
+    - Got raw data and format these data into csv, json and relevant useful files.
+    - Created d3.map with top20 popular/not popular stations data combine zoom function to analyze infrastructure factors.
+    - Merged pie charts, line chart and map chart into same page. Also designed website.
 - Jing Zhang
-    - Analyzed top 20 popular /not popular stations data and find relevent factors.
-    - Created line chartn with zoom and donut charts.
+    - Analyzed top 20 popular/not popular stations data and find relevent factors.
+    - Created line chart with zoom and brush function.
+    - Created donut chartsto analyze relationship between orders and user's  age.
