@@ -2,23 +2,18 @@
   <div class="title-container">
     <h2 class="title">Infrastructure Effect</h2>
   </div>
-
-
-  <div class="chart-container" style = "text-align:center">
+  <div class="chart-container" style="text-align:center">
     <button id="zoom_in" nz-button nzType="default">+</button>
     <button id="zoom_out" nz-button nzType="default">-</button>
     <button id="zoom_init" nz-button nzType="default">Init</button>
-  <div>
-    <br>
-    
-    
-  </div>
-  <nz-content class = "main row">
     <div>
-      <svg class = "col-sm-12 col-md-12" style="padding-left: 0; padding-right:0;" id="chart3" width="1000" height="750" ></svg>
-      
+      <br>
     </div>
-  </nz-content> 
+    <nz-content class="main row">
+      <div class="svg-container">
+        <svg class="col-sm-12 col-md-12" style="padding-left: 0; padding-right:0;" id="chart3" width="1000" height="750"></svg>
+      </div>
+    </nz-content>
 
     <div id='neighborhoodPopover'> </div>
     <div id='detail'> </div>
