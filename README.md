@@ -30,10 +30,9 @@
 
 ### Slide 2 - Why chose this project(10 words)
 
-- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.
-- Useful: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
-- Important: It helps company/investors to make decision based on statistics data chart.
-
+- Interesting:- Sharing economy is popular in recent years. As one of typical sharing economy, Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.All of group members like to use sharing-bike.
+- Useful: For project ifself, sharing-bike trip data has enough dimentions. We want to analyze different data to find potential factors. And help bike-sharing company make decisions.
+- Important: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps company to offer a better services and maximize the use efficiency of every bike.
 ### Slide 3 - Target Users
 
 -  1. Citi bike-sharing company. If they want to expand their business in other cities or want to set more new stations, our website can help them to know more factors.
@@ -42,9 +41,8 @@
 
 ### Slide 4 - Motivation and Goal
 
-- Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived in big cities make their trip easy and convenient. All of group members like to use sharing-bike.
-- I have been to nyc for vacation trip. And I found there lots of bike-sharing station around my hotel. But stations have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio. 
-- There are lots of factors may influence the site of stations, number of orders and other data. We would like to analyze different data to find potential factors. And help bike-sharing company make decisions.
+
+- I have been to nyc for vacation trip. And I found there lots of bike-sharing stations around my hotel. But all of them have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio. 
 
 
 
