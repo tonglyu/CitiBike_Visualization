@@ -107,6 +107,6 @@
 
 ### Slide 15 - Who did what
 - Ziwei Yuan:
-- Tong Lyu
+- Tong Lyu: Design the layout and build entire framework of the website. Create the line chart of "Distribution Variation". Collect the statistics of count of stations in neighborhoods per year and create a table. Participate in integrating mapbox to display stations and listen to mouse hover events.
 - Tianyang Li: Gor raw data and format these data into csv, json and relevant useful files. Create d3.map with top20 popular/not popular stations data to analyze infrastructure factors. Merge pie charts, line chart and map chart into same page.
 - Jing Zhang: Analyzed top 20 popular /not popular stations data and find relevent factors. Create line chartn with zoom and donut charts.
