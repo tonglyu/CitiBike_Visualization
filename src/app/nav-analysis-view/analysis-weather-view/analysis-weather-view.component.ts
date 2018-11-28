@@ -12,8 +12,8 @@ export class AnalysisWeatherViewComponent implements OnInit {
 
   ngOnInit() {
     var svg = d3.select("#line-chart"),
-        margin = { top: 20, right: 20, bottom: 110, left: 40 },
-        margin2 = { top: 430, right: 20, bottom: 30, left: 40 }, 
+        margin = { top: 20, right: 0, bottom: 110, left: 40 },
+        margin2 = { top: 430, right: 0, bottom: 30, left: 40 }, 
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
         height2 = +svg.attr("height") - margin2.top - margin2.bottom;
@@ -153,10 +153,13 @@ export class AnalysisWeatherViewComponent implements OnInit {
             focus.append("g")
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
+              //  .attr("fill","black")
                 .call(xAxis);
 
             focus.append("g")
                 .attr("class", "axis axis--y")
+                
+               // .attr("transform", "translate(" + 40 + ",0)")
                 .call(yAxis);
 
 

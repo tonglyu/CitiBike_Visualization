@@ -24,7 +24,7 @@ export class AnalysisAgeViewComponent implements OnInit {
       .append("g")
       .append("svg:image")
       .attr("xlink:href","src/assets/pielegend.png")
-      .attr("x", "40")
+      .attr("x", "240")
       .attr("y","0")
       .attr("width", "90")
       .attr("height", "120");
@@ -113,6 +113,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2013.append("path")
       //@ts-ignore
@@ -159,6 +160,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2014.append("path")
       //@ts-ignore
@@ -208,6 +210,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2015.append("path")
       //@ts-ignore
@@ -260,6 +263,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2016.append("path")
       //@ts-ignore
@@ -307,6 +311,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2017.append("path")
       //@ts-ignore
@@ -353,6 +358,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .enter()
           .append("g")
           .attr("class", "arc")
+          .attr("opacity","0.7")
           .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
       arcs2018.append("path")
       //@ts-ignore
