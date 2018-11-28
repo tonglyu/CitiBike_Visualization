@@ -98,11 +98,10 @@
 ### Slide 11 - Station infras analysis
 
 - Base on our story, we located nearby station on map. In the same time, we found this station is one of top10 popular  stations around NYC. By doing these, we found there are many malls amd hotels around this station. So we thought the surrodings of station is also a key factor which may influnce number of orders. Thus we got top 20 popular stations data and their nearby infrastructures data. Also, we got top 10 informix stations and their nearby infra data to make a comparison.
-- Our chart can directly compare popular stations and informix stations. As we can see, those popular stations always surrounded by malls, parks, hotels, transportations, big aparment and so on. For example, station loacated at south entrance of central park is one of top 20 popular stations. There lots of users came and left central park by riding sharing-bikes. Also, the informix stations are always located in remote area which has less malls and other public infrastrutures.
 
 ### Slide 12 - Station infras analysis 2
-
-- D3.map //sky在这里补充一下。。。。。
+- Our chart can directly compare popular stations and informix stations. As we can see, those popular stations always surrounded by malls, parks, hotels, transportations, big aparment and so on. For example, station loacated at south entrance of central park is one of top 20 popular stations. There lots of users came and left central park by riding sharing-bikes. Also, the informix stations are always located in remote area which has less malls and other public infrastrutures.
+- D3.map,Bootstrap,function.
 - Zoom and burshes can help user read long period data more easily.
 
 
