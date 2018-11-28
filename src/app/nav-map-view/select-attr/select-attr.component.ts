@@ -24,7 +24,7 @@ export class SelectAttrComponent implements OnInit {
   returnH6 = document.getElementById("returnH6");
   borrowChart = document.getElementById("borrow");
   returnChart = document.getElementById("return");
-  margin = {top: 30, right: 0, bottom: 50, left: 30};
+  margin = {top: 30, right: 20, bottom: 50, left: 30};
   height = 225 - this.margin.top - this.margin.bottom;
   width: any;
   listOfStations: any;
@@ -175,7 +175,7 @@ export class SelectAttrComponent implements OnInit {
                     return height - y(data[i]);
                 }
             })
-            .attr('class', function(d, i) { return "rect" + i; })
+            .attr('class', function(d, i) { return "rect rect" + i; })
             .attr('fill', "darkorange")
             .attr('stroke-width', 1)
             .attr('stroke', "aliceblue")
@@ -243,16 +243,24 @@ export class SelectAttrComponent implements OnInit {
             .attr("class", "y-axis")
             .call(yAxis);
 
-        bar.append("text")
-            .attr("x", width/2.5)
+        bar.selectAll("#x-label")
+            .data([0])
+            .enter()
+            .append("text")
+            .attr("x", width/2)
             .attr("y", height + 35)
             .attr("font-weight", "bold")
             .attr("id", "x-label")
             .text("Hour");
-        bar.append("text")
+            
+        bar.selectAll("#y-label")
+            .data([0])
+            .enter()
+            .append("text")
             .attr("x", -25)
             .attr("y", -10)
             .attr("font-weight", "bold")
+            .attr("id", "x-label")
             .text("Bikes");
 
         var resize = function() {
@@ -274,6 +282,9 @@ export class SelectAttrComponent implements OnInit {
 
             bar.selectAll(".rect")
                 .attr('x', function(d, i) { return x(hours[i]); })
+                
+            bar.selectAll(".label")
+                .attr('x', function(d, i) { return x(hours[i]) + x.bandwidth()/2; })
 
         };
 
