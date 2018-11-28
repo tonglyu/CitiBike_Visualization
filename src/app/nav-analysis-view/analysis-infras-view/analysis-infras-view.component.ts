@@ -19,7 +19,7 @@ interface SVGDatum {
      // viewbox:320,380,600,900;
       filterBrushEvent: boolean;
   }
-  d3.select("body").attr("background","#00CCCC")
+  //d3.select("body").attr("background","#00CCCC")
   var svg = d3.select<SVGSVGElement, undefined>('#chart3')
       .datum<SVGDatum>({ width: 1000, height: 750, filterBrushEvent: true })
       .attr('width', d => d.width)
