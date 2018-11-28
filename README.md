@@ -30,6 +30,10 @@
 -  3. Competitor of citi bike-sharing. From our website, they can get some useful information and laws to help them make busniess decisions.
 
 ### Slide 4 - Interesting
+- Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived at big cities make their trip easy and convenient. All of group members like to use sharing-bike.
+- There are lots of factors may influce the site of station, number of orders and other data. We would like to analyze different data to find potiential factors. And help bike-sharing company make decisions.
+- There are lots of problems for bike-sharing. For example, some stations have lots of bikes for whole day, but some stations always lack of bikes. We hope to find borrow and return laws to help usr get their bikes anytime they need.
+
 
 ### Slide 5 - What others have done in this topic
 
