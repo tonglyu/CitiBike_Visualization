@@ -556,10 +556,50 @@ export class SelectAttrComponent implements OnInit {
         returnH6.innerHTML = "";
         document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
         document.getElementById("return").innerHTML = "<svg><g></g></svg>";
+        document.getElementById("description").innerHTML = "";
         this.width = parseInt(d3.select("#borrow").style("width")) - this.margin.left - this.margin.right;
         if (this.width < 300) {
             this.width = 300;
         }
+    }
+
+    addVariationDes(select_years: any): void {
+        //@ts-ignore
+        returnH6.innerHTML = "<b>Variation of stations' count<b>";
+        var count_data = []
+        d3.json('src/assets/statistics/counts.json').then(function (data: any) {
+            data.forEach((d: any) => {
+                count_data.push({
+                    Year: +d['Year'],
+                    Count: +d['Count']
+                })
+            })
+            return count_data
+        }).then(function (data) {
+            var year_max = d3.max(select_years)
+            var year_min = d3.min(select_years)
+
+            var val_max, val_min;
+
+            data.forEach((d: any) => {
+                if (d['Year'] == year_max) {
+                    val_max = d['Count'];
+                }
+                if (d['Year'] == year_min) {
+                    val_min = d['Count'];
+                }
+            })
+
+            var diff = (val_max - val_min)
+
+            if (diff >= 0) {
+                document.getElementById("description")
+                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been setted."
+            } else {
+                document.getElementById("description")
+                .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been withdrawed."     
+            }
+        })
     }
 
     radioLog(value: string): void {
@@ -597,6 +637,7 @@ export class SelectAttrComponent implements OnInit {
                   */
         } else {
             this.drawTimeChart(this.listOfTagOptions)
+            this.addVariationDes(this.listOfTagOptions)
         }
     }
 
