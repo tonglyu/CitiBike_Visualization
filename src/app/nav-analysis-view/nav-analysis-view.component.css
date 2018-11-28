@@ -1,3 +1,14 @@
+#neighborhoodPopover { 
+    position: absolute;     
+    text-align: center;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: #fff; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;
+    opacity: 0;     
+  }
 .container {
     min-width: 100vw;
     min-height: 100%;
