@@ -1,4 +1,32 @@
 <div nz-content class="container">
+<div class="title">
+    <h2>Datasets</h2>
+  </div>
+<div nz-row [nzGutter]="8" nzType="flex" nzJustify="space-between">
+    <div nz-col [nzSpan]="6">
+        <nz-card [nzTitle]="citiBike">
+            <p>Card content</p>
+          </nz-card>
+     <ng-template #citiBike>
+      <a href="https://www.citibikenyc.com/system-data">Citi Bike Trip Histories</a>
+    </ng-template>
+    </div>
+        <div nz-col [nzSpan]="6">
+        <nz-card nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+    </div>
+        <div nz-col [nzSpan]="6">
+        <nz-card nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+    </div>
+        <div nz-col [nzSpan]="6">
+        <nz-card nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+    </div>
+</div>
   <div class="title">
     <h2>Meet our Team</h2>
   </div>

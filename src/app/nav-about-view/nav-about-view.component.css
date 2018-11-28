@@ -4,10 +4,12 @@
     height: 100%;
     background: #ececec;
     padding: 50px;
+    padding-top: 25px;
 }
 
 .ant-row-flex {
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .title {
