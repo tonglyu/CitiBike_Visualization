@@ -30,6 +30,9 @@
 
 ### Slide 5 - What others have done in this topic
 
+- Charts and analysis
+- No story
+
 
 ### Slide 6 - Data
 - We found a dataset for citibike shared bike in New York, which contains the trip data for each bike.
