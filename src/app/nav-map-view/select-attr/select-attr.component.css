@@ -11,6 +11,10 @@ nz-select {
     margin-bottom: 10px;
 }
 
+#chartsArea {
+    margin-top: 20px;
+}
+
 :host ::ng-deep .overlay {
     fill: none;
     pointer-events: all;
@@ -20,4 +24,22 @@ nz-select {
     stroke: #B74779;
     stroke-width: 2px;
     stroke-dasharray: 3,3;
+}
+
+table {
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table {
+    margin: auto;
+}
+:host ::ng-deep table, td, th {
+    padding: 7px;
+    text-align: center;
+    border: 1px solid rgb(8,48,107);
+}
+:host ::ng-deep th {
+    background-color: rgb(8,81,156);
+    color: white;
 }
