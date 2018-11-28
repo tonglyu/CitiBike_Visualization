@@ -43,7 +43,6 @@
 
 
 ### Slide 5 - What others have done in this topic and what we do differently
-
 - Relevant website
     - Other websites with the same topics focuses on statistics charts and spatial analysis. We could refer to some of charts such as returning bikes and borrowing bikes (per hour) statistics bar chart.
     - They are intended to show information to data analyst
@@ -55,7 +54,6 @@
 
 
 ### Slide 6 - Data
-
 - Citi Bike Trip Histories
 - The dataset is about trip information for each bike from 2013 to 2018
 - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
@@ -68,8 +66,7 @@
 - New York precipitation data of 2016
 - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
 
-### Slide 7 - Station Map (Statistics Analysis)
-
+### Slide 7 - Stations Map (Statistics Analysis)
 - Two statistocs bar charts
     - Number of borrowing bikes per hour
     - Number of retruning bikes per hour
@@ -78,19 +75,25 @@
 - Interactive
 - coupling
 
-
 ### Slide 8 - Main chart design/layout
+- Mapbox
+- Bar chart / Multi-line chart
 
+### Slide 9 - Stations Map (Distribution Variation) 
+- One statistocs line chart
+    - Average acticities of total stations per hour
+- Table of top 5 neighborhoods with most new setted stations
 
-### Slide 9 - Main chart 2
-
-
-### Slide 10 - Main chart 3
-
+### Slide 10 - Stations Map (Distribution trend)
+- From 2013 to 2018, there are 439 new setted stations
+- Most of them are distributed in north and east, which are in the neighborhoods like upper town and Brooklyn.
+- However, we found some of these new setted stations are inactive in our statistics. ANd we would like to explore why popular stations are popular and to see if these new setted stations are necessary.
 
 ### Slide 11 - Station infras analysis
 - Base on our story, we located nearby station on map. In the same time, we found this station is one of top10 popular  stations around NYC. By doing these, we found there are many malls amd hotels around this station. So we thought the surrodings of station is also a key factor which may influnce number of orders. Thus we got top 20 popular stations data and their nearby infrastructures data. Also, we got top 10 informix stations and their nearby infra data to make a comparison.
 - Our chart can directly compare popular stations and informix stations. As we can see, those popular stations always surrounded by malls, parks, hotels, transportations, big aparment and so on. For example, station loacated at south entrance of central park is one of top 20 popular stations. There lots of users came and left central park by riding sharing-bikes. Also, the informix stations are always located in remote area which has less malls and other public infrastrutures.
+
+
 ### Slide 12 - Station infras analysis 2
 - D3.map //sky在这里补充一下。。。。。
 - Zoom and burshes can help user read long period data more easily.
