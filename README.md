@@ -71,10 +71,14 @@
 - In future, we will use more weather to find more laws between weather and users.
 
 ### Slide 14 - Station user analysis
-- We think different staions have different festures. For example, staions near school and universities have more young users and staions near park have more old users. We try to find some user portraits base on their age data and .
+- We think different staions have different festures. For example, staions near school and universities have more young users and staions near park have more old users. We try to find some user portraits base on their age data. Thus we got top 10 stations age data in 6 years.
+- Base on our data, we didn't find laws.
 
 ### Slide 15 - Who did what
-
+- Ziwei Yuan:
+- Tong Lyu
+- Tianyang Li: Gor raw data and format these data into csv, json and relevant useful files. Create d3.map with top20 popular/not popular stations data to analyze infrastructure factors. Merge pie charts, line chart and map chart into same page.
+- Jing Zhang: Analyzed top 20 popular /not popular stations data and find relevent factors. Create line chartn with zoom and donut charts.
 
 
 
