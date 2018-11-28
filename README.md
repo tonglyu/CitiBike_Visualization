@@ -36,17 +36,23 @@
 -  2. People who want to know information of bike-sharing. User can get some inforamtion from our website that help them use bike.
 -  3. Competitor of citi bike-sharing. From our website, they can get some useful information and laws to help them make busniess decisions.
 
-### Slide 4 - Interesting
+### Slide 4 - Motivation and Goal
 - Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived in big cities make their trip easy and convenient. All of group members like to use sharing-bike.
 - There are lots of factors may influence the site of stations, number of orders and other data. We would like to analyze different data to find potiential factors. And help bike-sharing company make decisions.
 - There are lots of problems for bike-sharing. For example, some stations have lots of bikes for whole day, but some stations always lack of bikes. We hope to find borrow and return laws to help usr get their bikes anytime they need.
 
 
-### Slide 5 - What others have done in this topic
+### Slide 5 - What others have done in this topic and what we do differently
 
-- Charts and analysis
-- No story
+- Relevant website
+    - Other websites with the same topics focuses on statistics charts and spatial analysis. We could refer to some of charts such as returning bikes and borrowing bikes (per hour) statistics bar chart.
+    - They are intended to show information to data analyst
+    - They don't show a story about sharing bikes
 
+- What we do
+    - We used simple statistics charts to tell a story about sharing bikes, showing the temporal and spatial variation of stations and why they varied
+    - Our charts are responsive and interactive. We optimized the visual queries and user interaction by multiple methos such as pop out effect, coupling effects and apporiate color scheme.
+    
 
 ### Slide 6 - Data
 - Citi Bike Trip Histories
@@ -62,6 +68,14 @@
 - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
 
 ### Slide 7 - Station Map (Statistics Analysis)
+
+- Two statistocs bar charts
+    - Number of borrowing bikes per hour
+    - Number of retruning bikes per hour
+- Select any station of 6 years on map to see the statistics
+- Repsonsive
+- Interactive
+- coupling
 
 
 ### Slide 8 - Main chart 2
