@@ -8,3 +8,25 @@
     padding-top: 20px;
     text-align: center;
 }
+#neighborhoodPopover { 
+    position: absolute;     
+    text-align: center;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: #fff; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;
+    opacity: 0;     
+  }
+  #detail { 
+    position: absolute;     
+    text-align: center;         
+    padding: 2px;       
+    font: 30px sans-serif;    
+    background: rgb(5, 5, 5); 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;
+    opacity: 0;     
+  }
