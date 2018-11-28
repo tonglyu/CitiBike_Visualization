@@ -317,9 +317,13 @@ export class SelectAttrComponent implements OnInit {
         this.drawBarChart(this.listOfTagOptions[0], station['Id'], "return");
     }
 
-    drawTimeChart(year: any): void {
+    drawTimeChart(select_years: any): void {
+        //@ts-ignore
+        borrowH6.innerHTML = "<b>The Average Activities for Total Stations per hour<b>";
+        document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
+
         var width = this.width;
-        var height = 425 - this.margin.top - this.margin.bottom;;
+        var height = 350 - this.margin.top - this.margin.bottom;;
         var margin = this.margin;
 
         var svg_container = d3.select("#borrow").select("svg")
@@ -340,27 +344,14 @@ export class SelectAttrComponent implements OnInit {
         var circleStroke = 1;
         var circleRadiusHover = 6;
 
-        svg.append("text")
-            .attr("x", width / 2)
-            .attr("y", height + 35)
-            .attr("font-weight", "bold")
-            .attr("id", "x-label")
-            .text("Hour");
-
-        svg.append("text")
-            .attr("x", -20)
-            .attr("y", -10)
-            //.attr("transform", "rotate(-90)")
-            .attr("font-weight", "bold")
-            .text("Number of Use (in thousands)");
-
+        var line_points = []
         d3.json('src/assets/statistics/time.json').then(function (data: any) {
             var times = data.map(d => d['Time']);
             var all_years = d3.keys(data[0]).filter(function (key) {
                 return key !== "Time";
             });
 
-            var line_points = all_years.map(function (one_year) {
+            var format_data = all_years.map(function (one_year) {
                 return {
                     Year: one_year,
                     Values: data.map(function (d) {
@@ -372,6 +363,15 @@ export class SelectAttrComponent implements OnInit {
                 };
             });
 
+            format_data.forEach(point => {
+                if (select_years.includes(point.Year)) {
+                    line_points.push(point)
+                }
+            })
+            console.log(line_points.length)
+            if (line_points.length == 0) {
+                return;
+            }
 
             var ymax = d3.max(line_points, function (d: any) {
                 return d3.max(d.Values, function (v: any) {
@@ -380,7 +380,7 @@ export class SelectAttrComponent implements OnInit {
             })
 
             // @ts-ignore
-            ymax = (parseInt(ymax / 100) + 1) * 100
+            ymax = (parseInt(ymax / 50) + 1) * 50
             console.log(ymax)
             // axis
             var x = d3.scalePoint()
@@ -413,6 +413,18 @@ export class SelectAttrComponent implements OnInit {
                 .attr("class", "y-axis")
                 .call(yAxis);
 
+            svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", height + 35)
+                .attr("font-weight", "bold")
+                .attr("id", "x-label")
+                .text("Hour");
+
+            svg.append("text")
+                .attr("x", -20)
+                .attr("y", -10)
+                .attr("font-weight", "bold")
+                .text("Activities (in thousands)");
             // @ts-ignore
             var line = d3.line()
                 .x(function (d) { return x(d['Time']); })
@@ -461,21 +473,6 @@ export class SelectAttrComponent implements OnInit {
                         .style("stroke-width", lineStrokeHover)
                         .style("cursor", "pointer");
                 })
-
-                //     // show circles
-                //     d3.select("#g" + i)
-                //         .selectAll("circle")
-                //         .transition()
-                //         .duration(duration)
-                //         .style("r", circleRadiusHover);
-
-                //     // show text
-                //     d3.select("#g" + i)
-                //         .selectAll("text")
-                //         .transition()
-                //         .duration(duration)
-                //         .style("font-size", 12);
-                // })
                 .on("mouseout", function (d, i: any) {
                     d3.selectAll(".line")
                         .transition()
@@ -488,21 +485,6 @@ export class SelectAttrComponent implements OnInit {
                         .style("stroke-width", lineStroke)
                         .style("cursor", "none");
                 })
-
-            //     // hide circles
-            //     d3.select("#g" + i)
-            //         .selectAll("circle")
-            //         .transition()
-            //         .duration(duration)
-            //         .style("r", circleRadius);
-
-            //     // hide text
-            //     d3.select("#g" + i)
-            //         .selectAll("text")
-            //         .transition()
-            //         .duration(duration)
-            //         .style("font-size", 0);
-            // });
             // Draw the empty value for every point
             var points = svg.selectAll('.points')
                 .data(line_points)
@@ -547,6 +529,7 @@ export class SelectAttrComponent implements OnInit {
                 d3.selectAll('.points text')
                     .style("display", null);
             }
+
             function mouseout() {
                 focus.style("display", "none");
                 d3.selectAll('.points text')
@@ -563,58 +546,10 @@ export class SelectAttrComponent implements OnInit {
                     .text(function (d: any) { return Math.round(d.Values[i + 1].Use); })
                     .style('fill', function (d: any) { return "black"; });
             }
-
-            // var groups = lines.selectAll("circle-group")
-            //     .data(line).enter()
-            //     .append("g")
-            //     .attr("id", function (d, i: any) {
-            //         return "g" + i;
-            //     })
-            //     .attr("fill", function (d, i: any) {
-            //         return COLORS[d["Year"]];
-            //     })
-
-            // // add circles        
-            // groups.selectAll("circle")
-            //     .data(function (d) {
-            //         return d['Values'];
-            //     }).enter()
-            //     .append("circle")
-            //     .attr("class", "circle")
-            //     .attr("cx", function (d) {
-            //         return x(d['Time']);
-            //     })
-            //     .attr("cy", function (d) {
-            //         return y(d['Use']);
-            //     })
-            //     .attr("r", circleRadius);
-
-            // // add data value label
-            // groups.selectAll("text")
-            //     .data(function (d) {
-            //         return d['Values'];
-            //     }).enter()
-            //     .append("text")
-            //     .attr("class", "label")
-            //     .attr("x", function (d) {
-            //         return x(d['Time']);
-            //     })
-            //     .attr("y", function (d) {
-            //         return y(d['Use']) - 10;
-            //     })
-            //     .attr("font-size", 0)
-            //     .attr("text-anchor", "middle")
-            //     .attr("fill", "black")
-            //     .text(function (d) {
-            //         return d['Use'];
-            //     });
-
         })
     }
 
-
-
-    showVariation(): void {
+    initDrawingCanvas(): void {
         // @ts-ignore
         borrowH6.innerHTML = "";
         // @ts-ignore
@@ -625,18 +560,17 @@ export class SelectAttrComponent implements OnInit {
         if (this.width < 300) {
             this.width = 300;
         }
-        this.drawTimeChart(YEARS);
     }
 
     radioLog(value: string): void {
         if (this.radioValue === 'statistics') {
             this.maxMultipleCount = '1';
             this.listOfTagOptions = [];
-            //this.showStats({});
+            this.initDrawingCanvas();
         } else {
             this.maxMultipleCount = '6';
             this.listOfTagOptions = [];
-            this.showVariation();
+            this.initDrawingCanvas();
         }
         this.mapService.changeAnalysis(this.radioValue);
         this.mapService.changeYears(this.listOfTagOptions);
@@ -661,6 +595,8 @@ export class SelectAttrComponent implements OnInit {
                   });
                   });
                   */
+        } else {
+            this.drawTimeChart(this.listOfTagOptions)
         }
     }
 
