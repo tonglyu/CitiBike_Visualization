@@ -1,8 +1,9 @@
 {"type": "FeatureCollection","features": 
 [
-    {"type":"Feature","properties":{"type":"4","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99105799990218,40.73527800124147]}},
-    {"type":"Feature","properties":{"type":"4","name":"Broadway & 8th Ave at SE corner","objectid":"1563","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99228599990997,40.73047700116726]}},
-    {"type":"Feature","properties":{"type":"2","name":"Broadway & 16th St at SE corner","objectid":"1866","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99060299993691,40.736339000909425]}},
+    {"type":"Feature","properties":{"type":"4","name":"Broadway & 14th St at NE corner","objectid":"1562","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9900624,40.7353813]}},
+    {"type":"Feature","properties":{"type":"4","name":"Broadway & 8th Ave at SE corner","objectid":"1563","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9881848,40.7353488]}},
+    {"type":"Feature","properties":{"type":"4","name":"Broadway & 16th St at SE corner","objectid":"1866","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9881848,40.7353488]}},
+    {"type":"Feature","properties":{"type":"0","name":"Broadway & 16th St at SE corner","objectid":"1866","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9899443,40.7337391]}},
     {"type":"Feature","properties":{"type":"2","name":"Broadway & 16th St at NE corner","objectid":"1867","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99044699972468,40.7365230005194]}}
 ]
 }

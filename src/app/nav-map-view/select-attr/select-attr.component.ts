@@ -323,7 +323,7 @@ export class SelectAttrComponent implements OnInit {
         document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
 
         var width = this.width;
-        var height = 350 - this.margin.top - this.margin.bottom;;
+        var height = 340 - this.margin.top - this.margin.bottom;;
         var margin = this.margin;
 
         var svg_container = d3.select("#borrow").select("svg")
@@ -368,7 +368,7 @@ export class SelectAttrComponent implements OnInit {
                     line_points.push(point)
                 }
             })
-            console.log(line_points.length)
+        
             if (line_points.length == 0) {
                 return;
             }
@@ -381,7 +381,7 @@ export class SelectAttrComponent implements OnInit {
 
             // @ts-ignore
             ymax = (parseInt(ymax / 50) + 1) * 50
-            console.log(ymax)
+
             // axis
             var x = d3.scalePoint()
                 .domain(times)
@@ -552,12 +552,13 @@ export class SelectAttrComponent implements OnInit {
     initDrawingCanvas(): void {
         // @ts-ignore
         borrowH6.innerHTML = "<p>Statistics Analysis: select a <b>year</b> and a <b>station</b> on the map</p><p>Distribution Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>";
-        returnH6.innerHTML = "";
         // @ts-ignore
         returnH6.innerHTML = "";
         document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
         document.getElementById("return").innerHTML = "<svg><g></g></svg>";
         document.getElementById("description").innerHTML = "";
+        document.getElementById("table").innerHTML = "";
+        document.getElementById("table-des").innerHTML="";
         this.width = parseInt(d3.select("#borrow").style("width")) - this.margin.left - this.margin.right;
         if (this.width < 300) {
             this.width = 300;
@@ -598,8 +599,74 @@ export class SelectAttrComponent implements OnInit {
                     .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been setted."
             } else {
                 document.getElementById("description")
-                .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been withdrawed."     
+                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been withdrawed."
             }
+        })
+    }
+
+    drawTable(select_years: any): void {
+        var pop_diff = []
+        document.getElementById("table").innerHTML = "";
+        document.getElementById("table-des").innerHTML="Top 5 Neighborhoods of new setted stations";
+        d3.json('src/assets/statistics/block_counts.json').then(function (data: any) {
+            var timeScalaes = data.map(d => d['Year']);
+            var blocks = d3.keys(data[0]).filter(function (key) {
+                return key !== "Year";
+            });
+
+            var format_data = blocks.map(function (block) {
+                return {
+                    Block: block,
+                    Values: data.map(function (d) {
+                        return {
+                            Year: d['Year'],
+                            Count: +d[block]
+                        };
+                    })
+                };
+            });
+
+            var year_max = d3.max(select_years)
+            var year_min = d3.min(select_years)
+            format_data.forEach((rec: any) => {
+                var count_min, count_max
+                rec.Values.forEach((value: any) => {
+                    if (value.Year == year_max) {
+                        count_max = value.Count;
+                    }
+                    if (value.Year == year_min) {
+                        count_min = value.Count;
+                    }
+                })
+                pop_diff.push({
+                    Block: rec.Block,
+                    Count: count_max - count_min
+                })
+            })
+
+            pop_diff = pop_diff.sort(function (o1, o2) {
+                return d3.descending(o1.Count, o2.Count);
+            }).slice(0, 5)
+
+            return pop_diff
+        }).then(function (data: any) {
+            var title = [{ "Block": "Neighborhood", "Count": "Count" }];
+            var data_table = title.concat(data)
+            console.log(data_table)
+            var table = d3.select('#table');
+            table.selectAll('tr')
+                .data(data_table)
+                .enter().append('tr')
+                .style('font-weight', function (d, i) {
+                    return (i == 0) ? 'bold' : 'normal';
+                })
+                .selectAll('td')
+                .data(function (d) {
+                    return Object.values(d);
+                }).enter().append('td')
+                .text(function (d) {
+                    return d;
+                });
         })
     }
 
@@ -643,6 +710,7 @@ export class SelectAttrComponent implements OnInit {
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)
+            this.drawTable(this.listOfTagOptions)
         }
     }
 

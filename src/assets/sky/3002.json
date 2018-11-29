@@ -1,5 +1,8 @@
 {"type": "FeatureCollection","features": 
 [
-    {"type":"Feature","properties":{"type":"1","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.97775299946429,40.751653000461964]}}
+    {"type":"Feature","properties":{"type":"6","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.017324,40.71071]}},
+    {"type":"Feature","properties":{"type":"2","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0173562,40.7120763]}},
+    {"type":"Feature","properties":{"type":"1","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0166266,40.7099211]}},
+    {"type":"Feature","properties":{"type":"0","name":"Park Ave & 42nd St at SE corner","objectid":"1260","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-74.0165193,40.7094332]}}
 ]
 }

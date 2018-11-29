@@ -1,8 +1,7 @@
 {"type": "FeatureCollection","features": 
 [
     {"type":"Feature","properties":{"type":"0","name":"8th Ave & 33rd St at SE corner","objectid":"1404","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99388700059174,40.75129100128222]}},
-    {"type":"Feature","properties":{"type":"7","name":"8th Ave & 33rd St at NE corner","objectid":"1405","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9972283,40.750002]}},
-    {"type":"Feature","properties":{"type":"7","name":"8th Ave & 33rd St at NE corner","objectid":"1405","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9962948,40.7496281]}},
+    {"type":"Feature","properties":{"type":"7","name":"8th Ave & 33rd St at NE corner","objectid":"1405","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9962631,40.7481039]}},
     {"type":"Feature","properties":{"type":"5","name":"7th Ave & 33rd St at NW corner","objectid":"1154","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.99125400045692,40.75047600062494]}},
     {"type":"Feature","properties":{"type":"2","name":"7th Ave & 34th St at SW corner","objectid":"1155","url":"http://web.mta.info/nyct/service/"},"geometry":{"type":"Point","coordinates":[-73.9942671,40.7498881]}}
 ]
