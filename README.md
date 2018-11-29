@@ -30,10 +30,9 @@
 
 ### Slide 2 - Why chose this project(10 words)
 
-- Interesting: Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.
-- Useful: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps to offer services and maximize the use efficiency of every bike.
-- Important: It helps company/investors to make decision based on statistics data chart.
-
+- Interesting:- Sharing economy is popular in recent years. As one of typical sharing economy, Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.All of group members like to use sharing-bike.
+- Useful: For project ifself, sharing-bike trip data has enough dimentions. We want to analyze different data to find potential factors. And help bike-sharing company make decisions.
+- Important: Company will know when and where to set up more share bikes. And bike users know where they can find a share bike. It helps company to offer a better services and maximize the use efficiency of every bike.
 ### Slide 3 - Target Users
 
 -  1. Citi bike-sharing company. If they want to expand their business in other cities or want to set more new stations, our website can help them to know more factors.
@@ -42,9 +41,9 @@
 
 ### Slide 4 - Motivation and Goal
 
-- Sharing economy is popular in recent years. As one of typical sharing economy, Bike-sharing help lots of users especially citizen who lived in big cities make their trip easy and convenient. All of group members like to use sharing-bike.
-- There are lots of factors may influence the site of stations, number of orders and other data. We would like to analyze different data to find potential factors. And help bike-sharing company make decisions.
-- There are lots of problems for bike-sharing. For example, some stations have lots of bikes for whole day, but some stations always lack of bikes. We hope to find borrow and return laws to help users get their bikes anytime they need.
+
+- I have been to nyc for vacation trip. And I found there lots of bike-sharing stations around my hotel. But all of them have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio. 
+
 
 
 ### Slide 5 - What others have done in this topic and what we do differently
@@ -75,6 +74,8 @@
     - Number of borrowing bikes per hour in a station
     - Number of retruning bikes per hour in a station
 - Select any station of 6 years on map to see the statistics
+  - Which station is popluar and which is not
+  - When a user might get a bike, while when might not
 - Repsonsive
     - The chart will adjust based on the size of the window
 - Interactive
@@ -111,8 +112,7 @@
 
 - Based on our experiences, weather is a important factor that may influence orders. Because, we all don't want to ride a  bike at rainy data or snow day. So we got some data from new york open data site. Weather data includes maximum and minimum temperatures, perciption and other relevant data. Apart from weather, seasons is also a key factor that may influence orders.
 - According to our chart, we found there more orders at spring, summer and autumn. And there are less orders on rainy day.
-- In future, we will use more weather to find more laws between weather and users.
-
+ 
 ### Slide 14 - Station user analysis
 
 - We think different staions have different festures. For example, staions near school and universities have more young users and staions near park have more old users. We try to find some user portraits base on their age data. Thus we got top 10 stations age data in 6 years.
