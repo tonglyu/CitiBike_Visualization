@@ -12,7 +12,7 @@ import * as mapboxgl from 'mapbox-gl';
 
 export class MapService {
 
-  public yearsSource = new BehaviorSubject<string[]>([]);
+  public yearsSource = new BehaviorSubject<string[]>(['2013']);
   public stationSource = new BehaviorSubject<object>({});
   public analysisSource = new BehaviorSubject<string>("statistics");
 
