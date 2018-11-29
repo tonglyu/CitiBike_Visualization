@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import { style } from '@angular/animations';
+//import { style } from '@angular/animations';
 @Component({
   selector: 'app-analysis-infras-view',
   templateUrl: './analysis-infras-view.component.html',
@@ -23,7 +23,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
       .datum<SVGDatum>({ width: 1000, height: 750, filterBrushEvent: true })
       .attr('width', d => d.width)
       .attr('height', d => d.height)
-      .attr('viewBox', "120,70,600,400")
+      .attr('viewBox', "230,180,530,300")
       .attr("class", "col-sm-12 col-md-12");
 
     console.log(svg)
@@ -162,7 +162,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //.attr('opacity', 1)
               //.attr("stroke", "black")
               .attr("r", "12")
-              .attr("fill-opacity", "0.3")
+              .attr("fill-opacity", "0.2")
               
             //.attr("stroke","white")
             //.attr("stroke-opacity",1)
@@ -205,12 +205,12 @@ export class AnalysisInfrasViewComponent implements OnInit {
               }
               //console.log(","+a1+","+a2+","+a3+","+a4+","+a5+","+a0);
               var information = "Subway Station:" + a0 + "," +
-                "Hotel:" + a1 + "," +
-                "Shopping Mall:" + a2 + "," +
-                "Park:" + a4 + "," +
-                "Sports Center:" + a5 + "," +
-                "Sightseeing:" + a6 + "," +
-                "School:" + a7;
+                "Hotel: " + a1 + "," +
+                "Shopping Mall: " + a2 + "," +
+                "Park: " + a4 + "," +
+                "Sports Center: " + a5 + "," +
+                "Sightseeing: " + a6 + "," +
+                "School: " + a7;
 
               svg.select("g")
                 .append("g")
@@ -256,8 +256,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 .attr("height", "2")
                 .style("pointer-events","none");
 
-
-              svg
+           var  svg2 = d3.select("#chartinfo")
+              svg2
                 .append("g")
                 //.transition()
                 .attr("id", "info")
@@ -265,14 +265,16 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
                 // .attr("fill","black")
 
-                .attr("fill-opacity", 0.6)
+                .attr("fill-opacity", 0.5)
+                .style("x", (150) + "px")
+                .style("y", (100)+ "px")
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .style("x", (projection2(d.geometry.coordinates)[0] - 275) + "px")
-                .style("y", (projection2(d.geometry.coordinates)[1] - 130) + "px")
+                //.style("x", (projection2(d.geometry.coordinates)[0] - 275) + "px")
+                //.style("y", (projection2(d.geometry.coordinates)[1] - 130) + "px")
 
-                .style("width", 150)
-                .style("height", 200)
+                .style("width", 270)
+                .style("height", 370)
                 .attr("rx", 20)
                 .attr("ry", 20)
                 //.style("left",X+"px")
@@ -288,18 +290,18 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .style("padding","10px")
 
               var strlist = information.split(",");
-              var wenzi = svg.select("#info")
+              var wenzi = svg2.select("#info")
                 .selectAll("text")
                 .data(strlist)
                 .enter()
                 .append("text")
                 // .text(information)
                 .attr('fill', 'white')
-                .attr('x', (projection2(d.geometry.coordinates)[0] - 275) + "px")
-                .attr('y', function (d, i) { return i * 27 -18+ (Y) + "px" })
+                .attr('x', 140 + "px")
+                .attr('y', function (d, i) { return i * 45 +100 + "px" })
                 .attr("opacity", 1)
                 //.attr('text-anchor', 'middle')
-                .style('font-size', '10px')
+                .style('font-size', '25px')
                 .attr('dy', "2em")
                 .attr('dx', "2em")
                 .text(function (d) { return d })
@@ -485,7 +487,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
           })
           .on("mouseout", function (d: any) {
-            svg.selectAll("#info").remove()
+            d3.selectAll("#info").remove()
             svg.selectAll("#tem").remove()
             d3.select(this)
               .attr('fill-opacity', 0.8)
@@ -505,7 +507,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
           .append("title")
           .text(function (d: any) {
 
-            return "Station id: " + d.properties.id;
+            return "Addr: " + d.properties.addr;
           });
       })
       var g = d3.selectAll("g");
@@ -542,8 +544,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
             .rotate([96, -39])
             .fitSize([width, height], nyc);
           var centroid = path.centroid(d);
-          console.log("look" + centroid + "*******")
-          console.log("kool" + projection(d.geometry.coordinates)[0] + "," + projection(d.geometry.coordinates)[1] + "*******")
+          //console.log("look" + centroid + "*******")
+          //console.log("kool" + projection(d.geometry.coordinates)[0] + "," + projection(d.geometry.coordinates)[1] + "*******")
           x = centroid[0];
           y = centroid[1];
           k = 8;
@@ -560,7 +562,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
         g.transition()
           .duration(750)
-          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + (-x) + "," + (-y - 18) + ")")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + (-x-5) + "," + (-y-5) + ")")
           .style("stroke-width", 1.5 / k + "px");
         //var k =500;
         //g.selectAll("path")
