@@ -29,16 +29,16 @@ var legend_svg = d3.select("#legend")
                 //.attr("width",17)
                 .attr("cx",430)
                 .attr("cy",50)
-                .attr("fill","lightskyblue");
+                .attr("fill","orchid");
 
               d3.select("#legend")
                 .append("circle")
                 
                 .attr("r",10)
-            
+                
                 .attr("cx",430)
                 .attr("cy",80)
-                .attr("fill","orchid");
+                .attr("fill","lightskyblue");
 
               d3.select("#legend")
                 .append("text")
