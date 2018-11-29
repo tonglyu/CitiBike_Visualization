@@ -70,6 +70,7 @@ export class MapBoxComponent implements OnInit {
       var hoveredYear =  null;
       var clickedYear =  null;
       var isStats = true;
+      
       YEARS.forEach((year) => {
         this.map.addLayer({
           id: 'stations' + year,
@@ -201,7 +202,10 @@ export class MapBoxComponent implements OnInit {
         });
       
       });
-      
+       this.map.setLayoutProperty('stations2013', 'visibility', 'visible');
+       clickedYear = "2013";
+       clickedId = "100";
+       this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: true});
     });
   }
 }
