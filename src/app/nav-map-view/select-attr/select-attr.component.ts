@@ -9,7 +9,7 @@ import * as d3 from 'd3';
     styleUrls: ['./select-attr.component.css']
 })
 
-export class SelectAttrComponent implements OnInit {
+export class SelectAttrComponent implements OnInit{
 
     constructor(private mapService: MapService, private renderer: Renderer2) { }
     //Radio value: 'variation' / 'statistics'
@@ -24,7 +24,7 @@ export class SelectAttrComponent implements OnInit {
     returnH6 = document.getElementById("returnH6");
     borrowChart = document.getElementById("borrow");
     returnChart = document.getElementById("return");
-    margin = { top: 30, right: 20, bottom: 50, left: 30 };
+    margin = { top: 30, right: 20, bottom: 50, left: 35 };
     height = 225 - this.margin.top - this.margin.bottom;
     width: any;
     listOfStations: any;
@@ -40,26 +40,9 @@ export class SelectAttrComponent implements OnInit {
             children.push({ label: year, value: year });
         })
         this.listOfOption = children;
-        this.showStats({});
-        this.select_container = document.getElementById("selectStations");
-        this.select_div = document.getElementById("select");
-        /*
-        YEARS.forEach((year) => {
-            const stations = [];
-            const id = []
-          this.mapService.getStations(year).subscribe(data => {
-                data['features'].forEach((element) => {
-                    if (!id.includes(element['properties']['id'])) {
-                        id.push(element['properties']['id']);
-                        stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
-                    }
-                });
-          });
-          this.listOfStations = stations;
-        });
-              */
-
-
+        this.listOfTagOptions = ["2013"];
+        this.showStats({'Year': "2013", 'Id': "470", 'Name': "W 20 St & 8 Ave"});
+        this.mapService.changeYears(this.listOfTagOptions);
         this.mapService.stationSource.subscribe((station) => {
             this.clickedStation = station;
             this.showStats(station);
@@ -114,6 +97,7 @@ export class SelectAttrComponent implements OnInit {
                 .scale(x);
             // @ts-ignore
             var yAxis = d3.axisLeft()
+                .tickFormat(function(d) { return (d == 300) ? "> 300" : d; })
                 .scale(y);
 
             var rects = bar.selectAll('rect')
@@ -149,11 +133,7 @@ export class SelectAttrComponent implements OnInit {
                     }
                 })
                 .text(function (d, i) {
-                    if (data[i] > 300) {
-                        return "> 300";
-                    } else {
-                        return data[i];
-                    }
+                    return data[i];
                 });
 
             // append rect
@@ -221,11 +201,7 @@ export class SelectAttrComponent implements OnInit {
                 .attr("fill", "black")
                 .attr("text-anchor", "middle")
                 .text(function (d, i) {
-                    if (data[i] > 300) {
-                        return "> 300";
-                    } else {
-                        return data[i];
-                    }
+                    return data[i];
                 });
 
 
@@ -596,7 +572,7 @@ export class SelectAttrComponent implements OnInit {
 
             if (diff >= 0) {
                 document.getElementById("description")
-                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been setted."
+                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been set."
             } else {
                 document.getElementById("description")
                     .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been withdrawed."
@@ -691,22 +667,6 @@ export class SelectAttrComponent implements OnInit {
             return;
         }
         if (this.radioValue === 'statistics') {
-            /*
-                  this.showStats({});
-                  const stations = [];
-                  this.mapService.getStations(this.listOfTagOptions[0]).subscribe(data => {
-                        data['features'].forEach((element) => {
-                            stations.push({ id: element['properties']['id'], name: element['properties']['addr']});
-                        });
-                        this.select_container.innerHTML = "";
-                        stations.forEach((station) => {
-                       const option = document.createElement("option");
-                      option.innerHTML = station.name;
-                      this.select_container.appendChild(option);
-                      this.renderer.appendChild(this.select_div, this.select_container);
-                  });
-                  });
-                  */
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)
