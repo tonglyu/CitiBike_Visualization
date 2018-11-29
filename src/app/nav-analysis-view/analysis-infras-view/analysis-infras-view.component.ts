@@ -163,6 +163,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //.attr("stroke", "black")
               .attr("r", "12")
               .attr("fill-opacity", "0.3")
+              
             //.attr("stroke","white")
             //.attr("stroke-opacity",1)
             //.attr("stroke-width",2)
@@ -252,7 +253,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
                   return projection2(d.geometry.coordinates)[1];
                 })
                 .attr("width", "2")
-                .attr("height", "2");
+                .attr("height", "2")
+                .style("pointer-events","none");
 
 
               svg
