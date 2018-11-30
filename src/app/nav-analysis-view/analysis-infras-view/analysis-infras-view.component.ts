@@ -18,12 +18,12 @@ export class AnalysisInfrasViewComponent implements OnInit {
       // viewbox:320,380,600,900;
       filterBrushEvent: boolean;
     }
-    d3.select("body").attr("background", "#00CCCC")
+    d3.select("body").attr("background", "#ececec")
     var svg = d3.select<SVGSVGElement, undefined>('#chart3')
       .datum<SVGDatum>({ width: 1000, height: 750, filterBrushEvent: true })
       .attr('width', d => d.width)
       .attr('height', d => d.height)
-      .attr('viewBox', "230,180,530,300")
+      .attr('viewBox', "125,180,530,400")
       .attr("class", "col-sm-12 col-md-12");
 
     console.log(svg)
@@ -257,7 +257,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 .style("pointer-events","none");
 
            var  svg2 = d3.select("#chartinfo")
-              svg2
+              svg
                 .append("g")
                 //.transition()
                 .attr("id", "info")
@@ -266,15 +266,15 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 // .attr("fill","black")
 
                 .attr("fill-opacity", 0.5)
-                .style("x", (150) + "px")
-                .style("y", (100)+ "px")
+                .style("x", (190) + "px")
+                .style("y", (200)+ "px")
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                //.style("x", (projection2(d.geometry.coordinates)[0] - 275) + "px")
-                //.style("y", (projection2(d.geometry.coordinates)[1] - 130) + "px")
+                //.style("x", (projection2(d.geometry.coordinates)[0] - 220) + "px")
+                //.style("y", (projection2(d.geometry.coordinates)[1] - 50) + "px")
 
-                .style("width", 270)
-                .style("height", 370)
+                .style("width", 135)
+                .style("height", 190)
                 .attr("rx", 20)
                 .attr("ry", 20)
                 //.style("left",X+"px")
@@ -290,18 +290,18 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .style("padding","10px")
 
               var strlist = information.split(",");
-              var wenzi = svg2.select("#info")
+              var wenzi = svg.select("#info")
                 .selectAll("text")
                 .data(strlist)
                 .enter()
                 .append("text")
                 // .text(information)
                 .attr('fill', 'white')
-                .attr('x', 140 + "px")
-                .attr('y', function (d, i) { return i * 45 +100 + "px" })
+                .attr('x', 188 + "px")
+                .attr('y', function (d, i) { return i * 25 +197 + "px" })
                 .attr("opacity", 1)
                 //.attr('text-anchor', 'middle')
-                .style('font-size', '25px')
+                .style('font-size', '12px')
                 .attr('dy', "2em")
                 .attr('dx', "2em")
                 .text(function (d) { return d })
@@ -313,8 +313,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "100")
+                .attr("x", "578")
+                .attr("y", "210")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -325,8 +325,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "130")
+                .attr("x", "578")
+                .attr('y', "239")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -337,8 +337,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "160")
+                .attr("x", "578")
+                .attr("y", "266")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -349,8 +349,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "190")
+                .attr("x", "578")
+                .attr("y", "294")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -361,8 +361,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "220")
+                .attr("x", "578")
+                .attr("y", "322")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -373,8 +373,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "250")
+                .attr("x", "578")
+                .attr("y", "350")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -385,8 +385,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "700")
-                .attr("y", "280")
+                .attr("x", "578")
+                .attr("y", "378")
                 .attr("width", "20")
                 .attr("height", "20");
 
@@ -397,8 +397,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "116")
+                .attr("x", "605")
+                .attr("y", "228")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Park");
@@ -410,8 +410,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "145")
+                .attr("x", "605")
+                .attr("y", "253")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Subway");
@@ -423,8 +423,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "175")
+                .attr("x", "605")
+                .attr("y", "281")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Mall");
@@ -436,8 +436,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "205")
+                .attr("x", "605")
+                .attr("y", "308")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Sightseeing");
@@ -449,8 +449,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "235")
+                .attr("x", "605")
+                .attr("y", "337")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("School");
@@ -462,8 +462,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "265")
+                .attr("x", "605")
+                .attr("y", "365")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Hotel");
@@ -475,8 +475,8 @@ export class AnalysisInfrasViewComponent implements OnInit {
               //  .attr("fill-opacity", 0.6)
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
-                .attr("x", "730")
-                .attr("y", "294")
+                .attr("x", "605")
+                .attr("y", "392")
                 .attr("font-size", "10")
                 .attr("font-color", "black")
                 .text("Sports Center");
@@ -519,7 +519,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
         .on("zoom", zoomed);
 
       //const svgOverlay: Selection<SVGRectElement, SVGDatum, HTMLElement, any> = 
-      svg.call(zoom);
+      //svg.call(zoom);
 
       function zoomed() {
         g.attr('transform', `translate(${d3.event.transform.x},  	 ${d3.event.transform.y}) scale(${d3.event.transform.k})`);
@@ -571,7 +571,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
 
       }
-
+      
       function transition(zoomLevel) {
         svg.transition()
           .delay(100)
