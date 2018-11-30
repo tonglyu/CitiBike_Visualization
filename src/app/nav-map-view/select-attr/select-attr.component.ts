@@ -50,7 +50,7 @@ export class SelectAttrComponent implements OnInit{
         });
     }
 
-    drawBarChart(year: string, id: string, chart: string): void {
+    drawBarChart(year: any, id: string, chart: string): void {
         var bar_container = d3.select("#" + chart)
             .select("svg")
             .attr("width", this.width + this.margin.left + this.margin.right)
@@ -93,7 +93,7 @@ export class SelectAttrComponent implements OnInit{
                 .paddingInner(0.05);
             var y = d3.scaleLinear()
                 // @ts-ignore
-                .domain([0, 300])
+                .domain([0, 600])
                 .range([height, 0]);
 
             // @ts-ignore
@@ -101,7 +101,7 @@ export class SelectAttrComponent implements OnInit{
                 .scale(x);
             // @ts-ignore
             var yAxis = d3.axisLeft()
-                .tickFormat(function(d) { return (d == 300) ? "> 300" : d; })
+                .tickFormat(function(d) { return (d == 600) ? "> 600" : d; })
                 .scale(y);
 
             var rects = bar.selectAll('rect')
@@ -110,8 +110,8 @@ export class SelectAttrComponent implements OnInit{
             rects.transition()  //UPDATE
                 .duration(2000)
                 .attr('y', function (d, i) {
-                    if (data[i] > 300) {
-                        return y(300);
+                    if (data[i] > 600) {
+                        return y(600);
                     } else {
                         return y(data[i]);
                     }
@@ -119,8 +119,8 @@ export class SelectAttrComponent implements OnInit{
                 .attr('width', x.bandwidth)
                 // @ts-ignore
                 .attr('height', function (d, i) {
-                    if (data[i] > 300) {
-                        return height - y(300);
+                    if (data[i] > 600) {
+                        return height - y(600);
                     } else {
                         return height - y(data[i]);
                     }
@@ -130,8 +130,8 @@ export class SelectAttrComponent implements OnInit{
                 .data(hours)
                 .attr('x', function (d, i) { return x(i) + x.bandwidth() / 2; })
                 .attr('y', function (d, i) {
-                    if (data[i] > 300) {
-                        return y(300) - 10;
+                    if (data[i] > 600) {
+                        return y(600) - 10;
                     } else {
                         return y(data[i]) - 10;
                     }
@@ -145,8 +145,8 @@ export class SelectAttrComponent implements OnInit{
                 .append('rect')
                 .attr('x', function (d, i) { return x(i); })
                 .attr('y', function (d, i) {
-                    if (data[i] > 300) {
-                        return y(300);
+                    if (data[i] > 600) {
+                        return y(600);
                     } else {
                         return y(data[i]);
                     }
@@ -154,8 +154,8 @@ export class SelectAttrComponent implements OnInit{
                 .attr('width', x.bandwidth)
                 // @ts-ignore
                 .attr('height', function (d, i) {
-                    if (data[i] > 300) {
-                        return height - y(300);
+                    if (data[i] > 600) {
+                        return height - y(600);
                     } else {
                         return height - y(data[i]);
                     }
@@ -198,8 +198,8 @@ export class SelectAttrComponent implements OnInit{
                 .attr("class", function (d, i) { return "label label" + i; })
                 .attr('x', function (d, i) { return x(i) + x.bandwidth() / 2; })
                 .attr('y', function (d, i) {
-                    if (data[i] > 300) {
-                        return y(300) - 10;
+                    if (data[i] > 600) {
+                        return y(600) - 10;
                     } else {
                         return y(data[i]) - 10;
                     }
@@ -296,9 +296,7 @@ export class SelectAttrComponent implements OnInit{
         if (this.width < 300) {
             this.width = 300;
         }
-        //@ts-ignore
         this.drawBarChart(this.listOfTagOptions, station['Id'], "borrow");
-        //@ts-ignore
         this.drawBarChart(this.listOfTagOptions, station['Id'], "return");
     }
 
@@ -678,6 +676,7 @@ export class SelectAttrComponent implements OnInit{
             return;
         }
         if (this.radioValue === 'statistics') {
+            this.initDrawingCanvas();
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)

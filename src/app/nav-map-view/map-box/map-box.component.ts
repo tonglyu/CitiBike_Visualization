@@ -130,6 +130,16 @@ export class MapBoxComponent implements OnInit {
                 this.map.moveLayer('stations' + years[i]); // move to the end of layers
             }
         }
+         if (hoveredId) {
+                this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+         }
+         if (clickedId) {
+                this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: false});
+         }
+         hoveredId = null;
+         hoveredYear = null;
+         clickedId = null;
+         clickedYear = null;
       });
       
       this.mapService.analysisSource.subscribe(name => {
@@ -137,6 +147,16 @@ export class MapBoxComponent implements OnInit {
             isStats = true;
         } else {
             isStats = false;
+            if (hoveredId) {
+                    this.map.setFeatureState({source: 'stations' + hoveredYear, id: hoveredId}, { hover: false});
+             }
+             if (clickedId) {
+                    this.map.setFeatureState({source: 'stations' + clickedYear, id: clickedId}, { click: false});
+             }
+             hoveredId = null;
+             hoveredYear = null;
+             clickedId = null;
+             clickedYear = null;
         }
       });
       
