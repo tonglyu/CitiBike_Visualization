@@ -591,7 +591,7 @@ export class SelectAttrComponent implements OnInit {
         })
     }
 
-    drawTableAndBar(select_years: any): void {
+    drawTableAndBar(select_years: any, mapService: any): void {
         var pop_diff = []
         document.getElementById("table").innerHTML = "";
         document.getElementById("table-des").innerHTML = "Top 5 Neighborhoods of new setted stations";
@@ -610,6 +610,12 @@ export class SelectAttrComponent implements OnInit {
             .select("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
+        var nei_id = {}
+        d3.csv('src/assets/statistics/nyc.csv').then(function (data: any) {
+            data.forEach(element => {
+                nei_id[element['neighborho']] = element['id']
+            });
+        })
 
         d3.json('src/assets/statistics/block_counts.json').then(function (data: any) {
             var timeScalaes = data.map(d => d['Year']);
@@ -643,6 +649,7 @@ export class SelectAttrComponent implements OnInit {
                 })
                 pop_diff.push({
                     Block: rec.Block,
+                    Id: nei_id[rec.Block],
                     Count: count_max - count_min
                 })
             })
@@ -701,7 +708,7 @@ export class SelectAttrComponent implements OnInit {
                 .attr('opacity', '0.6')
                 .attr('stroke-width', 1)
                 .attr('stroke', "aliceblue")
-                .on("mouseover", function (d, i) {
+                .on("mouseover", function (d: any, i) {
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
@@ -713,8 +720,10 @@ export class SelectAttrComponent implements OnInit {
                         .transition()
                         .duration(250)
                         .style("font-size", 10);
+
+                    mapService.showNeighbor(d.Id);
                 })
-                .on("mouseout", function (d, i) {
+                .on("mouseout", function (d: any, i) {
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
@@ -726,6 +735,8 @@ export class SelectAttrComponent implements OnInit {
                         .transition()
                         .duration(250)
                         .style("font-size", 0);
+
+                    mapService.notShowNeighbor(d.Id);
                 });
 
             bar.selectAll("text")
@@ -808,7 +819,7 @@ export class SelectAttrComponent implements OnInit {
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)
-            this.drawTableAndBar(this.listOfTagOptions)
+            this.drawTableAndBar(this.listOfTagOptions, this.mapService)
         }
     }
 
