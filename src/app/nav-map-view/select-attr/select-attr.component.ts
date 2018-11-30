@@ -583,10 +583,10 @@ export class SelectAttrComponent implements OnInit {
 
             if (diff >= 0) {
                 document.getElementById("description")
-                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been set."
+                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + diff + "</b> new stations have been installed."
             } else {
                 document.getElementById("description")
-                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been withdrawed."
+                    .innerHTML = "From <b>" + year_min + "</b> to <b>" + year_max + "</b>, <b>" + (-diff) + "</b> stations have been uninstalled."
             }
         })
     }
@@ -594,7 +594,7 @@ export class SelectAttrComponent implements OnInit {
     drawTableAndBar(select_years: any, mapService: any): void {
         var pop_diff = []
         document.getElementById("table").innerHTML = "";
-        document.getElementById("table-des").innerHTML = "Top 5 Neighborhoods of new setted stations";
+        document.getElementById("table-des").innerHTML = "<b>Top 5 Neighborhoods of new installed stations<b>";
         document.getElementById("return").innerHTML = "<svg><g></g></svg>";
         var width = parseInt(d3.select("#return").style("width"));
         var height = this.height;
