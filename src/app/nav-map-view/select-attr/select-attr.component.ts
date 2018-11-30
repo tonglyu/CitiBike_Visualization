@@ -9,7 +9,7 @@ import * as d3 from 'd3';
     styleUrls: ['./select-attr.component.css']
 })
 
-export class SelectAttrComponent implements OnInit{
+export class SelectAttrComponent implements OnInit {
 
     constructor(private mapService: MapService, private renderer: Renderer2) { }
     //Radio value: 'variation' / 'statistics'
@@ -42,7 +42,7 @@ export class SelectAttrComponent implements OnInit{
         })
         this.listOfOption = children;
         this.listOfTagOptions = ["2013"];
-        this.showStats({'Year': "2013", 'Id': "470", 'Name': "W 20 St & 8 Ave"});
+        this.showStats({ 'Year': "2013", 'Id': "470", 'Name': "W 20 St & 8 Ave" });
         this.mapService.changeYears(this.listOfTagOptions);
         this.mapService.stationSource.subscribe((station) => {
             this.clickedStation = station;
@@ -74,10 +74,12 @@ export class SelectAttrComponent implements OnInit{
             }
         }).then(function (data: any) {
             if (data.length == 0) {
-                data = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0,
+                data = {
+                    0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0,
                     6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0,
                     12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0,
-                    18: 0, 19: 0, 20: 0, 21: 0, 22: 0, 23: 0}
+                    18: 0, 19: 0, 20: 0, 21: 0, 22: 0, 23: 0
+                }
             }
             else {
                 data = data[0];
@@ -101,7 +103,7 @@ export class SelectAttrComponent implements OnInit{
                 .scale(x);
             // @ts-ignore
             var yAxis = d3.axisLeft()
-                .tickFormat(function(d) { return (d == 300) ? "> 300" : d; })
+                .tickFormat(function (d) { return (d == 300) ? "> 300" : d; })
                 .scale(y);
 
             var rects = bar.selectAll('rect')
@@ -353,7 +355,8 @@ export class SelectAttrComponent implements OnInit{
                     line_points.push(point)
                 }
             })
-        
+
+            //check if drawing data is empty
             if (line_points.length == 0) {
                 return;
             }
@@ -534,6 +537,8 @@ export class SelectAttrComponent implements OnInit{
         })
     }
 
+
+
     initDrawingCanvas(): void {
         // @ts-ignore
         borrowH6.innerHTML = "<p>Station Activity: select a <b>year</b> and a <b>station</b> on the map to see the activities in the station</p><p>Station Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>";
@@ -543,7 +548,7 @@ export class SelectAttrComponent implements OnInit{
         document.getElementById("return").innerHTML = "<svg><g></g></svg>";
         document.getElementById("description").innerHTML = "";
         document.getElementById("table").innerHTML = "";
-        document.getElementById("table-des").innerHTML="";
+        document.getElementById("table-des").innerHTML = "";
         this.width = parseInt(d3.select("#borrow").style("width")) - this.margin.left - this.margin.right;
         if (this.width < 300) {
             this.width = 300;
@@ -589,10 +594,26 @@ export class SelectAttrComponent implements OnInit{
         })
     }
 
-    drawTable(select_years: any): void {
+    drawTableAndBar(select_years: any): void {
         var pop_diff = []
         document.getElementById("table").innerHTML = "";
-        document.getElementById("table-des").innerHTML="Top 5 Neighborhoods of new setted stations";
+        document.getElementById("table-des").innerHTML = "Top 5 Neighborhoods of new setted stations";
+        document.getElementById("return").innerHTML = "<svg><g></g></svg>";
+
+        var table = d3.select('#table');
+        var bar_container = d3.select("#return")
+            .select("svg")
+            .attr("width", this.width + this.margin.left + this.margin.right)
+            .attr("height", this.height + this.margin.top + this.margin.bottom);
+
+        var bar = bar_container
+            .select("g")
+            .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+        var width = this.width;
+        var height = this.height;
+        var margin = this.margin;
+
         d3.json('src/assets/statistics/block_counts.json').then(function (data: any) {
             var timeScalaes = data.map(d => d['Year']);
             var blocks = d3.keys(data[0]).filter(function (key) {
@@ -635,10 +656,12 @@ export class SelectAttrComponent implements OnInit{
 
             return pop_diff
         }).then(function (data: any) {
+            if (data.length == 0) {
+                return;
+            }
             var title = [{ "Block": "Neighborhood", "Count": "Count" }];
             var data_table = title.concat(data)
-            console.log(data_table)
-            var table = d3.select('#table');
+
             table.selectAll('tr')
                 .data(data_table)
                 .enter().append('tr')
@@ -652,8 +675,112 @@ export class SelectAttrComponent implements OnInit{
                 .text(function (d) {
                     return d;
                 });
+
+            var neighbors = data.map(function (d) { return d.Block; })
+            var ymax = d3.max(data, (d:any) => {return d.Count;})
+
+            var x = d3.scaleBand().domain(neighbors).rangeRound([0, width]).paddingInner(0.5);
+            // @ts-ignore
+            var y = d3.scaleLinear().domain([0, ymax]).range([height, 0])
+
+            // @ts-ignore
+            var xAxis = d3.axisBottom().scale(x);
+            // @ts-ignore
+            var yAxis = d3.axisLeft().scale(y);
+
+            var rects = bar.selectAll('rect')
+                .data(data)
+
+            // append rect
+            rects.enter()
+                .append('rect')
+                .attr('x', function (d: any) { return x(d.Block); })
+                .attr('y', function (d: any) { console.log(y(d.Count)); return y(d.Count); })
+                .attr('width', x.bandwidth)
+                // @ts-ignore
+                .attr('height', function (d) { return height - y(d.Count); })
+                .attr('class', function (d, i) { return "rect rect" + i; })
+                .attr('fill', "darkgreen")
+                .attr('opacity', '0.6')
+                .attr('stroke-width', 1)
+                .attr('stroke', "aliceblue")
+                .on("mouseover", function (d, i) {
+                    d3.selectAll(".rect" + i)
+                        .transition()
+                        .duration(250)
+                        .style('fill', 'aqua')
+                        .attr('opacity', '1');
+
+                    // show text
+                    d3.selectAll(".label" + i)
+                        .transition()
+                        .duration(250)
+                        .style("font-size", 10);
+                })
+                .on("mouseout", function (d, i) {
+                    d3.selectAll(".rect" + i)
+                        .transition()
+                        .duration(250)
+                        .style('fill', 'darkgreen')
+                        .attr('opacity', '0.6');
+
+                    // hide text
+                    d3.selectAll(".label" + i)
+                        .transition()
+                        .duration(250)
+                        .style("font-size", 0);
+                });
+
+            bar.selectAll("text")
+                .data(data).enter()
+                .append("text")
+                .attr("class", function (d, i) { return "label label" + i; })
+                .attr('x', function (d: any) { return x(d.Block) + x.bandwidth() / 2; })
+                .attr('y', function (d: any) { return y(d.Count) - 5; })
+                .attr("font-size", 0)
+                .attr("fill", "black")
+                .attr("text-anchor", "middle")
+                .text(function (d: any) { return d.Count; });
+
+            // append axis
+            bar.selectAll(".x-axis")
+                .data([0])
+                .enter()
+                .append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .attr("class", "x-axis")
+                .call(xAxis);
+
+            bar.selectAll(".y-axis")
+                .data([0])
+                .enter()
+                .append("g")
+                .attr("class", "y-axis")
+                .call(yAxis);
+
+            bar.selectAll("#x-label")
+                .data([0])
+                .enter()
+                .append("text")
+                .attr("x", width / 2)
+                .attr("y", height + 35)
+                .attr("font-weight", "bold")
+                .attr("id", "x-label")
+                .text("Neighborhood");
+
+            bar.selectAll("#y-label")
+                .data([0])
+                .enter()
+                .append("text")
+                .attr("x", -25)
+                .attr("y", -10)
+                .attr("font-weight", "bold")
+                .attr("id", "x-label")
+                .text("Count");
+
         })
     }
+
 
     radioLog(value: string): void {
         if (this.radioValue === 'statistics') {
@@ -681,7 +808,7 @@ export class SelectAttrComponent implements OnInit{
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)
-            this.drawTable(this.listOfTagOptions)
+            this.drawTableAndBar(this.listOfTagOptions)
         }
     }
 
