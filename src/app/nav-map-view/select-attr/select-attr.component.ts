@@ -714,7 +714,7 @@ export class SelectAttrComponent implements OnInit {
             rects.enter()
                 .append('rect')
                 .attr('x', function (d: any) { return x(d.Block); })
-                .attr('y', function (d: any) { console.log(y(d.Count)); return y(d.Count); })
+                .attr('y', function (d: any) { return y(d.Count); })
                 .attr('width', x.bandwidth)
                 // @ts-ignore
                 .attr('height', function (d) { return height - y(d.Count); })

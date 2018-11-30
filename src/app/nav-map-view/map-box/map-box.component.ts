@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { MapService } from '../map.service';
 import { STATIONS_URL_PREFIX, YEARS, COLORS } from '../constants';
 import { generate } from '../../../../node_modules/rxjs';
+import { stat } from 'fs';
+import * as d3 from 'd3';
 
 
 @Component({
@@ -185,39 +187,51 @@ export class MapBoxComponent implements OnInit {
       this.mapService.neiborShowSource.subscribe((neighbor) => {
         if (neighbor != "") {
           this.map.setFeatureState({ source: 'nyc', id: neighbor }, { pop: true });
-          
 
-          // popup.setLngLat(e.lngLat)
-          // .setHTML(description)
-          // .addTo(this.map);
+          var nei = this.map.querySourceFeatures('nyc', {
+            filter: ['==', 'id', neighbor]
+          });
+          var points = nei[0].geometry.coordinates[0]
+          var description = nei[0].properties.neighborho
+
+          
+          var center_x = d3.mean(points, function(d) { return d[0]})
+          var center_y = d3.mean(points, function(d) {return  d[1]})
+          var arr = [center_x,center_y]
+
+          var coordinate = mapboxgl.LngLat.convert(arr)
+          popup.setLngLat(coordinate)
+          .setHTML(description)
+          .addTo(this.map);
         }
       })
 
       this.mapService.neiborHidSource.subscribe((neighbor) => {
         if (neighbor != "") {
           this.map.setFeatureState({ source: 'nyc', id: neighbor }, { pop: false });
+          popup.remove();
         }
       })
 
-      this.map.on('mouseenter', 'nyc', (e) => {
-        // Change the cursor style as a UI indicator.
-        this.map.getCanvas().style.cursor = 'pointer';
-        console.log(e.features[0].properties.neighborho)
+      // this.map.on('mouseenter', 'nyc', (e) => {
+      //   // Change the cursor style as a UI indicator.
+      //   this.map.getCanvas().style.cursor = 'pointer';
+      //   console.log(e.features[0].properties.neighborho)
 
-        //var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].id + e.features[0].properties.neighborho;
+      //   //var coordinates = e.features[0].geometry.coordinates.slice();
+      //   var description = e.features[0].id + e.features[0].properties.neighborho;
 
-        // Populate the popup and set its coordinates
-        // based on the feature found.
-        popup.setLngLat(e.lngLat)
-          .setHTML(description)
-          .addTo(this.map);
-      })
+      //   // Populate the popup and set its coordinates
+      //   // based on the feature found.
+      //   popup.setLngLat(e.lngLat)
+      //     .setHTML(description)
+      //     .addTo(this.map);
+      // })
 
-      this.map.on('mouseleave', 'nyc', () => {
-        this.map.getCanvas().style.cursor = '';
-        popup.remove();
-      });
+      // this.map.on('mouseleave', 'nyc', () => {
+      //   this.map.getCanvas().style.cursor = '';
+      //   popup.remove();
+      // });
 
 
       YEARS.forEach((year) => {
