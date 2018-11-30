@@ -296,7 +296,9 @@ export class SelectAttrComponent implements OnInit{
         if (this.width < 300) {
             this.width = 300;
         }
+        //@ts-ignore
         this.drawBarChart(this.listOfTagOptions, station['Id'], "borrow");
+        //@ts-ignore
         this.drawBarChart(this.listOfTagOptions, station['Id'], "return");
     }
 
