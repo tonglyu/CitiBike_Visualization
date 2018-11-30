@@ -531,7 +531,7 @@ export class SelectAttrComponent implements OnInit{
 
     initDrawingCanvas(): void {
         // @ts-ignore
-        borrowH6.innerHTML = "<p>Statistics Analysis: select a <b>year</b> and a <b>station</b> on the map</p><p>Distribution Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>";
+        borrowH6.innerHTML = "<p>Station Activity: select a <b>year</b> and a <b>station</b> on the map to see the activities in the station</p><p>Station Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>";
         // @ts-ignore
         returnH6.innerHTML = "";
         document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";

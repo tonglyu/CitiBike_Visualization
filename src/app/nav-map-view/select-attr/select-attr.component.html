@@ -1,35 +1,36 @@
 <div class="container">
-<div style="height: 10%;" >
-    <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
-        <label nz-radio nzValue="statistics" nz-tooltip nzPlacement="right" nzTitle="Show total number of bikes returned/borrowed per hour in June">Station Activity</label>
-        <label nz-radio nzValue="variation"  nz-tooltip nzPlacement="right" nzTitle="Show the average activities for all stations per hour">Station Variation</label>
-    </nz-radio-group>
-    <nz-select id="selector" [nzMode]='Mode' style="width: 80%;" nzPlaceHolder="Select the Years" [nzMaxMultipleCount]='maxMultipleCount' [(ngModel)]="listOfTagOptions"
-        (ngModelChange)="selectLog($event)">
-        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
-        </nz-option>
-    </nz-select>
-</div>
-<div id="chartsArea">
-    <h6 id="borrowH6">
-        <p>Station Activity: select a <b>year</b> and a <b>station</b> on the map</p>
-        <p>Station Variation: select <b>muptiple years</b> to see the variation in 6 years (try different <b>order</b>)</p>
-    </h6>
-    <div id="borrow">
-        <svg>
-            <g></g>
-        </svg>
+  <h5>Station Analysis</h5>
+  <div style="height: 10%;" >
+      <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
+          <label nz-radio nzValue="statistics" nz-tooltip nzPlacement="right" nzTitle="Show total number of bikes returned/borrowed per hour in June">Station Activity</label>
+          <label nz-radio nzValue="variation"  nz-tooltip nzPlacement="right" nzTitle="Show the average activities for all stations per hour">Station Variation</label>
+      </nz-radio-group>
+      <nz-select id="selector" [nzMode]='Mode' style="width: 80%;" nzPlaceHolder="Select the Years" [nzMaxMultipleCount]='maxMultipleCount' [(ngModel)]="listOfTagOptions"
+          (ngModelChange)="selectLog($event)">
+          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+          </nz-option>
+      </nz-select>
+  </div>
+  <div id="chartsArea">
+      <h6 id="borrowH6">
+          <p>Station Activity: select a <b>year</b> and a <b>station</b> on the map to see the activities in the station</p>
+          <p>Station Variation: select <b>muptiple years</b> to see the variation in 6 years (try different <b>order</b>)</p>
+      </h6>
+      <div id="borrow">
+          <svg>
+              <g></g>
+          </svg>
+      </div>
+      <h6 id="returnH6"></h6>
+      <div id="var-text">
+          <p id="description"></p>
+          <p id="table-des"></p>
+          <table id="table"></table>
+      </div>
+      <div id="return">
+          <svg>
+              <g></g>
+          </svg>
+      </div>
     </div>
-    <h6 id="returnH6"></h6>
-    <div id="var-text">
-        <p id="description"></p>
-        <p id="table-des"></p>
-        <table id="table"></table>
-    </div>
-    <div id="return">
-        <svg>
-            <g></g>
-        </svg>
-    </div>
-</div>
 </div>
