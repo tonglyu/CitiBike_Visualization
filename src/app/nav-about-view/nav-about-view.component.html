@@ -1,36 +1,38 @@
 <div nz-content class="container">
-<div class="title">
+  <div class="title">
     <h2>Datasets</h2>
   </div>
-<div nz-row [nzGutter]="8" nzType="flex" nzJustify="space-between">
+  <div nz-row [nzGutter]="8" nzType="flex" nzJustify="space-between">
     <div nz-col [nzSpan]="8">
-        <nz-card [nzTitle]="citiBike">
-            <p class="data">Trip information for each bike from 2013 to 2018</p>
-            <p class="data">Includes start station, end station and user info</p>
-          </nz-card>
-     <ng-template #citiBike>
-      <a href="https://www.citibikenyc.com/system-data" style="color: black;">Citi Bike Trip Histories</a>
-    </ng-template>
+      <nz-card [nzTitle]="citiBike">
+        <p class="data">Trip information for each bike from 2013 to 2018</p>
+        <p class="data">Includes start station, end station and user info</p>
+      </nz-card>
+      <ng-template #citiBike>
+        <a href="https://www.citibikenyc.com/system-data" style="color: black;">Citi Bike Trip Histories</a>
+      </ng-template>
     </div>
-        <div nz-col [nzSpan]="8">
-        <nz-card [nzTitle]="facilities">
-            <p class="data">GeoJson data of New York facilities</p>
-            <p class="data">Includes historical sites, education, infrastructure</p>
-          </nz-card>
-     <ng-template #facilities>
-      <a href="https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807" style="color: black;">NYC Facilities</a>
-    </ng-template>
+    <div nz-col [nzSpan]="8">
+      <nz-card [nzTitle]="facilities">
+        <p class="data">GeoJson data of New York facilities</p>
+        <p class="data">Includes historical sites, education, infrastructure</p>
+      </nz-card>
+      <ng-template #facilities>
+        <a href="https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807" style="color: black;">NYC Facilities</a>
+      </ng-template>
     </div>
-        <div nz-col [nzSpan]="8">
-        <nz-card [nzTitle]="weather">
-            <p class="data">New York precipitation data in 2016</p>
-            <p><br></p>
-          </nz-card>
-     <ng-template #weather>
-      <a href="https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016" style="color: black;">Weather</a>
-    </ng-template>
+    <div nz-col [nzSpan]="8">
+      <nz-card [nzTitle]="weather">
+        <p class="data">New York precipitation data in 2016</p>
+        <p>
+          <br>
+        </p>
+      </nz-card>
+      <ng-template #weather>
+        <a href="https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016" style="color: black;">Weather</a>
+      </ng-template>
     </div>
-</div>
+  </div>
   <div class="title">
     <h2>Meet our Team</h2>
   </div>
@@ -39,7 +41,7 @@
       <nz-card nzHoverable [nzCover]="ziweiImage">
         <nz-card-meta [nzTitle]="ziweiLink">
           <ng-template #ziweiImage>
-            <img src="../assets/images/new.svg" alt="ziwei" />
+            <img src="../assets/images/ziwei.jpeg" alt="ziwei" />
           </ng-template>
           <ng-template #ziweiLink>
             <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Ziwei Yuan</a>
@@ -51,7 +53,7 @@
       <nz-card nzHoverable [nzCover]="tongImage">
         <nz-card-meta [nzTitle]="tongLink">
           <ng-template #tongImage>
-            <img src="../assets/images/new.svg" alt="tong" />
+            <img src="../assets/images/tong.jpeg" alt="tong" />
           </ng-template>
           <ng-template #tongLink>
             <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Tong Lyu</a>
@@ -63,7 +65,7 @@
       <nz-card nzHoverable [nzCover]="skyImage">
         <nz-card-meta [nzTitle]="skyLink">
           <ng-template #skyImage>
-            <img src="../assets/images/new.svg" alt="sky" />
+            <img src="../assets/images/tianyang.jpeg" alt="sky" />
           </ng-template>
           <ng-template #skyLink>
             <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Tianyang Li</a>
@@ -75,7 +77,7 @@
       <nz-card nzHoverable [nzCover]="jingImage">
         <nz-card-meta [nzTitle]="jingLink">
           <ng-template #jingImage>
-            <img src="../assets/images/new.svg" alt="jing" />
+            <img src="../assets/images/jing.jpeg" alt="jing" />
           </ng-template>
           <ng-template #jingLink>
             <a href="https://github.com/INF554Fall18/project-journey-to-the-west" class="name">Jing Zhang</a>
