@@ -12,7 +12,7 @@ import * as mapboxgl from 'mapbox-gl';
 
 export class MapService {
 
-  public yearsSource = new BehaviorSubject<string[]>(['2013']);
+  public yearsSource = new BehaviorSubject<any>([]);
   public stationSource = new BehaviorSubject<object>({});
   public analysisSource = new BehaviorSubject<string>("statistics");
 
@@ -20,7 +20,7 @@ export class MapService {
     mapboxgl.accessToken = ACCESS_TOKEN
   }
 
-  changeYears(years: string[]) {
+  changeYears(years: any) {
       this.yearsSource.next(years);
   }
   

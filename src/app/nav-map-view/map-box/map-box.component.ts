@@ -125,8 +125,10 @@ export class MapBoxComponent implements OnInit {
         });
           
         // change layers order
-        for(var i = 0; i < years.length; i++) {
-            this.map.moveLayer('stations' + years[i]); // move to the end of layers
+        if (Object.prototype.toString.call(years) == "[object Array]") {
+            for(var i = 0; i < years.length; i++) {
+                this.map.moveLayer('stations' + years[i]); // move to the end of layers
+            }
         }
       });
       

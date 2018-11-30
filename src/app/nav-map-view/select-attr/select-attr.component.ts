@@ -16,7 +16,8 @@ export class SelectAttrComponent implements OnInit{
     radioValue = 'statistics';
 
     //Dropdown
-    maxMultipleCount = '1';
+    maxMultipleCount = '';
+    Mode = 'default';
     listOfOption = [];
     listOfTagOptions = []; // selected tags
     chartsArea: any;
@@ -157,14 +158,16 @@ export class SelectAttrComponent implements OnInit{
                     }
                 })
                 .attr('class', function (d, i) { return "rect rect" + i; })
-                .attr('fill', "darkorange")
+                .attr('fill', "darkgreen")
+                .attr('opacity', '0.6')
                 .attr('stroke-width', 1)
                 .attr('stroke', "aliceblue")
                 .on("mouseover", function (d, i) {
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
-                        .style('fill', 'aqua');
+                        .style('fill', 'aqua')
+                        .attr('opacity', '1');
 
                     // show text
                     d3.selectAll(".label" + i)
@@ -176,7 +179,8 @@ export class SelectAttrComponent implements OnInit{
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
-                        .style('fill', 'darkorange');
+                        .style('fill', 'darkgreen')
+                        .attr('opacity', '0.6');
 
                     // hide text
                     d3.selectAll(".label" + i)
@@ -289,8 +293,8 @@ export class SelectAttrComponent implements OnInit{
         if (this.width < 300) {
             this.width = 300;
         }
-        this.drawBarChart(this.listOfTagOptions[0], station['Id'], "borrow");
-        this.drawBarChart(this.listOfTagOptions[0], station['Id'], "return");
+        this.drawBarChart(this.listOfTagOptions, station['Id'], "borrow");
+        this.drawBarChart(this.listOfTagOptions, station['Id'], "return");
     }
 
     drawTimeChart(select_years: any): void {
@@ -649,10 +653,12 @@ export class SelectAttrComponent implements OnInit{
     radioLog(value: string): void {
         if (this.radioValue === 'statistics') {
             this.maxMultipleCount = '1';
+            this.Mode = 'default';
             this.listOfTagOptions = [];
             this.initDrawingCanvas();
         } else {
             this.maxMultipleCount = '6';
+            this.Mode = 'tags';
             this.listOfTagOptions = [];
             this.initDrawingCanvas();
         }
