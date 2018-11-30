@@ -15,6 +15,16 @@ nz-select {
     margin-top: 20px;
 }
 
+#table-chart {
+    display: flex;
+    align-items: center;
+}
+
+#table-des {
+    font-size : 14px;
+    padding-bottom: 6px;
+}
+
 :host ::ng-deep .overlay {
     fill: none;
     pointer-events: all;

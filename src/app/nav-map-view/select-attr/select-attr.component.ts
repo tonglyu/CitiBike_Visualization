@@ -103,7 +103,7 @@ export class SelectAttrComponent implements OnInit {
                 .scale(x);
             // @ts-ignore
             var yAxis = d3.axisLeft()
-                .tickFormat(function(d) { return (d == 600) ? "> 600" : d; })
+                .tickFormat(function (d) { return (d == 600) ? "> 600" : d; })
                 .scale(y);
 
             var rects = bar.selectAll('rect')
@@ -308,7 +308,7 @@ export class SelectAttrComponent implements OnInit {
         document.getElementById("borrow").innerHTML = "<svg><g></g></svg>";
 
         var width = this.width;
-        var height = 340 - this.margin.top - this.margin.bottom;;
+        var height = 270 - this.margin.top - this.margin.bottom;;
         var margin = this.margin;
 
         var svg_container = d3.select("#borrow").select("svg")
@@ -326,8 +326,8 @@ export class SelectAttrComponent implements OnInit {
 
         var circleOpacity = "0.5"
         var circleRadius = 4;
-        var circleStroke = 1;
-        var circleRadiusHover = 6;
+        var circleStroke = 1.5;
+        var circleStrokeColor = 'white';
 
         var line_points = []
         d3.json('src/assets/statistics/time.json').then(function (data: any) {
@@ -487,6 +487,8 @@ export class SelectAttrComponent implements OnInit {
                 .append("circle")
                 .attr("r", circleRadius)
                 .style("opacity", circleOpacity)
+                .attr('stroke',circleStrokeColor)
+                .attr('stroke-width',circleStroke)
                 .attr("cx", (d: any) => { return x(d.Time); })
                 .attr("cy", (d: any) => { return y(d.Use); });
 
@@ -535,8 +537,6 @@ export class SelectAttrComponent implements OnInit {
         })
     }
 
-
-
     initDrawingCanvas(): void {
         // @ts-ignore
         borrowH6.innerHTML = "<p>Station Activity: select a <b>year</b> and a <b>station</b> on the map to see the activities in the station</p><p>Station Variation: select <b>muptiple years</b> to see the variation (try different <b>order</b>)</p>";
@@ -570,7 +570,6 @@ export class SelectAttrComponent implements OnInit {
             var year_min = d3.min(select_years)
 
             var val_max, val_min;
-
             data.forEach((d: any) => {
                 if (d['Year'] == year_max) {
                     val_max = d['Count'];
@@ -592,25 +591,31 @@ export class SelectAttrComponent implements OnInit {
         })
     }
 
-    drawTableAndBar(select_years: any): void {
+    drawTableAndBar(select_years: any, mapService: any): void {
         var pop_diff = []
         document.getElementById("table").innerHTML = "";
         document.getElementById("table-des").innerHTML = "Top 5 Neighborhoods of new setted stations";
         document.getElementById("return").innerHTML = "<svg><g></g></svg>";
+        var width = parseInt(d3.select("#return").style("width"));
+        var height = this.height;
+        var margin = this.margin;
 
         var table = d3.select('#table');
         var bar_container = d3.select("#return")
             .select("svg")
-            .attr("width", this.width + this.margin.left + this.margin.right)
+            .attr("width", width + this.margin.left + this.margin.right)
             .attr("height", this.height + this.margin.top + this.margin.bottom);
 
         var bar = bar_container
             .select("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-        var width = this.width;
-        var height = this.height;
-        var margin = this.margin;
+        var nei_id = {}
+        d3.csv('src/assets/statistics/nyc.csv').then(function (data: any) {
+            data.forEach(element => {
+                nei_id[element['neighborho']] = element['id']
+            });
+        })
 
         d3.json('src/assets/statistics/block_counts.json').then(function (data: any) {
             var timeScalaes = data.map(d => d['Year']);
@@ -644,6 +649,7 @@ export class SelectAttrComponent implements OnInit {
                 })
                 pop_diff.push({
                     Block: rec.Block,
+                    Id: nei_id[rec.Block],
                     Count: count_max - count_min
                 })
             })
@@ -675,7 +681,7 @@ export class SelectAttrComponent implements OnInit {
                 });
 
             var neighbors = data.map(function (d) { return d.Block; })
-            var ymax = d3.max(data, (d:any) => {return d.Count;})
+            var ymax = d3.max(data, (d: any) => { return d.Count; })
 
             var x = d3.scaleBand().domain(neighbors).rangeRound([0, width]).paddingInner(0.5);
             // @ts-ignore
@@ -702,7 +708,7 @@ export class SelectAttrComponent implements OnInit {
                 .attr('opacity', '0.6')
                 .attr('stroke-width', 1)
                 .attr('stroke', "aliceblue")
-                .on("mouseover", function (d, i) {
+                .on("mouseover", function (d: any, i) {
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
@@ -714,8 +720,10 @@ export class SelectAttrComponent implements OnInit {
                         .transition()
                         .duration(250)
                         .style("font-size", 10);
+
+                    mapService.showNeighbor(d.Id);
                 })
-                .on("mouseout", function (d, i) {
+                .on("mouseout", function (d: any, i) {
                     d3.selectAll(".rect" + i)
                         .transition()
                         .duration(250)
@@ -727,6 +735,8 @@ export class SelectAttrComponent implements OnInit {
                         .transition()
                         .duration(250)
                         .style("font-size", 0);
+
+                    mapService.notShowNeighbor(d.Id);
                 });
 
             bar.selectAll("text")
@@ -740,29 +750,11 @@ export class SelectAttrComponent implements OnInit {
                 .attr("text-anchor", "middle")
                 .text(function (d: any) { return d.Count; });
 
-            // append axis
-            bar.selectAll(".x-axis")
-                .data([0])
-                .enter()
-                .append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .attr("class", "x-axis")
-                .call(xAxis);
-
-            bar.selectAll(".y-axis")
-                .data([0])
-                .enter()
-                .append("g")
-                .attr("class", "y-axis")
-                .call(yAxis);
-
-            bar.selectAll("#x-label")
-                .data([0])
-                .enter()
-                .append("text")
+            bar.append("text")
                 .attr("x", width / 2)
-                .attr("y", height + 35)
+                .attr("y", height + 50)
                 .attr("font-weight", "bold")
+                .attr("text-anchor", "middle")
                 .attr("id", "x-label")
                 .text("Neighborhood");
 
@@ -775,6 +767,26 @@ export class SelectAttrComponent implements OnInit {
                 .attr("font-weight", "bold")
                 .attr("id", "x-label")
                 .text("Count");
+
+            // append axis
+            bar.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .attr("class", "x-axis")
+                .call(xAxis)
+                .selectAll("text")
+                .attr("dx", "-.6em")
+                .attr("dy", ".8em")
+                .attr('font-size', 10)
+                .attr("transform", "rotate(-20)");
+
+            bar.selectAll(".y-axis")
+                .data([0])
+                .enter()
+                .append("g")
+                .attr("class", "y-axis")
+                .call(yAxis);
+
+
 
         })
     }
@@ -807,7 +819,7 @@ export class SelectAttrComponent implements OnInit {
         } else {
             this.drawTimeChart(this.listOfTagOptions)
             this.addVariationDes(this.listOfTagOptions)
-            this.drawTableAndBar(this.listOfTagOptions)
+            this.drawTableAndBar(this.listOfTagOptions, this.mapService)
         }
     }
 
