@@ -194,12 +194,10 @@ export class MapBoxComponent implements OnInit {
           var points = nei[0].geometry.coordinates[0]
           var description = nei[0].properties.neighborho
 
-          
           var center_x = d3.mean(points, function(d) { return d[0]})
           var center_y = d3.mean(points, function(d) {return  d[1]})
-          var arr = [center_x,center_y]
-
-          var coordinate = mapboxgl.LngLat.convert(arr)
+    
+          var coordinate = mapboxgl.LngLat.convert([center_x,center_y])
           popup.setLngLat(coordinate)
           .setHTML(description)
           .addTo(this.map);
@@ -212,27 +210,6 @@ export class MapBoxComponent implements OnInit {
           popup.remove();
         }
       })
-
-      // this.map.on('mouseenter', 'nyc', (e) => {
-      //   // Change the cursor style as a UI indicator.
-      //   this.map.getCanvas().style.cursor = 'pointer';
-      //   console.log(e.features[0].properties.neighborho)
-
-      //   //var coordinates = e.features[0].geometry.coordinates.slice();
-      //   var description = e.features[0].id + e.features[0].properties.neighborho;
-
-      //   // Populate the popup and set its coordinates
-      //   // based on the feature found.
-      //   popup.setLngLat(e.lngLat)
-      //     .setHTML(description)
-      //     .addTo(this.map);
-      // })
-
-      // this.map.on('mouseleave', 'nyc', () => {
-      //   this.map.getCanvas().style.cursor = '';
-      //   popup.remove();
-      // });
-
 
       YEARS.forEach((year) => {
         this.map.on('mouseenter', 'stations' + year, (e) => {
