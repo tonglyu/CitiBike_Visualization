@@ -326,8 +326,8 @@ export class SelectAttrComponent implements OnInit {
 
         var circleOpacity = "0.5"
         var circleRadius = 4;
-        var circleStroke = 1;
-        var circleRadiusHover = 6;
+        var circleStroke = 1.5;
+        var circleStrokeColor = 'white';
 
         var line_points = []
         d3.json('src/assets/statistics/time.json').then(function (data: any) {
@@ -487,6 +487,8 @@ export class SelectAttrComponent implements OnInit {
                 .append("circle")
                 .attr("r", circleRadius)
                 .style("opacity", circleOpacity)
+                .attr('stroke',circleStrokeColor)
+                .attr('stroke-width',circleStroke)
                 .attr("cx", (d: any) => { return x(d.Time); })
                 .attr("cy", (d: any) => { return y(d.Use); });
 
