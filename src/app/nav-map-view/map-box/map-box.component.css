@@ -12,10 +12,9 @@
 
 .map-overlay {
   position: absolute;
+  left: 0;
   bottom: 0;
-  right: 0;
   background: rgba(255, 255, 255, 0.8);
-  margin-right: 10px;
   font-family: Arial, sans-serif;
   overflow: auto;
   border-radius: 3px;
@@ -40,7 +39,7 @@
 
 @media only screen and (max-width: 575px) {
     .map-overlay {
-      top: 0;
-      margin-top: 105px;
+      top:0;
+      margin-left: 15px;
     }
 }
