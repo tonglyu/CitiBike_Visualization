@@ -28,7 +28,7 @@ var legend_svg = d3.select("#legend")
                 .attr("r",10)
                 //.attr("width",17)
                 .attr("cx",430)
-                .attr("cy",50)
+                .attr("cy",60)
                 .attr("fill","orchid");
 
               d3.select("#legend")
@@ -37,7 +37,7 @@ var legend_svg = d3.select("#legend")
                 .attr("r",10)
                 
                 .attr("cx",430)
-                .attr("cy",80)
+                .attr("cy",90)
                 .attr("fill","lightskyblue");
 
               d3.select("#legend")
@@ -46,7 +46,7 @@ var legend_svg = d3.select("#legend")
                 .attr("font-size",13)
             
                 .attr("x",450)
-                .attr("y",54)
+                .attr("y",64)
                 .attr("font-color","black")
                 .text("Number of orders");
 
@@ -56,14 +56,45 @@ var legend_svg = d3.select("#legend")
                 .attr("font-size",13)
             
                 .attr("x",450)
-                .attr("y",84)
+                .attr("y",94)
                 .attr("font-color","black")
                 .text("Precipitation");
 
+                d3.select("#pie-chart")
+                .append("g")
+                .append("svg:image")
+                .attr("xlink:href","src/assets/pielegend.png")
+                .attr("x", "240")
+                .attr("y","0")
+                .attr("width", "90")
+                .attr("height", "120");
+          
+            var string = "Data: Precipitation of 2016 & Orders data of 2016,Conclusion: ,1)Weather: Less user use bike in rainy day.,2)Season: Less user use bike in winter."
+            var strs = string.split(",")
+          
+            var text = d3.select("#legend")
+                      .append("text")
+                      .attr("font-size","15px")
+                      .attr("x",860)
+                      .attr("y",20)
+                      
+              var texts = text.selectAll("tspan")
+                      .data(strs)
+                      .enter()
+                      .append("tspan")
+                      .attr("x",text.attr("x"))
+                      .attr("dy","1.3em")
+                      .text(function(d){return d})
+
             
             
-
-
+                      var text = d3.select("#legend")
+                      .append("text")
+                      .attr("font-size","13px")
+                      .attr("text-anchor","middle")
+                      .attr("x",175)
+                      .attr("y",73)
+                      .text("The relationship between orders and perception in 2016")
            
 
 
@@ -99,7 +130,10 @@ var legend_svg = d3.select("#legend")
         x.domain(s.map(x2.invert, x2));
         Line_chart.select("#line1").attr("d", line1);
         Line_chart.select("#line3").attr("d", line3);
-        focus.select(".axis--x").call(xAxis);
+        focus.select(".axis--x").call(xAxis)
+        ;
+
+
         svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
             .scale(width / (s[1] - s[0]))
             .translate(-s[0], 0));
@@ -194,9 +228,27 @@ var legend_svg = d3.select("#legend")
 
             focus.append("g")
                 .attr("class", "axis axis--y")
-                
+                .call(yAxis)
                // .attr("transform", "translate(" + 40 + ",0)")
-                .call(yAxis);
+           focus    
+                .append("text")
+                .text("Number of Orders")
+                .attr("font-color","black")
+                .attr("font-size",15)
+                //.attr("transform","rotate(-90)")//text旋转-90°
+               // .attr("text-anchor","end")//字体尾部对齐
+                .attr("x",-41)
+                .attr("y",-8);
+
+            focus    
+                .append("text")
+                .text("Time")
+                .attr("font-color","black")
+                .attr("font-size",15)
+                //.attr("transform","rotate(-90)")//text旋转-90°
+               // .attr("text-anchor","end")//字体尾部对齐
+                .attr("x",1128)
+                .attr("y",390);
 
 
                 
