@@ -487,8 +487,8 @@ export class SelectAttrComponent implements OnInit {
                 .append("circle")
                 .attr("r", circleRadius)
                 .style("opacity", circleOpacity)
-                .attr('stroke',circleStrokeColor)
-                .attr('stroke-width',circleStroke)
+                .attr('stroke', circleStrokeColor)
+                .attr('stroke-width', circleStroke)
                 .attr("cx", (d: any) => { return x(d.Time); })
                 .attr("cy", (d: any) => { return y(d.Use); });
 
@@ -664,7 +664,18 @@ export class SelectAttrComponent implements OnInit {
                 return;
             }
             var title = [{ "Block": "Neighborhood", "Count": "Count" }];
-            var data_table = title.concat(data)
+            var zeroCount = 0
+            var dataNoID = data.map(d => {
+                if (d.Count == 0) {
+                    zeroCount++
+                }
+                return {
+                    Block: d.Block,
+                    Count: d.Count
+                }
+            })
+
+            var data_table = title.concat(dataNoID)
 
             table.selectAll('tr')
                 .data(data_table)
@@ -680,6 +691,10 @@ export class SelectAttrComponent implements OnInit {
                     return d;
                 });
 
+            // all-zeros do not draw chart
+            if (zeroCount == data.length) {
+                return;
+            }
             var neighbors = data.map(function (d) { return d.Block; })
             var ymax = d3.max(data, (d: any) => { return d.Count; })
 
