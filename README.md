@@ -12,8 +12,8 @@
 
 - [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
 - [Presentation PDF](presentation/presentation.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
-- [Article](Citi Bike Information Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
-- [YouTube video](<youtube-video-url>)
+- [Article](paper/Citi Bike Information Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
+- [YouTube video](https://www.youtube.com/watch?v=Mnu_VbX8xyk)
 
 ### PROJECT DESCRIPTION
 We built a Citi Bike information visualization website. We used Angular, Bootstrap, d3, Mapbox to show various types of charts and maps. We combined with datIsets in different aspects to analyze potential factors that may influence bike-sharing orders through information visualization.
