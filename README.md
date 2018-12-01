@@ -11,7 +11,7 @@
 ### PROJECT ARTIFACTS
 
 - [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
-- [Presentation PDF](presentation/presentation.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
+- [Presentation PDF](presentation/presentation.pdf) and [transcript](presentation/PRESENTATION_TRANSCRIPT.md)
 - [Article](paper/Citi_Bike_Information_Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
 - [YouTube video](https://www.youtube.com/watch?v=Mnu_VbX8xyk)
 
@@ -219,6 +219,7 @@ this.map.on('click', 'stations' + year, (e) => {
 ```
 
 #### Station Activity
+
 #### Station Variation
 ### Stations Analysis
 #### Infrastructures Effect Analysis
