@@ -100,5 +100,101 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 #### Station Variation
 ### Stations Analysis
 #### Infrastructures Effect Analysis
-#### Age Effect Analysis
 #### Weather Effect Analysis
+- data: nyc weather data of 2016 & citi bike-sharing order data of 2016
+- data process: precipitation = precipitation * 40000
+- import data:
+
+         d3.csv("weatherdata.csv").then(function (data) {
+- zoom in/out method
+     - Method 1: Brushed
+          
+             function brushed() {
+             if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+             var s = d3.event.selection || x2.range();
+             x.domain(s.map(x2.invert, x2));
+             Line_chart.select("#line1").attr("d", line1);
+             Line_chart.select("#line3").attr("d", line3);
+             focus.select(".axis--x").call(xAxis);
+             svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+                 .scale(width / (s[1] - s[0]))
+                 .translate(-s[0], 0));
+           }
+     - Method 1: Zoomed
+     
+                 function zoomed() {
+             if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+             var t = d3.event.transform;
+             x.domain(t.rescaleX(x2).domain());
+             Line_chart.selectAll("#line1").attr("d", line1);
+             Line_chart.selectAll("#line3").attr("d", line3);
+
+             focus.select(".axis--x").call(xAxis);
+             context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+             }
+- Draw line:
+     
+          var line1 = d3.line()
+          .x(function (d) { return x(d.Date); })
+          .y(function (d) { return y(d.orders); });
+        
+          Line_chart.append("path")
+               .attr("id","line1")
+                .datum(data)
+                .attr("class", "line")
+                .style("stroke", "lightskyblue")
+                .attr("d", line1);
+- Draw rectangle and line:
+
+            context.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height2 + ")")
+                .call(xAxis2);
+            context.append("g")
+                .attr("class", "brush")
+                .call(brush)
+                .call(brush.move, x.range());
+            svg.append("rect")
+                .attr("class", "zoom")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .call(zoom);
+
+
+#### Age Effect Analysis
+- data: age group data of top 6 popular stations 
+- data process: Counted number of each age group
+- import data:
+
+           d3.json("pie_data_all.json").then(function (data) {}
+           
+- Set data:
+
+      var pie2013 = d3.pie()
+                .value(function (d) { return d.X2013top1; })
+                (data);
+- Set donut parameters:
+     
+      var outerRadius = w / 2;
+      var innerRadius = w / 3;
+
+- Draw donut chart:
+
+      var pie2013 = d3.pie()
+                       .value(function (d) { return d.X2013top1; })
+                       (data);
+                       //... set  6 dionuts
+- Set transitions:
+
+                 d3.select("#top-1")
+                .on("click", function () {
+                    path2013 = svg2013.selectAll("g.arc")
+                        .select("path")
+                        .data(pie2013);
+                    path2013.transition()
+                        .duration(1000)
+                        .attrTween("d", arcTween);
+                })
+                //  .. set 6 transitions
+                
