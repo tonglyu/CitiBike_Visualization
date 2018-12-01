@@ -69,7 +69,7 @@ var legend_svg = d3.select("#legend")
                 .attr("width", "90")
                 .attr("height", "120");
           
-            var string = "Data: Precipitation of 2016 & Orders data of 2016,Conclusion: ,1)Weather: Less user use bike in rainy day.,2)Season: Less user use bike in winter.,(The bule line just shows the trend)"
+            var string = "Data: Precipitation of 2016 & Orders data of 2016,Conclusion: ,1)Weather: Less user use bike in rainy day.,2)Season: Less user use bike in winter.,(The value of the bule line is meaningless. It just shows the trend)"
             var strs = string.split(",")
           
             var text = d3.select("#legend")
