@@ -93,7 +93,7 @@ ng build --prod --base-href /~ziweiyua/NYCSharingBike/
 - Copy files under `dist` folder to the remote
 - Make sure the name of the folder is `SharingBike`
 - Created `src` folder under `SharingBike` and move `assets` to the `src` for the right data path
-- View page on http://www-scf.usc.edu/~ziweiyua/SharingBike
+- View page on http://www-scf.usc.edu/~ziweiyua/NYCSharingBike
 
 ## GIT
 - Incremental commits and push useful files (not including `node_modules` and `e2e files`) to Git use GitHub Desktop
