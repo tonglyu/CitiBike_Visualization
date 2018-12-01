@@ -28,6 +28,38 @@ export class AnalysisAgeViewComponent implements OnInit {
       .attr("y","0")
       .attr("width", "90")
       .attr("height", "120");
+
+  var string = "Assumption: There is relationship between orders and age ,composition of each station.,Data: User’s age data of Top 6 popular stations. Popular ,means they have maximum orders in 6 years.,Conclusion: There has no directly relationship between ,age and orders. But there are more and more young ,people start to use sharing-bike."
+  var strs = string.split(",")
+
+  var text = d3.select("#pie-chart")
+            .append("text")
+            .attr("font-size","15px")
+            .attr("x",860)
+            .attr("y",-8)
+            
+    var texts = text.selectAll("tspan")
+            .data(strs)
+            .enter()
+            .append("tspan")
+            .attr("x",text.attr("x"))
+            .attr("dy","1.3em")
+            .text(function(d){return d})
+    
+    //text.selectAll("tspan").append("br")
+
+ /* d3.select("#pie-chart")
+        .append("g")
+        .selectAll("tspan")
+        .data(strs)
+        .enter()
+        .append("tspan")
+        .attr("x",400)
+        .attr("y",50)
+        .attr("font-size",10)
+        .text(function(d){return d})
+
+        */
        //   .append("svg")
          // .attr("width", w)
          // .attr("height", w);
@@ -99,7 +131,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("1st Popular");
+          .text("Station id:519");
       // createPieChart(data, w, svg1998, pie1998, pietop31998, pietop41998, pietop21998);
       var outerRadius = w / 2;
       var innerRadius = w / 3;
@@ -154,7 +186,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("2nd Popular");
+          .text("Station id:426");
       var arcs2014 = svg2014.selectAll("g.arc")
           .data(pie2014)
           .enter()
@@ -204,7 +236,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("3rd Popular");
+          .text("Station id:497");
       var arcs2015 = svg2015.selectAll("g.arc")
           .data(pie2015)
           .enter()
@@ -257,7 +289,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("4th Popular");
+          .text("Station id:402");
       var arcs2016 = svg2016.selectAll("g.arc")
           .data(pie2016)
           .enter()
@@ -305,7 +337,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("5th Popular");
+          .text("Station id:514");
       var arcs2017 = svg2017.selectAll("g.arc")
           .data(pie2017)
           .enter()
@@ -352,7 +384,7 @@ export class AnalysisAgeViewComponent implements OnInit {
           .attr("x", "100")
           .attr("y", "100")
           .attr("class", "pieYear")
-          .text("6th Popular");
+          .text("Station id:435");
       var arcs2018 = svg2018.selectAll("g.arc")
           .data(pie2018)
           .enter()

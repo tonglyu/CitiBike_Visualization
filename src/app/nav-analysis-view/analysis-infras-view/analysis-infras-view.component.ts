@@ -36,9 +36,25 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
     //var svg2 = d3.select("#chart3")
     //var svg3 = d3.select("#chart3")
+    //var string = "This map shows the top 13 popular sharing-bike stations. Each point represent a station.,Click the point to see the important infrastructures nearby."
+      //var strs = string.split(",")
 
+      var text = d3.select("#chart2")
+                .append("text")
+                .attr("font-size","17px")
+                .attr("x",0)
+                .attr("y",21)
+                .text("This map shows the top 13 popular sharing-bike stations. Each point represent a station.")
+            
+                var text = d3.select("#chart2")
+                .append("text")
+                .attr("font-size","17px")
+                .attr("x",0)
+                .attr("y",44)
+                .text("***Click the point to see the important infrastructures nearby***")
+       
 
-
+    
 
     d3.json("src/assets/sky/nyc.json").then(function (nyc: any) {
 
