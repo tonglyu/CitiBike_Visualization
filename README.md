@@ -108,7 +108,23 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 
 ### Angular Components interaction
 - Add a service to pass values between sibling components
+```html
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
+@Injectable({
+    providedIn: 'root',
+})
+
+export class MapService {
+    ......
+    public yearsSource = new BehaviorSubject<any>([]);
+    changeYears(years: any) {
+      this.yearsSource.next(years);
+    }
+    ......
+}
+```
 
 ### Stations Map
 
