@@ -767,7 +767,7 @@ export class SelectAttrComponent implements OnInit {
 
             bar.append("text")
                 .attr("x", width / 2)
-                .attr("y", height + 50)
+                .attr("y", height + 48)
                 .attr("font-weight", "bold")
                 .attr("text-anchor", "middle")
                 .attr("id", "x-label")
