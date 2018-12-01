@@ -115,7 +115,7 @@
 - Tong Lyu
     - Designed the layout and build entire framework of the website.
     - Created the line chart of "Distribution Variation".
-    - Collected the statistics of count of stations in neighborhoods per year and create a table.
+    - Create a table and bar chart count of top 5 neighborhoods with most new installed stations, and highlight the neighborhood on the map.
     - Participated in integrating mapbox to display stations and listen to mouse hover events.
 - Tianyang Li
     - Got raw data and format these data into csv, json and relevant useful files.
