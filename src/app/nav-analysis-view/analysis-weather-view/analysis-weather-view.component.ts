@@ -69,14 +69,14 @@ var legend_svg = d3.select("#legend")
                 .attr("width", "90")
                 .attr("height", "120");
           
-            var string = "Data: Precipitation of 2016 & Orders data of 2016,Conclusion: ,1)Weather: Less user use bike in rainy day.,2)Season: Less user use bike in winter."
+            var string = "Data: Precipitation of 2016 & Orders data of 2016,Conclusion: ,1)Weather: Less user use bike in rainy day.,2)Season: Less user use bike in winter.,(The bule line just shows the trend)"
             var strs = string.split(",")
           
             var text = d3.select("#legend")
                       .append("text")
                       .attr("font-size","15px")
                       .attr("x",860)
-                      .attr("y",20)
+                      .attr("y",0)
                       
               var texts = text.selectAll("tspan")
                       .data(strs)
