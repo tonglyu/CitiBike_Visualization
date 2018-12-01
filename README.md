@@ -21,16 +21,22 @@ We built a Citi Bike information visualization website. We used Angular, Bootstr
 ## DATA
 
 - Citi Bike Trip Histories
-    - The dataset is about trip information for each bike from 2013 to 2018
-    - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
-    - Source: https://www.citibikenyc.com/system-data
+  - The dataset is about trip information and is summarized for each month from 2013 to now
+  - Includes Start Time and Date, End Time and Date, Start Station Name, Start Station Name, Station Lat/Long, Station ID, User Year of Birth, etc
+  - We downloaded trip data of June from 2013 to 2018
+  - We processed the original data and generated Station GeoJSON data of 6 years, total number of borrowed bikes per hour of each station for June of each year, total number of returned bikes per hour of each station for June of each year and user age summary.
+  - Source: https://www.citibikenyc.com/system-data
 - NYC Facilities
-    - GeoJson datasets of New York facilities
-    - Includes historical sites, education, infrastructure, etc
-    - Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
-- Weather dataset
-    - New York precipitation data of 2016
-    - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
+  - The New York City facilities data is offered by NYC Capital Planning Platform
+  - includes various types of facilities such as core infrastructure, historical sites and parks
+  - The format of the data is GeoJSON
+  - We used historical sites, education and infrastructure datasets to show the surroundings of top 13 popular stations.
+  - Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
+- Precipitation Data
+  - Precipitation data is offered by Kaggle.
+  - The original data records the precipitation amount of 2016 in New York by day.
+  - We used the data to show relationship between orders of sharing bikes and precipitation amount in 2016.
+  - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
 
 ## PROJECT SET-UP
 - Clone the project with SSH: git@github.com:INF554Fall18/project-journey-to-the-west.git
@@ -108,7 +114,7 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
          d3.csv("weatherdata.csv").then(function (data) {
 - zoom in/out method
      - Method 1: Brushed
-          
+
              function brushed() {
              if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
              var s = d3.event.selection || x2.range();
@@ -121,7 +127,7 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
                  .translate(-s[0], 0));
            }
      - Method 1: Zoomed
-     
+
                  function zoomed() {
              if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
              var t = d3.event.transform;
@@ -133,11 +139,11 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
              context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
              }
 - Draw line:
-     
+
           var line1 = d3.line()
           .x(function (d) { return x(d.Date); })
           .y(function (d) { return y(d.orders); });
-        
+
           Line_chart.append("path")
                .attr("id","line1")
                 .datum(data)
@@ -163,19 +169,19 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 
 
 #### Age Effect Analysis
-- data: age group data of top 6 popular stations 
+- data: age group data of top 6 popular stations
 - data process: Counted number of each age group
 - import data:
 
            d3.json("pie_data_all.json").then(function (data) {}
-           
+
 - Set data:
 
       var pie2013 = d3.pie()
                 .value(function (d) { return d.X2013top1; })
                 (data);
 - Set donut parameters:
-     
+
       var outerRadius = w / 2;
       var innerRadius = w / 3;
 
@@ -197,4 +203,3 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
                         .attrTween("d", arcTween);
                 })
                 //  .. set 6 transitions
-                
