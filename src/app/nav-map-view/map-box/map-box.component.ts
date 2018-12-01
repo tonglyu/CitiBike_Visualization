@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { MapService } from '../map.service';
 import { STATIONS_URL_PREFIX, YEARS, COLORS } from '../constants';
 import { generate } from '../../../../node_modules/rxjs';
-import { stat } from 'fs';
 import * as d3 from 'd3';
 
 
