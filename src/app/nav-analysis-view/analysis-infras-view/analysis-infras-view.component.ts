@@ -577,7 +577,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
         //.classed("active", centered && function(d) { return d === centered; });
 
         g.transition()
-          .duration(750)
+          .duration(1000)
           .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + (-x-5) + "," + (-y-5) + ")")
           .style("stroke-width", 1.5 / k + "px");
         //var k =500;
@@ -591,7 +591,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
       function transition(zoomLevel) {
         svg.transition()
           .delay(100)
-          .duration(700)
+          .duration(1000)
           .call(zoom.scaleBy, zoomLevel);
         //.call(zoom.transform, transform);
         //.on("end", function() { canvas.call(transition); });
@@ -607,7 +607,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
         if (this.id === 'zoom_init') {
           svg.transition()
             .delay(100)
-            .duration(700)
+            .duration(1000)
             .call(zoom.scaleTo, 1); // return to initial state
         }
       });
