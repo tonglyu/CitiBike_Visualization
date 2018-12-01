@@ -218,6 +218,49 @@ this.map.on('click', 'stations' + year, (e) => {
      }
    });
 ```
+- add overlay legend
+```html
+.map-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 120px;
+  margin-bottom: 40px;
+  width: 100px;
+}
+```
+```html
+var legend = document.getElementById("legend");
+var item = document.createElement('div');
+var key = document.createElement('span');
+key.className = 'legend-key';
+key.style.backgroundColor = COLORS[year];
+
+var value = document.createElement('span');
+value.innerHTML = year;
+item.appendChild(key);
+item.appendChild(value);
+legend.appendChild(item);
+```
+- set media query
+```html
+@media only screen and (max-width: 575px) {
+    .map-overlay {
+      top:0;
+      margin-left: 15px;
+    }
+}
+```
 
 #### Selector
 - add `radio` and `dropdown selector`
