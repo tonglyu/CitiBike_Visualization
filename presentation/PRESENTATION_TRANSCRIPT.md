@@ -1,34 +1,19 @@
-# INF 554 Project
+# Presentation
 
-## Project - New York Sharing Bike Trip Data Visualization
+## Project - Citi Bike Information Visualization
 
 - Group Name: Journey to the West (Original Y&L)
 - Group Member: Ziwei Yuan, Tong Lyu, Jing Zhang, Tianyang Li
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu, zhan749@usc.edu, ltianyan@usc.edu
-- We built a New York sharing bike Trip data visualization websites, which includes basic charts (time series, bar charts, etc.) and map visualization. The website is designed to sharing bike users, investors and sharing bike companys.
 
-## Data
-
-- Citi Bike Trip Histories
-    - The dataset is about trip information for each bike from 2013 to 2018
-    - The attributes include trip ID, duration, start Time, end Time, start station's coordinate, end station's coordinate, station name, trip route category, etc
-    - Source: https://www.citibikenyc.com/system-data
-- NYC Facilities
-    - GeoJson datasets of New York facilities
-    - Includes historical sites, education, infrastructure, etc
-    - Source: https://capitalplanning.nyc.gov/map/facilities#10/40.7128/-74.0807
-- Weather dataset
-    - New York precipitation data of 2016
-    - Source: https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016
-
-## Presentation
+## Content
 
 ### Slide 1 - Title
 - Group Name: Journey to the West (Original Y&L)
 - Group Member: Ziwei Yuan, Tong Lyu, Jing Zhang, Tianyang Li
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu, zhan749@usc.edu, ltianyan@usc.edu
 
-### Slide 2 - Why chose this project(10 words)
+### Slide 2 - Why chose this project
 
 - Interesting:- Sharing economy is popular in recent years. As one of typical sharing economy, Bicycles are popular vehicles in our daily life, shared bicycles perfectly solves the problem of the last one mile in the city for people. It is also a healthy and eco-friendly means of transportation.All of group members like to use sharing-bike.
 - Useful: For project ifself, sharing-bike trip data has enough dimentions. We want to analyze different data to find potential factors. And help bike-sharing company make decisions.
@@ -42,7 +27,7 @@
 ### Slide 4 - Motivation and Goal
 
 
-- I have been to nyc for vacation trip. And I found there lots of bike-sharing stations around my hotel. But all of them have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio. 
+- I have been to nyc for vacation trip. And I found there lots of bike-sharing stations around my hotel. But all of them have no available bikes for most of time. The contradiction is there are hundreds of bike-sharing stations at nyc but I still cannot borrow bikes at anytime and anywhere. So we decided to find  potiential factors that may influence orders and station's location by doing data visulazatio.
 
 
 
@@ -88,7 +73,7 @@
 - Mapbox, ant-design library
 - Bar chart / Multi-line chart
 
-### Slide 9 - Stations Map (Distribution Variation) 
+### Slide 9 - Stations Map (Distribution Variation)
 - One statistocs line chart
     - Average acticities of total stations per hour
 - Table of top 5 neighborhoods with most new setted stations
@@ -112,7 +97,7 @@
 
 - Based on our experiences, weather is a important factor that may influence orders. Because, we all don't want to ride a  bike at rainy data or snow day. So we got some data from new york open data site. Weather data includes maximum and minimum temperatures, perciption and other relevant data. Apart from weather, seasons is also a key factor that may influence orders.
 - According to our chart, we found there more orders at spring, summer and autumn. And there are less orders on rainy day.
- 
+
 ### Slide 14 - Station user analysis
 
 - We think different staions have different festures. For example, staions near school and universities have more young users and staions near park have more old users. We try to find some user portraits base on their age data. Thus we got top 10 stations age data in 6 years.
