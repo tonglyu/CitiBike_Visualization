@@ -446,9 +446,340 @@ var resize = function () {
 
 window.addEventListener("resize", resize);
 ```
-#### Station Variation
+#### Station Variation      
+- Draw Multi-line chart:    
+  - Draw lines and circles:  
+   
+        lines.append("path")
+          .attr("class", "line")
+          .attr("d", function (d) { return line(d['Values']);})
+          .attr("fill", "none")
+          .attr("stroke-width", lineStroke)
+          .attr("stroke", function (d, i: any) { return COLORS[d["Year"]];})
+      
+  - Draw focus on layer to show mouse-hover effect:
+
+        var focus = svg.append('g')
+          .attr('class', 'focus')
+          .style('display', 'none');
+
+        focus.append('line')
+          .attr('class', 'x-hover-line hover-line')
+          .attr('y1', 0)
+          .attr('y2', height);
+
+        svg.append('rect')
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+          .attr("class", "overlay")
+          .attr("width", width)
+          .attr("height", height)
+          .on("mouseover", mouseover)
+          .on("mouseout", mouseout)
+          .on("mousemove", mousemove);
+  - Add mouse events:
+
+        function mousemove() {
+          var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+          var di = data[i + 1];
+          focus.attr("transform", "translate(" + x(di.Time) + ",0)");
+          d3.selectAll('.points text')
+              .attr('x', function (d) { return x(di.Time) + 5; })
+              .attr('y', function (d: any) { return y(d.Values[i + 1].Use); })
+              .text(function (d: any) { return Math.round(d.Values[i + 1].Use); })
+              .style('fill', function (d: any) { return "black"; });
+        }
+
+- Calculate Variation
+
+      var year_max = d3.max(select_years)
+      var year_min = d3.min(select_years)
+
+      var val_max, val_min;
+      data.forEach((d: any) => {
+          if (d['Year'] == year_max) {
+              val_max = d['Count'];
+          }
+          if (d['Year'] == year_min) {
+              val_min = d['Count'];
+          }
+      })
+
+      var diff = (val_max - val_min)
+
+- Draw Variation Table and Bar chart
+  - Draw Table
+  
+        table.selectAll('tr')
+          .data(data_table)
+          .enter().append('tr')
+          .style('font-weight', function (d, i) {
+              return (i == 0) ? 'bold' : 'normal';
+          })
+          .selectAll('td')
+          .data(function (d) {
+              return Object.values(d);
+          }).enter().append('td')
+          .text(function (d) {
+              return d;
+          });
+  - Draw bars
+
+        rects.enter()
+          .append('rect')
+          .attr('x', function (d: any) { return x(d.Block); })
+          .attr('y', function (d: any) { return y(d.Count); })
+          .attr('width', x.bandwidth)
+          // @ts-ignore
+          .attr('height', function (d) { return height - y(d.Count); })
+          .attr('class', function (d, i) { return "rect rect" + i; })
+          .attr('fill', "darkgreen")
+          .attr('opacity', '0.6')
+          .attr('stroke-width', 1)
+          .attr('stroke', "aliceblue")
+  - Add on mouse event to show neighborhoods on map
+
+        .on("mouseover", function (d: any, i) {
+          d3.selectAll(".rect" + i)
+            .transition()
+            .duration(250)
+            .style('fill', 'aqua')
+            .attr('opacity', '1');
+
+          // show text
+          d3.selectAll(".label" + i)
+              .transition()
+              .duration(250)
+              .style("font-size", 10);
+
+          mapService.showNeighbor(d.Id);
+        })
 ### Stations Analysis
 #### Infrastructures Effect Analysis
+- Use d3.geoConicConformal() to draw the nyc map
+```html
+<script>
+var projection = d3.geoConicConformal()
+          .parallels([33, 45])
+          .rotate([96, -39])
+          .fitSize([width, height], nyc);
+//.fitSize([1100,600],json);
+
+                                    //fit svg size!
+svg.append("g")
+        .selectAll("path")
+        .data(nyc.features)
+        .enter().append("path")
+        .attr("d", path)
+        .attr("stroke-width", 0.3)
+        .attr("stroke-opacity", 0.5)
+        .attr("stroke", "black")
+        //.attr("fill","#ffd460")
+        .attr('fill', '#ddd')
+        .attr("stroke-dasharray", 1)
+
+        .on("mouseover", function (d: any) {
+          console.log(d);
+          d3.select(this)
+            .style("stroke-width", 1.7)
+            .style("stroke-dasharray", 0)
+            .attr("stroke-opacity", 1)
+            .attr("stroke", "orange")
+
+          d3.select("#neighborhoodPopover")
+            .transition()
+            .style("opacity", 0.7)
+            .style("left", (d3.event.pageX + 70) + "px")
+            //.style("top", (d3.event.pageY) + "px")
+            .style("top", (d3.event.pageY + 70) + "px")
+            .style("font-size", "16px")
+            .style("border-radius", "20px")
+            .style("border", "0px")
+            .style("padding", "10px")
+            .text(d.properties.neighborhood)
+
+        })
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .attr("stroke", "black")
+            .style("stroke-width", 0.3)
+            .style("stroke-dasharray", 1)
+            .attr("stroke-opacity", 0.5)
+            //.style("stroke-width", 0.5)
+
+          d3.select("#cneighborhoodPopoverountyText")
+            .transition()
+            .style("opacity", 0);
+        });
+  <script>
+```
+- Use same projection to draw the station points.
+
+```html
+            <script>
+                svg.select("g")
+          .attr("id", "point")
+          .attr("class", "bubble")
+          .selectAll("circle")
+          .data(light.features)
+          // .sort(function(a, b) { return b.properties.population - a.properties.population; }))
+          .enter().append("circle")
+          .attr("cx", function (d: any) {
+            // console.log(laProjection(d.geometry.coordinates))
+            return projection2(d.geometry.coordinates)[0];
+          })
+          .attr("cy", function (d: any) {
+            // console.log(laProjection(d.geometry.coordinates))
+            return projection2(d.geometry.coordinates)[1];
+          })
+          .attr("r", "2")
+          .attr("fill", "brown")
+          .attr("fill-opacity", "0.8")
+          .attr("stroke", "white")
+          .attr("stroke-opacity", 0)
+          .attr("stroke-width", 2)
+          .on("mouseover", function (d: any) {
+            
+            var Y = (projection2(d.geometry.coordinates)[1] - 110);
+            
+            d3.select(this)
+            
+              .attr("r", "12")
+              .attr("fill-opacity", "0.2")
+
+            </script>
+```
+        .
+        .
+        .
+- Use same projection to draw the icons around the station points.
+```html
+<script>
+svg.select("g")
+                .append("g")
+                .attr("id", "tem")
+                .selectAll("image")
+                .data(tz.features)
+                .enter().append("svg:image")
+                .attr("xlink:href", function (d: any) {
+                  console.log(d.properties.type);
+                  if (d.properties.type == "0") {
+                    return "src/assets/sky/subway.svg";
+                  }
+                  else if (d.properties.type == "1") {
+                    return "src/assets/sky/hotel.svg";
+                  }
+                  else if (d.properties.type == "2") {
+                    return "src/assets/sky/mall.svg";
+                  }
+                  else if (d.properties.type == "6") {
+                    return "src/assets/sky/camera.svg";
+                  }
+                  else if (d.properties.type == "4") {
+                    return "src/assets/sky/park.svg";
+                  }
+                  else if (d.properties.type == "5") {
+                    return "src/assets/sky/sports.svg";
+                  }
+                  else if (d.properties.type == "7") {
+                    return "src/assets/sky/gov.svg";
+                  }
+                //  else {
+                //    return "src/assets/sky/hotel.svg";
+                //  }
+
+                })
+                .attr("x", function (d: any) {
+                  return projection2(d.geometry.coordinates)[0];
+                })
+                .attr("y", function (d: any) {
+                  return projection2(d.geometry.coordinates)[1];
+                })
+                .attr("width", "2")
+                .attr("height", "2")
+                .style("pointer-events","none");
+
+
+
+    </script>
+```  
+
+- Wrote functions to implement the zoom interaction.
+```html
+<script>
+ var zoom = d3.zoom()
+        .scaleExtent([1, 36])
+        .on("zoom", zoomed);
+
+      //const svgOverlay: Selection<SVGRectElement, SVGDatum, HTMLElement, any> = 
+      //svg.call(zoom);
+
+      function zoomed() {
+        g.attr('transform', `translate(${d3.event.transform.x},  	 ${d3.event.transform.y}) scale(${d3.event.transform.k})`);
+        c.attr('transform', `translate(${d3.event.transform.x},  	 ${d3.event.transform.y}) scale(${d3.event.transform.k})`);
+      };
+
+
+      function transitioncenter(d) {
+        var x, y, k;
+
+        if (d && centered !== d) {
+          var projection = d3.geoConicConformal()
+            .parallels([33, 45])
+            .rotate([96, -39])
+            .fitSize([width, height], nyc);
+          var centroid = path.centroid(d);
+          //console.log("look" + centroid + "*******")
+          //console.log("kool" + projection(d.geometry.coordinates)[0] + "," + projection(d.geometry.coordinates)[1] + "*******")
+          x = centroid[0];
+          y = centroid[1];
+          k = 8;
+          centered = d;
+        } else {
+          x = width / 2;
+          y = height / 2;
+          k = 1;
+          centered = null;
+        }
+
+        //g.selectAll("path")
+        //.classed("active", centered && function(d) { return d === centered; });
+
+        g.transition()
+          .duration(1000)
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + (-x-5) + "," + (-y-5) + ")")
+          .style("stroke-width", 1.5 / k + "px");
+
+
+
+      }
+      
+      function transition(zoomLevel) {
+        svg.transition()
+          .delay(100)
+          .duration(1000)
+          .call(zoom.scaleBy, zoomLevel);
+        //.call(zoom.transform, transform);
+        //.on("end", function() { canvas.call(transition); });
+      }
+
+      d3.selectAll('button').on('click', function (this: any) {
+        if (this.id === 'zoom_in') {
+          transition(1.5); // increase on 0.2 each time
+        }
+        if (this.id === 'zoom_out') {
+          transition(0.6); // deacrease on 0.2 each time
+        }
+        if (this.id === 'zoom_init') {
+          svg.transition()
+            .delay(100)
+            .duration(1000)
+            .call(zoom.scaleTo, 1); // return to initial state
+        }
+</script>
+```
+        .
+        .
+        .
 #### Weather Effect Analysis
 - data: nyc weather data of 2016 & citi bike-sharing order data of 2016
 - data process: precipitation = precipitation * 40000
@@ -481,7 +812,7 @@ window.addEventListener("resize", resize);
              focus.select(".axis--x").call(xAxis);
              context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
              }
-- Draw line:
+- Draw the lines:
 
           var line1 = d3.line()
           .x(function (d) { return x(d.Date); })
@@ -493,12 +824,10 @@ window.addEventListener("resize", resize);
                 .attr("class", "line")
                 .style("stroke", "lightskyblue")
                 .attr("d", line1);
-- Draw rectangle and line:
 
-            context.append("g")
-                .attr("class", "axis axis--x")
-                .attr("transform", "translate(0," + height2 + ")")
-                .call(xAxis2);
+- Draw the rectangle and the brush:
+
+            
             context.append("g")
                 .attr("class", "brush")
                 .call(brush)
@@ -509,6 +838,64 @@ window.addEventListener("resize", resize);
                 .attr("height", height)
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                 .call(zoom);
+
+- Use d3.scaleTime() and d3.scaleLinear to draw the axes
+
+var x = d3.scaleTime().range([0, width]),
+        x2 = d3.scaleTime().range([0, width]),
+        y = d3.scaleLinear().range([height, 0]),
+        y2 = d3.scaleLinear().range([height2, 0]);
+
+    x.domain(d3.extent(data, function (d:any) { return d.Date; }));
+    y.domain([0, d3.max(data, function (d:any) { return d.orders; })]);
+    x2.domain(x.domain());
+    y2.domain(y.domain());
+
+
+    var xAxis = d3.axisBottom(x),
+        xAxis2 = d3.axisBottom(x2),
+        yAxis = d3.axisLeft(y);
+
+
+- Set a clip path to guarantee the lines zooming correctly.
+
+  svg.append("defs").append("svg:clipPath")
+        .attr("id", "clip")
+        .append("svg:rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("x", 0)
+        .attr("y", 0);
+
+    var Line_chart = svg.append("g")
+        .attr("clip-path", "url(#clip)")
+        .attr("class", "focus")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        ;
+
+        .
+        .
+        .
+
+- Draw the axes.
+
+
+        focus.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+              //  .attr("fill","black")
+                .call(xAxis);
+
+        focus.append("g")
+                .attr("class", "axis axis--y")
+                .call(yAxis)
+               // .attr("transform", "translate(" + 40 + ",0)")
+
+        .
+        .
+        .
+
+
 
 
 #### Age Effect Analysis
@@ -528,12 +915,6 @@ window.addEventListener("resize", resize);
       var outerRadius = w / 2;
       var innerRadius = w / 3;
 
-- Draw donut chart:
-
-      var pie2013 = d3.pie()
-                       .value(function (d) { return d.X2013top1; })
-                       (data);
-                       //... set  6 dionuts
 - Set transitions:
 
                  d3.select("#top-1")
@@ -546,3 +927,57 @@ window.addEventListener("resize", resize);
                         .attrTween("d", arcTween);
                 })
                 //  .. set 6 transitions
+
+- Use d3.scaleOrdinal() to set the color scale.
+
+var color = d3.scaleOrdinal()
+          .domain(["20-29", "30-39", "40-49", "50+"])
+          .range(["#00345b", "#f89921", "#8b1918", "#40817b"]);
+
+- Use d3.pie() to draw the charts.
+
+
+            
+            var pie2013 = d3.pie()
+          .value(function (d:any) { return d.X2013top1; })
+          (data);
+           
+
+        .
+        .
+        .
+- Usce d3.arc to draw the arcs in the chart.
+
+        var arc = d3.arc<PieArcDatum<pies>>()
+          .innerRadius(innerRadius)
+          .outerRadius(outerRadius);
+
+      var arcs2013 = svg2013.selectAll("g.arc")
+          .data(pie2013)
+          .enter()
+          .append("g")
+          .attr("class", "arc")
+          .attr("opacity","0.7")
+          .attr("transform", "translate(" + outerRadius + ", " + outerRadius + ")");
+      arcs2013.append("path")
+      //@ts-ignore
+          .attr("fill", function (d, i) { return color(i); })
+          //@ts-ignore
+          .attr("d", arc)
+          .each(function (d:any) { this._current = d; });
+
+
+- Wrote functions to make the chart intereactive.
+
+        function arcTween(a) {
+    var outerRadius = 200 / 2;
+      var innerRadius = 200 / 3;
+
+      var arc = d3.arc<PieArcDatum<pies>>()
+          .innerRadius(innerRadius)
+          .outerRadius(outerRadius);
+      var i = d3.interpolate(this._current, a);
+      this._current = i(0);
+      //@ts-ignore
+      return function (t) { return arc(i(t)) };
+  }
