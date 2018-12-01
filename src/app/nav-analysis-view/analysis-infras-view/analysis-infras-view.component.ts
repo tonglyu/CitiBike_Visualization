@@ -523,7 +523,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
           .append("title")
           .text(function (d: any) {
 
-            return "Addr: " + d.properties.addr;
+            return "Station id:"+d.properties.id+"\n"+"Addr: " + d.properties.addr;
           });
       })
       var g = d3.selectAll("g");
