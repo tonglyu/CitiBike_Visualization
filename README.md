@@ -797,8 +797,7 @@ svg.select("g")
                 .call(zoom);
 
 - Use d3.scaleTime() and d3.scaleLinear to draw the axes
-```html
-<script>
+
 var x = d3.scaleTime().range([0, width]),
         x2 = d3.scaleTime().range([0, width]),
         y = d3.scaleLinear().range([height, 0]),
@@ -813,15 +812,10 @@ var x = d3.scaleTime().range([0, width]),
     var xAxis = d3.axisBottom(x),
         xAxis2 = d3.axisBottom(x2),
         yAxis = d3.axisLeft(y);
-  <script>
-```
-
 
 
 - Set a clip path to guarantee the lines zooming correctly.
-```html
-<script>
-        
+
   svg.append("defs").append("svg:clipPath")
         .attr("id", "clip")
         .append("svg:rect")
@@ -835,15 +829,13 @@ var x = d3.scaleTime().range([0, width]),
         .attr("class", "focus")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         ;
-</script>
-```
+
         .
         .
         .
 
 - Draw the axes.
-```html
-<script>
+
 
         focus.append("g")
                 .attr("class", "axis axis--x")
@@ -855,8 +847,7 @@ var x = d3.scaleTime().range([0, width]),
                 .attr("class", "axis axis--y")
                 .call(yAxis)
                // .attr("transform", "translate(" + 40 + ",0)")
-</script>
-```
+
         .
         .
         .
@@ -895,28 +886,25 @@ var x = d3.scaleTime().range([0, width]),
                 //  .. set 6 transitions
 
 - Use d3.scaleOrdinal() to set the color scale.
-```html
-<script>
+
 var color = d3.scaleOrdinal()
           .domain(["20-29", "30-39", "40-49", "50+"])
           .range(["#00345b", "#f89921", "#8b1918", "#40817b"]);
-  <script>
-```
+
 - Use d3.pie() to draw the charts.
 
-```html
-            <script>
+
+            
             var pie2013 = d3.pie()
           .value(function (d:any) { return d.X2013top1; })
           (data);
-            </script>
-```
+           
+
         .
         .
         .
 - Usce d3.arc to draw the arcs in the chart.
-```html
-<script>
+
         var arc = d3.arc<PieArcDatum<pies>>()
           .innerRadius(innerRadius)
           .outerRadius(outerRadius);
@@ -934,12 +922,10 @@ var color = d3.scaleOrdinal()
           //@ts-ignore
           .attr("d", arc)
           .each(function (d:any) { this._current = d; });
-</script>
-```
+
 
 - Wrote functions to make the chart intereactive.
-```html
-<script>
+
         function arcTween(a) {
     var outerRadius = 200 / 2;
       var innerRadius = 200 / 3;
@@ -952,5 +938,3 @@ var color = d3.scaleOrdinal()
       //@ts-ignore
       return function (t) { return arc(i(t)) };
   }
-</script>
-```
