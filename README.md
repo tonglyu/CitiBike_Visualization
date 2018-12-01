@@ -101,7 +101,18 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 - Merge branches
 
 ## DEVELOPMENT DETAILS
+
+### Bootstrap
+- Build the web page frame using Bootstrap in app.component.html and other components
+- add <div> and grids class (.container and .row) offered by Bootstrap
+
+### Angular Components interaction
+- Add a service to pass values between sibling components
+
+
 ### Stations Map
+
+
 #### Station Activity
 #### Station Variation
 ### Stations Analysis
@@ -150,7 +161,7 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
                 .attr("class", "line")
                 .style("stroke", "lightskyblue")
                 .attr("d", line1);
-- Draw rect and line:
+- Draw rectangle and line:
 
             context.append("g")
                 .attr("class", "axis axis--x")

@@ -34,7 +34,7 @@
     - They focuses on statistics and analysis. Their target users are tend to data analysts.
 - What we do
     - We used simple statistics charts to tell a story about sharing bikes, showing the temporal and spatial variation of stations and the factors
-    - Our charts are responsive and interactive. We optimized the visual queries and user interaction by multiple methos such as pop out effect, coupling effects and apporiate color scheme.
+    - Our charts are responsive and interactive. We optimized the visual queries and user interaction by multiple methods such as pop out effect, coupling effects and appropriate color scheme.
 
 ### Slide 6 - Data
 - Citi Bike Trip Histories
@@ -92,7 +92,7 @@
 ### Slide 12 - Station infrastructure analysis 2
 - Our chart can directly compare popular stations. As we can see, those popular stations always surrounded by malls, parks, hotels, transportations, big apartment and so on. For example, station located at south entrance of central park is one of top 20 popular stations. There lots of users came and left central park by riding sharing-bikes.
 - D3.map,Bootstrap,function.
-- Zoom and brushes can help user read long period data more easily.
+- Zoom and brushed can help user read long period data more easily.
 
 
 ### Slide 13 - Station weather analysis
