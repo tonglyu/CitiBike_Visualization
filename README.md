@@ -403,7 +403,113 @@ var resize = function () {
 
 window.addEventListener("resize", resize);
 ```
-#### Station Variation
+#### Station Variation      
+- Draw Multi-line chart:    
+  - Draw lines and circles:  
+   
+        lines.append("path")
+          .attr("class", "line")
+          .attr("d", function (d) { return line(d['Values']);})
+          .attr("fill", "none")
+          .attr("stroke-width", lineStroke)
+          .attr("stroke", function (d, i: any) { return COLORS[d["Year"]];})
+      
+  - Draw focus on layer to show mouse-hover effect:
+
+        var focus = svg.append('g')
+          .attr('class', 'focus')
+          .style('display', 'none');
+
+        focus.append('line')
+          .attr('class', 'x-hover-line hover-line')
+          .attr('y1', 0)
+          .attr('y2', height);
+
+        svg.append('rect')
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+          .attr("class", "overlay")
+          .attr("width", width)
+          .attr("height", height)
+          .on("mouseover", mouseover)
+          .on("mouseout", mouseout)
+          .on("mousemove", mousemove);
+  - Add mouse events:
+
+        function mousemove() {
+          var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+          var di = data[i + 1];
+          focus.attr("transform", "translate(" + x(di.Time) + ",0)");
+          d3.selectAll('.points text')
+              .attr('x', function (d) { return x(di.Time) + 5; })
+              .attr('y', function (d: any) { return y(d.Values[i + 1].Use); })
+              .text(function (d: any) { return Math.round(d.Values[i + 1].Use); })
+              .style('fill', function (d: any) { return "black"; });
+        }
+
+- Calculate Variation
+
+      var year_max = d3.max(select_years)
+      var year_min = d3.min(select_years)
+
+      var val_max, val_min;
+      data.forEach((d: any) => {
+          if (d['Year'] == year_max) {
+              val_max = d['Count'];
+          }
+          if (d['Year'] == year_min) {
+              val_min = d['Count'];
+          }
+      })
+
+      var diff = (val_max - val_min)
+
+- Draw Variation Table and Bar chart
+  - Draw Table
+  
+        table.selectAll('tr')
+          .data(data_table)
+          .enter().append('tr')
+          .style('font-weight', function (d, i) {
+              return (i == 0) ? 'bold' : 'normal';
+          })
+          .selectAll('td')
+          .data(function (d) {
+              return Object.values(d);
+          }).enter().append('td')
+          .text(function (d) {
+              return d;
+          });
+  - Draw bars
+
+        rects.enter()
+          .append('rect')
+          .attr('x', function (d: any) { return x(d.Block); })
+          .attr('y', function (d: any) { return y(d.Count); })
+          .attr('width', x.bandwidth)
+          // @ts-ignore
+          .attr('height', function (d) { return height - y(d.Count); })
+          .attr('class', function (d, i) { return "rect rect" + i; })
+          .attr('fill', "darkgreen")
+          .attr('opacity', '0.6')
+          .attr('stroke-width', 1)
+          .attr('stroke', "aliceblue")
+  - Add on mouse event to show neighborhoods on map
+
+        .on("mouseover", function (d: any, i) {
+          d3.selectAll(".rect" + i)
+            .transition()
+            .duration(250)
+            .style('fill', 'aqua')
+            .attr('opacity', '1');
+
+          // show text
+          d3.selectAll(".label" + i)
+              .transition()
+              .duration(250)
+              .style("font-size", 10);
+
+          mapService.showNeighbor(d.Id);
+        })
 ### Stations Analysis
 #### Infrastructures Effect Analysis
 - Use d3.geoConicConformal() to draw the nyc map
