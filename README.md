@@ -10,7 +10,7 @@
 
 ### PROJECT ARTIFACTS
 
-- [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
+- [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/NYCSharingBike)
 - [Presentation PDF](presentation/presentation.pdf) and [transcript](presentation/PRESENTATION_TRANSCRIPT.md)
 - [Article](paper/Citi_Bike_Information_Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
 - [YouTube video](https://www.youtube.com/watch?v=Mnu_VbX8xyk)
@@ -87,7 +87,7 @@ ng generate component nav-about-view
 
 - Build Angular project
 ```
-ng build --prod --base-href /~ziweiyua/SharingBike/
+ng build --prod --base-href /~ziweiyua/NYCSharingBike/
 ```
 - Connect with `aludra.usc.edu` SFTP using [Filezilla](https://filezilla-project.org) (Port is 22)
 - Copy files under `dist` folder to the remote
@@ -297,8 +297,83 @@ bar.selectAll(".y-axis")
     .attr("class", "y-axis")
     .call(yAxis);
 ```
-- draw bar charts
+- data enter and append/update `rect`
+```html
+rects.transition()  //UPDATE
+.duration(2000)
+.attr('y', function (d, i) {
+    if (data[i] > 600) {
+        return y(600);
+    } else {
+        return y(data[i]);
+    }
+})
+.attr('width', x.bandwidth)
+// @ts-ignore
+.attr('height', function (d, i) {
+    if (data[i] > 600) {
+        return height - y(600);
+    } else {
+        return height - y(data[i]);
+    }
+});
+
+// append rect
+rects.enter()
+  .append('rect')
+  .attr('x', function (d, i) { return x(i); })
+  .attr('y', function (d, i) {
+      if (data[i] > 600) {
+          return y(600);
+      } else {
+          return y(data[i]);
+      }
+  })
+  .attr('width', x.bandwidth)
+  // @ts-ignore
+  .attr('height', function (d, i) {
+      if (data[i] > 600) {
+          return height - y(600);
+      } else {
+          return height - y(data[i]);
+      }
+  })
+  .attr('class', function (d, i) { return "rect rect" + i; })
+  .attr('fill', "darkgreen")
+  .attr('opacity', '0.6')
+  .attr('stroke-width', 1)
+  .attr('stroke', "aliceblue")
+```
 - append labels
+- add mouse events
+```html
+.on("mouseover", function (d, i) {
+    d3.selectAll(".rect" + i)
+        .transition()
+        .duration(250)
+        .style('fill', 'aqua')
+        .attr('opacity', '1');
+
+    // show text
+    d3.selectAll(".label" + i)
+        .transition()
+        .duration(250)
+        .style("font-size", 15);
+})
+.on("mouseout", function (d, i) {
+    d3.selectAll(".rect" + i)
+        .transition()
+        .duration(250)
+        .style('fill', 'darkgreen')
+        .attr('opacity', '0.6');
+
+    // hide text
+    d3.selectAll(".label" + i)
+        .transition()
+        .duration(250)
+        .style("font-size", 0);
+});
+```
 - redraw charts based on the size of window
 ```html
 var resize = function () {
