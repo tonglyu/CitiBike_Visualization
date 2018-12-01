@@ -10,7 +10,7 @@
 
 ### PROJECT ARTIFACTS
 
-- [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
+- [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/NYCSharingBike)
 - [Presentation PDF](presentation/presentation.pdf) and [transcript](presentation/PRESENTATION_TRANSCRIPT.md)
 - [Article](paper/Citi_Bike_Information_Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
 - [YouTube video](https://www.youtube.com/watch?v=Mnu_VbX8xyk)
@@ -87,7 +87,7 @@ ng generate component nav-about-view
 
 - Build Angular project
 ```
-ng build --prod --base-href /~ziweiyua/SharingBike/
+ng build --prod --base-href /~ziweiyua/NYCSharingBike/
 ```
 - Connect with `aludra.usc.edu` SFTP using [Filezilla](https://filezilla-project.org) (Port is 22)
 - Copy files under `dist` folder to the remote
@@ -104,7 +104,7 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 
 ### Bootstrap
 - Build the web page frame using Bootstrap in app.component.html and other components
-- add <div> and grids class (.container and .row) offered by Bootstrap
+- add `<div>` and grids class (.container and .row) offered by Bootstrap
 
 ### Angular Components interaction
 - Add a service to pass values between sibling components
@@ -139,6 +139,7 @@ YEARS.forEach((year) => {
 ```
 
 ### Stations Map
+#### MapBox
 - Load map (center at New York)
 - Add map controls
 - Add layers
@@ -218,8 +219,190 @@ this.map.on('click', 'stations' + year, (e) => {
    });
 ```
 
-#### Station Activity
+#### Selector
+- add `radio` and `dropdown selector`
+- use `ngModel` and `ngModelChange` to get values and add event listener
+- add tooltip
+```html
+<nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radioLog($event)" style="margin-bottom: 10px;">
+    <label nz-radio nzValue="statistics" nz-tooltip nzPlacement="right" nzTitle="Show total number of bikes returned/borrowed per hour in June for one station.">Station Activity</label>
+    <label nz-radio nzValue="variation" nz-tooltip nzPlacement="right" nzTitle="Show the average activities for all stations per hour and variation of stations' count.">Station Variation</label>
+</nz-radio-group>
+<nz-select id="selector" [nzMode]='Mode' style="width: 80%;" nzPlaceHolder="Select the Years" [nzMaxMultipleCount]='maxMultipleCount'
+    [(ngModel)]="listOfTagOptions" (ngModelChange)="selectLog($event)">
+    <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+    </nz-option>
+</nz-select>
+```
 
+#### Station Activity
+- d3 select and append elements
+```html
+var bar_container = d3.select("#" + chart)
+    .select("svg")
+    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom);
+
+var bar = bar_container
+    .select("g")
+    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+```
+- `d3.csv` read and return csv data
+```html
+d3.csv('src/assets/statistics/per hour/' + year + '(' + chart + ').csv', function (d) {
+            if (d['Stationid'] == id) {
+                return {
+                    0: +d['0'], 1: +d['1'], 2: +d['2'], 3: +d['3'], 4: +d['4'], 5: +d['5'],
+                    6: +d['6'], 7: +d['7'], 8: +d['8'], 9: +d['9'], 10: +d['10'], 11: +d['11'],
+                    12: +d['12'], 13: +d['13'], 14: +d['14'], 15: +d['15'], 16: +d['16'], 17: +d['17'],
+                    18: +d['18'], 19: +d['19'], 20: +d['20'], 21: +d['21'], 22: +d['22'], 23: +d['23']
+                }
+            }
+}).then(function (data: any) {
+  ......
+}
+```
+- set and append axes
+```html
+var x = d3.scaleBand()
+    // @ts-ignore
+    .domain(hours)
+    .range([0, width])
+    .paddingInner(0.05);
+var y = d3.scaleLinear()
+    // @ts-ignore
+    .domain([0, 600])
+    .range([height, 0]);
+
+// @ts-ignore
+var xAxis = d3.axisBottom()
+    .scale(x);
+// @ts-ignore
+var yAxis = d3.axisLeft()
+    .tickFormat(function (d) { return (d == 600) ? "> 600" : d; })
+    .scale(y);
+
+// append axis
+bar.selectAll(".x-axis")
+    .data([0])
+    .enter()
+    .append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .attr("class", "x-axis")
+    .call(xAxis);
+bar.selectAll(".y-axis")
+    .data([0])
+    .enter()
+    .append("g")
+    .attr("class", "y-axis")
+    .call(yAxis);
+```
+- data enter and append/update `rect`
+```html
+rects.transition()  //UPDATE
+.duration(2000)
+.attr('y', function (d, i) {
+    if (data[i] > 600) {
+        return y(600);
+    } else {
+        return y(data[i]);
+    }
+})
+.attr('width', x.bandwidth)
+// @ts-ignore
+.attr('height', function (d, i) {
+    if (data[i] > 600) {
+        return height - y(600);
+    } else {
+        return height - y(data[i]);
+    }
+});
+
+// append rect
+rects.enter()
+  .append('rect')
+  .attr('x', function (d, i) { return x(i); })
+  .attr('y', function (d, i) {
+      if (data[i] > 600) {
+          return y(600);
+      } else {
+          return y(data[i]);
+      }
+  })
+  .attr('width', x.bandwidth)
+  // @ts-ignore
+  .attr('height', function (d, i) {
+      if (data[i] > 600) {
+          return height - y(600);
+      } else {
+          return height - y(data[i]);
+      }
+  })
+  .attr('class', function (d, i) { return "rect rect" + i; })
+  .attr('fill', "darkgreen")
+  .attr('opacity', '0.6')
+  .attr('stroke-width', 1)
+  .attr('stroke', "aliceblue")
+```
+- append labels
+- add mouse events
+```html
+.on("mouseover", function (d, i) {
+    d3.selectAll(".rect" + i)
+        .transition()
+        .duration(250)
+        .style('fill', 'aqua')
+        .attr('opacity', '1');
+
+    // show text
+    d3.selectAll(".label" + i)
+        .transition()
+        .duration(250)
+        .style("font-size", 15);
+})
+.on("mouseout", function (d, i) {
+    d3.selectAll(".rect" + i)
+        .transition()
+        .duration(250)
+        .style('fill', 'darkgreen')
+        .attr('opacity', '0.6');
+
+    // hide text
+    d3.selectAll(".label" + i)
+        .transition()
+        .duration(250)
+        .style("font-size", 0);
+});
+```
+- redraw charts based on the size of window
+```html
+var resize = function () {
+  width = parseInt(d3.select("#borrow").style("width")) - margin.left - margin.right;
+  if (width < 300) {
+      width = 300;
+  }
+  bar_container.attr("width", width + margin.left + margin.right);
+
+  x.range([0, width]);
+  xAxis.scale(x);
+
+  bar.select("#x-label")
+      .attr("x", width / 2.5)
+
+  bar.select(".x-axis").call(xAxis);
+
+  // resize rect
+
+  bar.selectAll(".rect")
+      .attr('x', function (d, i) { return x(hours[i]); })
+
+  bar.selectAll(".label")
+      .attr('x', function (d, i) { return x(hours[i]) + x.bandwidth() / 2; })
+
+};
+
+window.addEventListener("resize", resize);
+```
 #### Station Variation
 ### Stations Analysis
 #### Infrastructures Effect Analysis

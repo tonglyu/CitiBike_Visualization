@@ -2,7 +2,7 @@
 
 ## Project - Citi Bike Information Visualization
 
-- Group Name: Journey to the West (Original Y&L)
+- Group Name: Journey to the West
 - Group Member: Ziwei Yuan, Tong Lyu, Jing Zhang, Tianyang Li
 - Emails: Ziweiyua@usc.edu, tonglyu@usc.edu, zhan749@usc.edu, ltianyan@usc.edu
 
