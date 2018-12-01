@@ -12,7 +12,7 @@
 
 - [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
 - [Presentation PDF](presentation/presentation.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
-- [Article](paper/Citi Bike Information Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
+- [Article](paper/Citi_Bike_Information_Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
 - [YouTube video](https://www.youtube.com/watch?v=Mnu_VbX8xyk)
 
 ### PROJECT DESCRIPTION
@@ -93,3 +93,12 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 - Incremental commits and push useful files (not including `node_modules` and `e2e files`) to Git use GitHub Desktop
 - Create multiple branches for team work
 - Merge branches
+
+## DEVELOPMENT DETAILS
+### Stations Map
+#### Station Activity
+#### Station Variation
+### Stations Analysis
+#### Infrastructures Effect Analysis
+#### Age Effect Analysis
+#### Weather Effect Analysis
