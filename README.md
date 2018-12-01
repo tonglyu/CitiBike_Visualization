@@ -13,7 +13,7 @@
 - [Demonstration URL](http://www-scf.usc.edu/~ziweiyua/SharingBike)
 - [Presentation PDF](presentation/presentation.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
 - [Article](Citi Bike information Visualization.pdf) and [Overleaf URL](https://www.overleaf.com/4253629449tbtchfmhvmmb)
-- [YouTube video](<youtube-video-url>)
+- [YouTube video](https://youtu.be/Mnu_VbX8xyk)
 
 ### PROJECT DESCRIPTION
 We built a Citi Bike information visualization website. We used Angular, Bootstrap, d3, Mapbox to show various types of charts and maps. We combined with datasets in different aspects to analyze potential factors that may influence bike-sharing orders through information visualization.
@@ -93,3 +93,18 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
 - Incremental commits and push useful files (not including `node_modules` and `e2e files`) to Git use GitHub Desktop
 - Create multiple branches for team work
 - Merge branches
+
+## Development Details
+
+### Stations Map
+#### Station Activity
+
+#### Station Variation
+
+### Stations Analysis
+
+#### Infrastructures Effect Analysis
+
+#### Age Effect Analysis
+
+#### Weather Effect Analysis
