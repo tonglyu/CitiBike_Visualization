@@ -125,9 +125,98 @@ export class MapService {
     ......
 }
 ```
+- Subscribe data and make actions in Components
+```html
+this.mapService.yearsSource.subscribe((years) => {
+YEARS.forEach((year) => {
+  if (years.includes(year)) {
+    this.map.setLayoutProperty('stations' + year, 'visibility', 'visible');
+  } else {
+    this.map.setLayoutProperty('stations' + year, 'visibility', 'none');
+  }
+
+});
+```
 
 ### Stations Map
+- Load map (center at New York)
+- Add map controls
+- Add layers
+```html
+buildMap() {
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: this.style,
+      zoom: 11.15,
+      center: [this.lng, this.lat]
+    });
 
+    // Add map controls
+    this.map.addControl(new mapboxgl.NavigationControl());
+
+    // Add geojson data on map load
+   this.map.on('load', (event) => {
+   }
+
+   this.map.addLayer({
+        id: "nyc",
+        type: "fill",
+        source: "nyc",
+        'paint': {
+          'fill-color': 'aqua',
+          'fill-opacity':
+            ["case",
+              ["boolean", ["feature-state", "pop"], false], 0.75, 0
+            ]
+        }
+  })
+
+  YEARS.forEach((year) => {
+        this.map.addLayer({
+          id: 'stations' + year,
+          type: 'circle',
+          source: 'stations' + year,
+          layout: {
+            visibility: 'none'
+          },
+          paint: {
+            'circle-radius':
+              ["case",
+                ["boolean", ["feature-state", "click"], false], 4, 3
+              ],
+            'circle-color':
+              ["case",
+                ["boolean", ["feature-state", "click"], false], 'aqua', COLORS[year]
+              ],
+            'circle-stroke-width':
+              ["case",
+                ["boolean", ["feature-state", "hover"], false], 2, 0
+              ],
+            'circle-stroke-color': COLORS[year]
+          }
+    });
+}
+```
+- Add mouse events such as `map.on("mouseenter")`, `map.on("mouseleave")` and `map.on("click")` to show tooltip or pop out effect
+```html
+this.map.on('click', 'stations' + year, (e) => {
+     // highlight
+     if (e.features.length > 0 && isStats) {
+       if (hoveredId) {
+         this.map.setFeatureState({ source: 'stations' + hoveredYear, id: hoveredId }, { hover: false });
+       }
+       if (clickedId) {
+         this.map.setFeatureState({ source: 'stations' + clickedYear, id: clickedId }, { click: false });
+       }
+       hoveredId = null;
+       hoveredYear = null;
+       clickedId = e.features[0].id;
+       clickedYear = year;
+       this.map.setFeatureState({ source: 'stations' + clickedYear, id: clickedId }, { click: true });
+       this.mapService.changeStation({ 'Year': year, 'Id': e.features[0].properties.id, 'Name': e.features[0].properties.addr });
+     }
+   });
+```
 
 #### Station Activity
 #### Station Variation
