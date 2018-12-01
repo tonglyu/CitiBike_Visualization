@@ -144,7 +144,7 @@ ng build --prod --base-href /~ziweiyua/SharingBike/
                 .attr("class", "line")
                 .style("stroke", "lightskyblue")
                 .attr("d", line1);
-- Draw rectangle and line:
+- Draw rect and line:
 
             context.append("g")
                 .attr("class", "axis axis--x")
