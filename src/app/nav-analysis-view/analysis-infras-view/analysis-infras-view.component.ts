@@ -283,6 +283,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
 
                 .attr("fill-opacity", 0.5)
                 .style("x", (190) + "px")
+                .style("pointer-events","none")
                 .style("y", (200)+ "px")
                 // .style("x", (X-420)+"px")
                 // .style("y", (Y+50)+"px")
@@ -313,6 +314,7 @@ export class AnalysisInfrasViewComponent implements OnInit {
                 .append("text")
                 // .text(information)
                 .attr('fill', 'white')
+                .style("pointer-events","none")
                 .attr('x', 188 + "px")
                 .attr('y', function (d, i) { return i * 25 +197 + "px" })
                 .attr("opacity", 1)
